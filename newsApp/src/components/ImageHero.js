@@ -14,13 +14,9 @@ const ImageHero = ({ source }) => {
 };
 
 const Container = styled.View`
-  margin-top:${screenHeight * 0.05}px; 
   width: 100%;
   height: ${screenHeight * 0.35}px; 
   background-color: red;
-  
-
-  
 `;
 
 const HeroImage = styled.ImageBackground`
@@ -28,8 +24,6 @@ const HeroImage = styled.ImageBackground`
   justify-content: center;
   align-items: center;
   background-size:cover;
- 
 `;
-
 
 export default ImageHero;

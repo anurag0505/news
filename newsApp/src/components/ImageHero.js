@@ -6,9 +6,7 @@ const { height: screenHeight } = Dimensions.get('window');
 const ImageHero = ({ source }) => {
   return (
     <Container>
-      <HeroImage source={source}>
-        
-      </HeroImage>
+       <HeroImage source={source} resizeMode="cover" />
     </Container>
   );
 };

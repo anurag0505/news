@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "title": "Breaking News: Major Breakthrough in Medical Science Thay would be helpful to mankind",
+    "description": "Scientists have announced a major breakthrough in medical science that could change the future of healthcare. The new discovery is expected to provide significant improvements in patient treatment and overall medical practices. expected to provide significant improvements in patient treatment and overall medical practices",
+    "category": "Science",
+    "date": "Updated: May 24, 2024 16:20 IST",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": "2",
+    "title": "Sports Update: Local Team Wins Championship ans they celebrete like hell ",
+    "description": "In an exciting match last night, the local team clinched the championship title, bringing joy to the fans and the city. This marks their third consecutive win in the league, showcasing their dominance and skill. night, the local team clinched the championship title, bringing joy to the fans and the city. This marks their third consecutive win in the league, showcasing their dominance and skill.",
+    "category": "Sports",
+    "date": "Updated: May 25, 2024 12:30 IST",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": "3",
+    "title": "Political News: New Policies Announced will come in for by 2024",
+    "description": "The government has announced a series of new policies aimed at boosting the economy and creating jobs. These policies are expected to have a positive impact on the market and the overall economic landscape. at boosting the economy and creating jobs. These policies are expected to have a positive impact on the market and the overall economic landscape",
+    "category": "Politics",
+    "date": "Updated: May 26, 2024 14:45 IST",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": "4",
+    "title": "Technology: Innovative Tech Trends for 2024, will make life easy",
+    "description": "Experts have predicted the top tech trends for 2024, including advancements in AI, blockchain, and IoT. These technologies are set to revolutionize various industries, providing new opportunities and challenges. including advancements in AI, blockchain, and IoT. These technologies are set to revolutionize various industries, providing new opportunities and challenges.",
+    "category": "Technology",
+    "date": "Updated: May 27, 2024 09:15 IST",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": "5",
+    "title": "Health: Tips for a Balanced Diet, that lets you live longer",
+    "description": "Nutritionists have shared their top tips for maintaining a balanced diet, emphasizing the importance of incorporating a variety of nutrients into your daily meals. These tips can help you achieve better health.",
+    "category": "Health",
+    "date": "Updated: May 28, 2024 11:00 IST",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": "6",
+    "title": "Finance: Stock Market Hits Record High , Right time to buy or sell",
+    "description": "The stock market reached a record high today, driven by strong earnings reports and positive economic data. Investors are optimistic about the future outlook, which is reflected in the market's performance.",
+    "category": "Finance",
+    "date": "Updated: May 29, 2024 13:25 IST",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": "7",
+    "title": "Entertainment: New Movie Breaks Box Office Records, new realse every month",
+    "description": "The latest blockbuster movie has broken box office records, grossing millions in its opening weekend. Critics and audiences alike are praising the film for its storytelling and visual effects, making it a must-watch.",
+    "category": "Entertainment",
+    "date": "Updated: May 30, 2024 18:45 IST",
+    "image": "https://via.placeholder.com/150"
+  }
+]

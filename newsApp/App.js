@@ -7,7 +7,7 @@ export default function App() {
   return (
     <SafeArea>
       <Container>
-    <Home/>
+        <Home/>
       </Container>
     </SafeArea>
   );

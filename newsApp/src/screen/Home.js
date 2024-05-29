@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, Dimensions } from 'react-native';
+import { SafeAreaView, Dimensions, ScrollView } from 'react-native';
 import Content from '../components/Content';
 
  const { height: screenHeight } = Dimensions.get('window');

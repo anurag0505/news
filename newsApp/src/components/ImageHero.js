@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
-const { height: screenHeight } = Dimensions.get('window');
+const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
 
 const ImageHero = ({ source }) => {
   return (
@@ -12,8 +12,8 @@ const ImageHero = ({ source }) => {
 };
 
 const Container = styled.View`
-  width: 100%;
-  height: ${screenHeight * 0.35}px; 
+  width: ${screenWidth}px;
+  height: ${screenHeight * 0.39}px; 
   background-color: red;
 `;
 
@@ -22,6 +22,8 @@ const HeroImage = styled.ImageBackground`
   justify-content: center;
   align-items: center;
   background-size:cover;
+   width: 100%;
+  height: 100%;
 `;
 
 export default ImageHero;

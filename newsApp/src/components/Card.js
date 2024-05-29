@@ -1,6 +1,7 @@
 import React from 'react'
 import { Dimensions } from 'react-native';
 import styled from 'styled-components'; 
+import ImageHero from './ImageHero';
 
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
@@ -8,13 +9,12 @@ const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
 export const Card = ({news}) => {
   return (
     <Container>
+        <ImageHero source={{ uri: news.image }} style={{ screenHeight: '70%' }} />
         <TitleText>{news.title}</TitleText>
         <Description>{news.description}</Description>
         <InfoText>
-        <Text1>{news.category}</Text1>
-        <Dated>
-            <Text2>{news.date}</Text2>
-        </Dated>
+          <Text1>{news.category}</Text1>
+          <Text2>{news.date}</Text2>
         </InfoText>
   </Container>
   )
@@ -24,20 +24,13 @@ export default Card;
 
 const Container = styled.View`
   flex-direction: column;
-  display: flex;
   text-align: center;
   justify-content: center;
-  width: 100%;
   margin-top: ${screenHeight * 0.015}px;
-  margin: 8px;
   overflow: hidden;
   flex: 1;
-`;
-
-const NewsImage = styled.Image`
-  width: 100%;
-  height: ${screenHeight * 0.25}px;
-  border-radius: 8px;
+  padding-bottom:${screenHeight * 0.020}px; ;
+  
 `;
 
 const TitleText = styled.Text`
@@ -49,35 +42,9 @@ const TitleText = styled.Text`
   line-height: ${screenHeight * 0.04}px;
   font-size: ${screenWidth * 0.045}px;
   color: #333;
-  padding: ${screenHeight * 0.005}px ${screenHeight * 0.012}px 0;
-`;
-
-const InfoText = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 0px auto;
-  padding: 2px;
-  width: 60vw;
-`;
-
-const Dated = styled.View`
-  align-items: flex-end;
-  padding-left: 5px;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Text1 = styled.Text`
-  color: red;
-  font-size: ${screenWidth * 0.04}px;
-`;
-
-const Text2 = styled.Text`
-  color: gray;
-  font-size: ${screenWidth * 0.04}px;
+  padding: ${screenHeight * 0.015}px ${screenHeight * 0.030}px ${screenHeight * 0.010}px;
+  
+ 
 `;
 
 const Description = styled.Text`
@@ -85,8 +52,35 @@ const Description = styled.Text`
   color: #666;
   line-height: ${screenHeight * 0.04}px;
   font-family: serif;
-  display: flex;
   align-items: center;
   justify-content: center;
-  padding: ${screenHeight * 0.005}px ${screenHeight * 0.012}px ${screenHeight * 0.020}px;
+  padding: ${screenHeight * 0.005}px ${screenHeight * 0.030}px ${screenHeight * 0.015}px;
+ 
+  height: ${screenHeight * 0.48}px; 
 `;
+
+const InfoText = styled.View`
+ font-size: ${screenWidth * 0.003}px;
+  color: #666;
+  font-family: serif;
+  align-items: flex-end;
+  padding: ${screenHeight * 0.005}px ${screenHeight * 0.030}px ${screenHeight * 0.05}px;
+  flex-direction: row;
+  
+  
+  
+`;
+
+const Text1 = styled.Text`
+  color: red;
+  font-size: ${screenWidth * 0.03}px;
+  align-items: flex-start;
+  display: flex;
+`;
+
+const Text2 = styled.Text`
+  color: gray;
+  font-size: ${screenWidth * 0.03}px;
+  padding-left:  ${screenWidth * 0.02}px;;
+`;
+

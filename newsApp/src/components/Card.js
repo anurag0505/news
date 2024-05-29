@@ -2,6 +2,7 @@ import React from 'react'
 import { Dimensions } from 'react-native';
 import styled from 'styled-components'; 
 import ImageHero from './ImageHero';
+import moment from 'moment';
 
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
@@ -11,11 +12,13 @@ export const Card = ({news}) => {
     <Container>
         <ImageHero source={{ uri: news.image }} style={{ screenHeight: '70%' }} />
         <TitleText>{news.title}</TitleText>
-        <Description>{news.description}</Description>
-        <InfoText>
-          <Text1>{news.category}</Text1>
-          <Text2>{news.date}</Text2>
-        </InfoText>
+        <DiscriptionContainer>
+          <Description>{news.description}</Description>
+          <InfoText>
+            <Text1>{news.category}</Text1>
+            <Text2>{ moment(new Date(news.date)).fromNow()}</Text2>
+          </InfoText>
+        </DiscriptionContainer>
   </Container>
   )
 }
@@ -47,6 +50,15 @@ const TitleText = styled.Text`
  
 `;
 
+const DiscriptionContainer = styled.View`
+  height: ${screenHeight * 0.40}px; 
+
+  display: flex;
+  
+  flex-direction: column;
+  
+`;
+
 const Description = styled.Text`
   font-size: ${screenWidth * 0.045}px;
   color: #666;
@@ -56,8 +68,9 @@ const Description = styled.Text`
   justify-content: center;
   padding: ${screenHeight * 0.005}px ${screenHeight * 0.030}px ${screenHeight * 0.015}px;
  
-  height: ${screenHeight * 0.48}px; 
+  
 `;
+
 
 const InfoText = styled.View`
  font-size: ${screenWidth * 0.003}px;

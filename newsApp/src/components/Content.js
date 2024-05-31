@@ -35,9 +35,10 @@ const Content = () => {
         keyExtractor={(item) => item.id.toString()}
         onEndReached={loadMoreNews}
         onEndReachedThreshold={0.5}
-        showsVerticalScrollIndicator={true}
-        pagingEnabled
+        showsHorizontalScrollIndicator={false}
         horizontal
+        pagingEnabled
+        
         
     />
   );

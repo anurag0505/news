@@ -37,7 +37,7 @@ const Content = () => {
         onEndReachedThreshold={0.5}
         showsVerticalScrollIndicator={true}
         pagingEnabled
-        alwaysBounceVertical
+        horizontal
         
     />
   );

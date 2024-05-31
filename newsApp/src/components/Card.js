@@ -41,7 +41,7 @@ const Container = styled.View`
   overflow: hidden; */
   flex: 1;
   justify-content: space-between;
- 
+  padding: 0 ${screenWidth * 0.05}px;
   
 `;
 const ImageHeroContainer = styled.View`
@@ -49,12 +49,21 @@ const ImageHeroContainer = styled.View`
 `;
 
 const ContentContainer = styled.View`
-  flex: 0.60;
-  justify-content: center;
+  flex: 0.55;
+  justify-content: flex-start;
 `;
 
 const FooterContainer = styled.View`
-  flex: 0.05;
+  flex: 0.01;
+  justify-content: flex-end;
+`;
+
+const DiscriptionContainer = styled.View`
+  /*height: ${screenHeight * 0.42}px; 
+   display: flex;
+  flex-direction: column; */
+  padding: 0 ${screenHeight * 0.028}px;
+
 `;
 
 const TitleText = styled.Text`
@@ -66,16 +75,10 @@ const TitleText = styled.Text`
   line-height: ${screenHeight * 0.04}px;
   font-size: ${screenWidth * 0.045}px;
   color: #333;
-  padding: ${screenHeight * 0.015}px ${screenHeight * 0.028}px ${screenHeight * 0.010}px;
+  padding: ${screenHeight * 0.00}px ${screenHeight * 0.028}px ${screenHeight * 0.010}px ${screenHeight * 0.025}px ;
 `;
 
-const DiscriptionContainer = styled.View`
-  height: ${screenHeight * 0.42}px; 
-  /* display: flex;
-  flex-direction: column; */
-  padding: 0 ${screenHeight * 0.028}px;
 
-`;
 
 const Description = styled.Text`
   font-size: ${screenWidth * 0.043}px;
@@ -86,7 +89,6 @@ const Description = styled.Text`
   justify-content: center;
   /* padding: ${screenHeight * 0.005}px ${screenHeight * 0.028}px ${screenHeight * 0.005}px; */
 `;
-
 
 const InfoText = styled.View`
  font-size: ${screenWidth * 0.003}px;

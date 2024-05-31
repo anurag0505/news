@@ -3,6 +3,7 @@ import { Dimensions } from 'react-native';
 import styled from 'styled-components'; 
 import ImageHero from './ImageHero';
 import moment from 'moment';
+import Footer from './Footer';
 
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
@@ -10,15 +11,22 @@ const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
 export const Card = ({news}) => {
   return (
     <Container>
-        <ImageHero source={{ uri: news.image }} style={{ screenHeight: '70%' }} />
-        <TitleText>{news.title}</TitleText>
-        <DiscriptionContainer>
-          <Description>{news.description}</Description>
-          <InfoText>
-            <Text1>{news.category}</Text1>
-            <Text2>{ moment(new Date(news.date)).fromNow()}</Text2>
-          </InfoText>
-        </DiscriptionContainer>
+      <ImageHeroContainer>
+          <ImageHero source={{ uri: news.image }} />
+      </ImageHeroContainer>
+      <ContentContainer>
+          <TitleText>{news.title}</TitleText>
+          <DiscriptionContainer>
+            <Description>{news.description}</Description>
+            <InfoText>
+              <Text1>{news.category}</Text1>
+              <Text2>{ moment(new Date(news.date)).fromNow()}</Text2>
+            </InfoText>
+          </DiscriptionContainer>
+      </ContentContainer>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
   </Container>
   )
 }
@@ -26,14 +34,27 @@ export const Card = ({news}) => {
 export default Card;
 
 const Container = styled.View`
-  flex-direction: column;
+  /* flex-direction: column;
   text-align: center;
-  justify-content: center;
-  margin-top: ${screenHeight * 0.015}px;
-  overflow: hidden;
-  flex: 1;
-  padding-bottom:${screenHeight * 0.020}px; ;
   
+  margin-top: ${screenHeight * 0.015}px;
+  overflow: hidden; */
+  flex: 1;
+  justify-content: space-between;
+ 
+  
+`;
+const ImageHeroContainer = styled.View`
+  flex: 0.35;
+`;
+
+const ContentContainer = styled.View`
+  flex: 0.60;
+  justify-content: center;
+`;
+
+const FooterContainer = styled.View`
+  flex: 0.05;
 `;
 
 const TitleText = styled.Text`
@@ -45,30 +66,25 @@ const TitleText = styled.Text`
   line-height: ${screenHeight * 0.04}px;
   font-size: ${screenWidth * 0.045}px;
   color: #333;
-  padding: ${screenHeight * 0.015}px ${screenHeight * 0.030}px ${screenHeight * 0.010}px;
-  
- 
+  padding: ${screenHeight * 0.015}px ${screenHeight * 0.028}px ${screenHeight * 0.010}px;
 `;
 
 const DiscriptionContainer = styled.View`
-  height: ${screenHeight * 0.40}px; 
+  height: ${screenHeight * 0.42}px; 
+  /* display: flex;
+  flex-direction: column; */
+  padding: 0 ${screenHeight * 0.028}px;
 
-  display: flex;
-  
-  flex-direction: column;
-  
 `;
 
 const Description = styled.Text`
-  font-size: ${screenWidth * 0.045}px;
+  font-size: ${screenWidth * 0.043}px;
   color: #666;
   line-height: ${screenHeight * 0.04}px;
   font-family: serif;
   align-items: center;
   justify-content: center;
-  padding: ${screenHeight * 0.005}px ${screenHeight * 0.030}px ${screenHeight * 0.015}px;
- 
-  
+  /* padding: ${screenHeight * 0.005}px ${screenHeight * 0.028}px ${screenHeight * 0.005}px; */
 `;
 
 
@@ -77,11 +93,9 @@ const InfoText = styled.View`
   color: #666;
   font-family: serif;
   align-items: flex-end;
-  padding: ${screenHeight * 0.005}px ${screenHeight * 0.030}px ${screenHeight * 0.05}px;
+  /* padding: ${screenHeight * 0.005}px ${screenHeight * 0.030}px ${screenHeight * 0.00}px; */
   flex-direction: row;
-  
-  
-  
+  padding: ${screenHeight * 0.005}px;
 `;
 
 const Text1 = styled.Text`

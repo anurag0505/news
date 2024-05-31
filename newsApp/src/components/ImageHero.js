@@ -13,7 +13,7 @@ const ImageHero = ({ source }) => {
 
 const Container = styled.View`
   width: ${screenWidth}px;
-  height: ${screenHeight * 0.39}px; 
+  height: ${screenHeight * 0.35}px; 
   background-color: red;
 `;
 

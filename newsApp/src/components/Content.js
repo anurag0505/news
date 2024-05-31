@@ -28,16 +28,17 @@ const Content = () => {
     <FlatList
       data={news}
       renderItem={({ item }) => (
-        <CardContainer style={{ screenHeight }}>
-          <Card news={item} style={{ screenHeight: '30%' }} />
+        <CardContainer >
+          <Card news={item}  />
         </CardContainer>
       )}
-       keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         onEndReached={loadMoreNews}
         onEndReachedThreshold={0.5}
-        pagingEnabled
-        vertical
         showsVerticalScrollIndicator={true}
+        pagingEnabled
+        alwaysBounceVertical
+        
     />
   );
 };

@@ -33,3 +33,10 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Miscellaneous
+*.lock
+*.lock/
+*.pyc
+pycache/
+*.bak

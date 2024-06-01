@@ -8,35 +8,22 @@ const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 const Footer = ({ imageUri }) => {
   return (
     <FooterContainer>
-      <ImageBackground
+      <StyledImageBackground
         source={{ uri: imageUri }}
-        style={{
-          height: screenHeight * 0.1,
-          width: screenWidth,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
         imageStyle={{
-          borderBottomLeftRadius: 20,
-          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 15,
+          borderBottomRightRadius: 15,
         }}
         resizeMode="cover"
       >
         <Overlay />
-        <BlurView
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-          }}
+        <StyledBlurView
           intensity={70}
           tint="dark"
-          experimentalBlurMethod="true"
+          style={{ borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}
         />
         <FooterText2>Tap to Know More</FooterText2>
-      </ImageBackground>
+      </StyledImageBackground>
     </FooterContainer>
   );
 };
@@ -46,9 +33,28 @@ export default Footer;
 const FooterContainer = styled.View`
   width: ${screenWidth}px;
   height: ${screenHeight * 0.1}px;
-  margin-bottom: ${Platform.OS === "ios"
-    ? screenHeight * 0.075
-    : screenHeight * 0.0}px;
+  margin-bottom: ${Platform.OS === "ios" ? screenHeight * 0.075 : 0}px;
+  border-radius: 20px;
+`;
+
+const StyledImageBackground = styled(ImageBackground)`
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  overflow: hidden;
+`;
+
+const StyledBlurView = styled(BlurView)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 `;
 
 const Overlay = styled.View`
@@ -57,12 +63,9 @@ const Overlay = styled.View`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-`;
-
-const FooterText1 = styled.Text`
-  font-size: ${screenWidth * 0.03}px;
-  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 `;
 
 const FooterText2 = styled.Text`

@@ -32,6 +32,10 @@ export default function App() {
             },
             tabBarActiveTintColor: "tomato",
             tabBarInactiveTintColor: "gray",
+            tabBarStyle: {
+              height: 40, // Set your desired height here
+              paddingBottom: 2, // Adjust padding to center the icon vertically
+            },
           })}
         >
           <Tab.Screen name="Home" component={Home} />

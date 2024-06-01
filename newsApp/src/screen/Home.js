@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { SafeAreaView, Dimensions, ScrollView } from "react-native";
+import { SafeAreaView, Dimensions, Platform } from "react-native";
 import Content from "../components/Content";
 import { StatusBar } from "expo-status-bar";
 
@@ -19,7 +19,7 @@ export default function Home() {
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
   background-color: #ffffff;
-  margin-top: ${screenHeight * 0.015}px;
+  margin-top: ${Platform.OS === "ios" ? 0 : screenHeight * 0.03}px;
 `;
 
 const Container = styled.View`

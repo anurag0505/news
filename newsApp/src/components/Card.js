@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 import styled from "styled-components";
 import ImageHero from "./ImageHero";
 import moment from "moment";
@@ -33,7 +33,6 @@ export const Card = ({ news }) => {
 export default Card;
 
 const Container = styled.View`
-  margin: ${screenHeight * 0.02}px;
   flex: 1;
   justify-content: space-between;
 `;

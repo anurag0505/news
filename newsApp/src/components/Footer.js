@@ -33,7 +33,9 @@ export default Footer;
 const FooterContainer = styled.View`
   width: ${screenWidth}px;
   height: ${screenHeight * 0.1}px;
-  margin-bottom: ${Platform.OS === "ios" ? screenHeight * 0.075 : 0}px;
+  margin-bottom: ${Platform.OS === "ios"
+    ? screenHeight * 0.1
+    : screenHeight * 0.049}px;
   border-radius: 20px;
 `;
 

@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Dimensions } from 'react-native';
-import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
-import styled from 'styled-components/native';
-import Card from './Card';
-import newsData from '../assets/newsData.json';
+import React, { useEffect, useState } from "react";
+import { Dimensions } from "react-native";
+import {
+  RecyclerListView,
+  DataProvider,
+  LayoutProvider,
+} from "recyclerlistview";
+import styled from "styled-components/native";
+import Card from "./Card";
+import newsData from "../assets/newsData.json";
 
-const { height: screenHeight, width: screenWidth } = Dimensions.get('window');
+const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const Content = () => {
   const [news, setNews] = useState([]);
@@ -19,7 +23,7 @@ const Content = () => {
   }, []);
 
   useEffect(() => {
-    setDataProvider(prevDataProvider => prevDataProvider.cloneWithRows(news));
+    setDataProvider((prevDataProvider) => prevDataProvider.cloneWithRows(news));
   }, [news]);
 
   const loadMoreNews = () => {
@@ -54,8 +58,9 @@ const Content = () => {
       style={{ flex: 1 }}
       scrollViewProps={{
         snapToInterval: screenHeight,
-        decelerationRate: 'fast',
-        snapToAlignment: 'start',
+        decelerationRate: "fast",
+        snapToAlignment: "start",
+        showsVerticalScrollIndicator: false,
       }}
     />
   );

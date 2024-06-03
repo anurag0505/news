@@ -28,8 +28,10 @@ const Content = () => {
 
   const loadMoreNews = () => {
     const newNews = newsData.slice(page * 1, (page + 1) * 1);
-    setNews((prevNews) => [...prevNews, ...newNews]);
-    setPage((prevPage) => prevPage + 1);
+    if (newNews.length > 0) {
+      setNews((prevNews) => [...prevNews, ...newNews]);
+      setPage((prevPage) => prevPage + 1);
+    }
   };
 
   const layoutProvider = new LayoutProvider(
@@ -41,6 +43,8 @@ const Content = () => {
   );
 
   const rowRenderer = (type, data) => {
+    if (!data) return null;
+
     return (
       <CardContainer>
         <Card news={data} />

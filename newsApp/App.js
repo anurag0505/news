@@ -8,6 +8,9 @@ import Splash from "./src/screen/Splash";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { AppRegistry } from "react-native";
+import { name as appName } from "./app.json";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -38,24 +41,30 @@ const MainTabNavigator = () => (
   </Tab.Navigator>
 );
 
-export default function App() {
+const App = () => {
   return (
-    <Container>
-      <StatusBar style="auto" />
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="Splash"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Splash" component={Splash} />
-          <Stack.Screen name="Main" component={MainTabNavigator} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Container>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Container>
+        <StatusBar style="auto" />
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="Splash"
+            screenOptions={{ headerShown: false }}
+          >
+            <Stack.Screen name="Splash" component={Splash} />
+            <Stack.Screen name="Main" component={MainTabNavigator} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </Container>
+    </GestureHandlerRootView>
   );
-}
+};
 
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
 `;
+
+AppRegistry.registerComponent(appName, () => App);
+
+export default App;

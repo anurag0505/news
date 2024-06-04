@@ -7,6 +7,7 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   runOnJS,
+  useAnimatedGestureHandler,
 } from "react-native-reanimated";
 import Card from "./Card";
 
@@ -21,16 +22,35 @@ const AnimatedCard = ({ news, onSwipeUp }) => {
     };
   });
 
-  const onGestureEvent = (event) => {
-    if (event.nativeEvent.translationY < 0) {
-      translateY.value = withSpring(-screenHeight, {}, () => {
-        runOnJS(onSwipeUp)();
-      });
-    }
-  };
+  const gestureHandler = useAnimatedGestureHandler({
+    onActive: (event) => {
+      if (event.translationY < 0) {
+        translateY.value = event.translationY;
+      }
+    },
+    onEnd: (event) => {
+      if (event.translationY < 0) {
+        // Adjust the threshold as needed
+        translateY.value = withSpring(
+          -screenHeight,
+          {
+            damping: 150, // Adjust this value to make the swipe slower
+            stiffness: 600, // Adjust this value to control the stiffness of the spring
+            mass: 0.3, // Adjust this value to control the mass of the spring
+            velocity: 15, // Initial velocity of the animation
+          },
+          () => {
+            runOnJS(onSwipeUp)();
+          }
+        );
+      } else {
+        translateY.value = withSpring(0); // Reset to original position if not swiped enough
+      }
+    },
+  });
 
   return (
-    <PanGestureHandler onGestureEvent={onGestureEvent}>
+    <PanGestureHandler onGestureEvent={gestureHandler}>
       <Animated.View style={[animatedStyle, { height: screenHeight }]}>
         <CardContainer>
           <Card news={news} />

@@ -1,30 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Dimensions } from "react-native";
-import {
-  RecyclerListView,
-  DataProvider,
-  LayoutProvider,
-} from "recyclerlistview";
 import styled from "styled-components/native";
-import Card from "./Card";
+import AnimatedCard from "./AnimatedCard";
 import newsData from "../assets/newsData.json";
 
-const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
+const { height: screenHeight } = Dimensions.get("window");
 
 const Content = () => {
-  const [news, setNews] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [news, setNews] = useState(newsData);
   const [page, setPage] = useState(0);
-  const [dataProvider, setDataProvider] = useState(
-    new DataProvider((r1, r2) => r1 !== r2).cloneWithRows(news)
-  );
 
   useEffect(() => {
-    loadMoreNews();
-  }, []);
-
-  useEffect(() => {
-    setDataProvider((prevDataProvider) => prevDataProvider.cloneWithRows(news));
-  }, [news]);
+    if (currentIndex >= news.length) {
+      loadMoreNews();
+    }
+  }, [currentIndex]);
 
   const loadMoreNews = () => {
     const newNews = newsData.slice(page * 1, (page + 1) * 1);
@@ -34,48 +25,48 @@ const Content = () => {
     }
   };
 
-  const layoutProvider = new LayoutProvider(
-    () => 0,
-    (type, dim) => {
-      dim.width = screenWidth;
-      dim.height = screenHeight;
-    }
-  );
-
-  const rowRenderer = (type, data) => {
-    if (!data) return null;
-
-    return (
-      <CardContainer>
-        <Card news={data} />
-      </CardContainer>
-    );
+  const handleSwipeUp = () => {
+    setCurrentIndex((prevIndex) => prevIndex + 1);
   };
 
+  if (currentIndex >= news.length) {
+    return (
+      <LoadingScreen>
+        <Text>Loading...</Text>
+      </LoadingScreen>
+    ); // or any loading indicator
+  }
+
   return (
-    <RecyclerListView
-      dataProvider={dataProvider}
-      layoutProvider={layoutProvider}
-      rowRenderer={rowRenderer}
-      onEndReached={loadMoreNews}
-      onEndReachedThreshold={0.5}
-      style={{ flex: 1 }}
-      scrollViewProps={{
-        snapToInterval: screenHeight,
-        decelerationRate: "fast",
-        snapToAlignment: "start",
-        showsVerticalScrollIndicator: false,
-      }}
-    />
+    <Container>
+      <AnimatedCard
+        key={currentIndex}
+        news={news[currentIndex]}
+        onSwipeUp={handleSwipeUp}
+      />
+    </Container>
   );
 };
 
 export default Content;
 
-const CardContainer = styled.View`
-  width: ${screenWidth}px;
-  height: ${screenHeight}px;
+const Container = styled.View`
+  flex: 1;
   justify-content: flex-start;
   align-items: center;
   background-color: white;
+`;
+
+const LoadingScreen = styled.View`
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Text = styled.Text`
+  color: black;
+  font-size: 24px;
+  font-weight: 100;
+  font-family: serif;
 `;

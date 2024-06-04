@@ -13,7 +13,7 @@ import Card from "./Card";
 
 const { height: screenHeight } = Dimensions.get("window");
 
-const AnimatedCard = ({ news, onSwipeUp }) => {
+const AnimatedCard = ({ news, onSwipeUp, onSwipeDown }) => {
   const translateY = useSharedValue(0);
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -24,27 +24,39 @@ const AnimatedCard = ({ news, onSwipeUp }) => {
 
   const gestureHandler = useAnimatedGestureHandler({
     onActive: (event) => {
-      if (event.translationY < 0) {
-        translateY.value = event.translationY;
-      }
+      translateY.value = event.translationY;
     },
     onEnd: (event) => {
-      if (event.translationY < 0) {
-        // Adjust the threshold as needed
+      if (event.translationY < -50) {
         translateY.value = withSpring(
           -screenHeight,
           {
-            damping: 150, // Adjust this value to make the swipe slower
-            stiffness: 600, // Adjust this value to control the stiffness of the spring
-            mass: 0.3, // Adjust this value to control the mass of the spring
+            damping: 300, // Adjust this value to make the swipe slower
+            stiffness: 300, // Adjust this value to control the stiffness of the spring
+            mass: 0.2, // Adjust this value to control the mass of the spring
             velocity: 15, // Initial velocity of the animation
           },
           () => {
             runOnJS(onSwipeUp)();
+            translateY.value = 0; // Reset position for the next card
+          }
+        );
+      } else if (event.translationY > 50) {
+        translateY.value = withSpring(
+          screenHeight,
+          {
+            damping: 150, // Adjust this value to make the swipe slower
+            stiffness: 300, // Adjust this value to control the stiffness of the spring
+            mass: 0.1, // Adjust this value to control the mass of the spring
+            velocity: 15, // Initial velocity of the animation
+          },
+          () => {
+            runOnJS(onSwipeDown)();
+            translateY.value = 0; // Reset position for the previous card
           }
         );
       } else {
-        translateY.value = withSpring(0); // Reset to original position if not swiped enough
+        translateY.value = withSpring(0);
       }
     },
   });

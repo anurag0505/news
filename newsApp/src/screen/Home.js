@@ -18,7 +18,7 @@ const Home = () => {
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
   background-color: #ffffff;
-  margin-top: ${Platform.OS === "ios" ? 0 : screenHeight * 0.03}px;
+  margin-top: ${Platform.OS === "ios" ? 0 : screenHeight * 0.04}px;
 `;
 
 const Container = styled.View`

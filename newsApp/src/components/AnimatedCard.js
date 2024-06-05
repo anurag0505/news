@@ -31,10 +31,10 @@ const AnimatedCard = ({ news, onSwipeUp, onSwipeDown }) => {
         translateY.value = withSpring(
           -screenHeight,
           {
-            damping: 300, // Adjust this value to make the swipe slower
-            stiffness: 300, // Adjust this value to control the stiffness of the spring
-            mass: 0.2, // Adjust this value to control the mass of the spring
-            velocity: 15, // Initial velocity of the animation
+            damping: 10,
+            stiffness: 300,
+            mass: 0.5,
+            velocity: event.velocityY,
           },
           () => {
             runOnJS(onSwipeUp)();
@@ -45,10 +45,10 @@ const AnimatedCard = ({ news, onSwipeUp, onSwipeDown }) => {
         translateY.value = withSpring(
           screenHeight,
           {
-            damping: 150, // Adjust this value to make the swipe slower
-            stiffness: 300, // Adjust this value to control the stiffness of the spring
-            mass: 0.1, // Adjust this value to control the mass of the spring
-            velocity: 15, // Initial velocity of the animation
+            damping: 10,
+            stiffness: 300,
+            mass: 0.5,
+            velocity: event.velocityY,
           },
           () => {
             runOnJS(onSwipeDown)();

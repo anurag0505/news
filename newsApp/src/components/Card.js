@@ -1,8 +1,8 @@
 import React from "react";
-import { Dimensions, Platform } from "react-native";
-import styled from "styled-components";
-import ImageHero from "./ImageHero";
+import { Dimensions } from "react-native";
+import styled from "styled-components/native";
 import moment from "moment";
+import ImageHero from "./ImageHero";
 import Footer from "./Footer";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
@@ -35,6 +35,7 @@ export default Card;
 const Container = styled.View`
   flex: 1;
   justify-content: space-between;
+  background-color: white;
 `;
 
 const ImageHeroContainer = styled.View`

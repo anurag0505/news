@@ -12,51 +12,52 @@ import Animated, {
 import Card from "./Card";
 
 const { height: screenHeight } = Dimensions.get("window");
+const { theme } = useTheme();
 
 const AnimatedCard = ({ news, onSwipeUp, onSwipeDown }) => {
   const translateY = useSharedValue(0);
 
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: translateY.value }],
-    };
-  });
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+  }));
 
   const gestureHandler = useAnimatedGestureHandler({
-    onActive: (event) => {
-      translateY.value = event.translationY;
+    onStart: (event, context) => {
+      context.startY = translateY.value;
+    },
+    onActive: (event, context) => {
+      translateY.value = context.startY + event.translationY;
     },
     onEnd: (event) => {
-      if (event.translationY < -50) {
+      const swipeThreshold = screenHeight / 6; // Sensitivity threshold for triggering swipe
+      const swipeVelocityThreshold = 500; // Sensitivity velocity threshold for swipe detection
+
+      if (
+        event.translationY < -swipeThreshold ||
+        event.velocityY < -swipeVelocityThreshold
+      ) {
         translateY.value = withSpring(
           -screenHeight,
-          {
-            damping: 10,
-            stiffness: 300,
-            mass: 0.5,
-            velocity: event.velocityY,
-          },
+          { damping: 15, stiffness: 200 },
           () => {
             runOnJS(onSwipeUp)();
-            translateY.value = 0; // Reset position for the next card
+            translateY.value = 0;
           }
         );
-      } else if (event.translationY > 50) {
+      } else if (
+        event.translationY > swipeThreshold ||
+        event.velocityY > swipeVelocityThreshold
+      ) {
         translateY.value = withSpring(
           screenHeight,
-          {
-            damping: 10,
-            stiffness: 300,
-            mass: 0.5,
-            velocity: event.velocityY,
-          },
+          { damping: 15, stiffness: 200 },
           () => {
             runOnJS(onSwipeDown)();
-            translateY.value = 0; // Reset position for the previous card
+            translateY.value = 0;
           }
         );
       } else {
-        translateY.value = withSpring(0);
+        translateY.value = withSpring(0, { damping: 15, stiffness: 200 });
       }
     },
   });
@@ -64,8 +65,8 @@ const AnimatedCard = ({ news, onSwipeUp, onSwipeDown }) => {
   return (
     <PanGestureHandler onGestureEvent={gestureHandler}>
       <Animated.View style={[animatedStyle, { height: screenHeight }]}>
-        <CardContainer>
-          <Card news={news} />
+        <CardContainer theme={theme}>
+          <Card theme={theme} news={news} />
         </CardContainer>
       </Animated.View>
     </PanGestureHandler>
@@ -79,5 +80,5 @@ const CardContainer = styled.View`
   height: 100%;
   justify-content: flex-start;
   align-items: center;
-  background-color: white;
+  background-color: ${(props) => props.theme.background};
 `;

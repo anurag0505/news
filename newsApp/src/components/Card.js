@@ -35,7 +35,7 @@ export const Card = ({ news }) => {
 export default Card;
 
 const Container = styled.View`
-  flex: 0.95;
+  flex: ${Platform.OS === "ios" ? "0.86" : "0.95"};
   justify-content: space-between;
   background-color: ${(props) => props.theme.background};
 `;

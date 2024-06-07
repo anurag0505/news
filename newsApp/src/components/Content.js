@@ -22,7 +22,7 @@ const Content = () => {
         renderCard={(card) => <Card news={card} />}
         onSwipedAll={onSwipedAll}
         cardIndex={0}
-        backgroundColor={"white"}
+        backgroundColor={theme.background}
         stackSize={3}
         infinite
         stackAnimationFriction={80}

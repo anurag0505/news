@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions } from "react-native";
+import { Dimensions, Platform } from "react-native";
 import styled from "styled-components/native";
 import moment from "moment";
 import ImageHero from "./ImageHero";
@@ -35,28 +35,28 @@ export const Card = ({ news }) => {
 export default Card;
 
 const Container = styled.View`
-  flex: 1;
+  flex: 0.95;
   justify-content: space-between;
   background-color: ${(props) => props.theme.background};
 `;
 
 const ImageHeroContainer = styled.View`
-  flex: 0.35;
+  flex: 3.8;
   justify-content: flex-start;
 `;
 
 const ContentContainer = styled.View`
-  flex: 0.55;
+  flex: 3.8;
   justify-content: flex-start;
 `;
 
 const FooterContainer = styled.View`
-  flex: 0.01;
-  justify-content: flex-end;
+  flex: 1;
+  justify-content: ${Platform.OS === "ios" ? "flex-end" : "flex-end"};
 `;
 
 const DiscriptionContainer = styled.View`
-  padding: 0 ${screenHeight * 0.028}px;
+  padding: 0 ${screenHeight * 0.025}px;
 `;
 
 const TitleText = styled.Text`
@@ -68,7 +68,7 @@ const TitleText = styled.Text`
   justify-content: center;
   line-height: ${screenHeight * 0.03}px;
   font-size: ${screenWidth * 0.045}px;
-  padding: ${screenHeight * 0.01}px ${screenHeight * 0.028}px
+  padding: ${screenHeight * 0.01}px ${screenHeight * 0.025}px
     ${screenHeight * 0.01}px ${screenHeight * 0.025}px;
 `;
 

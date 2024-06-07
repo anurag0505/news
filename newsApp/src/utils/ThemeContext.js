@@ -9,8 +9,11 @@ const lightTheme = {
 };
 
 const darkTheme = {
+  isDark: true,
   background: "#000000",
   text: "#ffffff",
+  text: "#ffffff",
+  cardBackground: "#333333",
 };
 
 export const ThemeProvider = ({ children }) => {

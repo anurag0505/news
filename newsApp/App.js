@@ -1,6 +1,6 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-// import Icon from "react-native-vector-icons/Ionicons";
+import React, { useEffect } from "react";
+
+import Icon from "react-native-vector-icons/Ionicons";
 import Home from "./src/screen/Home";
 import Setting from "./src/screen/Setting";
 import Splash from "./src/screen/Splash";
@@ -11,12 +11,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { AppRegistry } from "react-native";
+import { AppRegistry, StatusBar, Dimensions, Platform } from "react-native";
 import { name as appName } from "./app.json";
 import { ThemeProvider, useTheme } from "./src/utils/ThemeContext";
-import "react-native-gesture-handler";
 import FoundationIcons from "react-native-vector-icons/Foundation";
 
+const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -37,13 +37,14 @@ const MainTabNavigator = () => {
           if (focused) {
             color = "blue";
           }
-          return <FoundationIcons name={iconName} size={24} color={color} />;
+          return <FoundationIcons name={iconName} size={25} color={color} />;
         },
         tabBarActiveTintColor: theme.text,
         tabBarInactiveTintColor:
           theme.background === "#ffffff" ? "#000000" : "#ffffff",
         tabBarStyle: {
-          height: 40,
+          height:
+            Platform.OS === "ios" ? screenHeight * 0.08 : screenHeight * 0.05,
           padding: 1.5,
           backgroundColor: theme.background,
         },
@@ -63,15 +64,20 @@ const App = () => (
 
 const AppWithTheme = () => {
   const { theme } = useTheme();
+  const isDarkMode = theme.isDark;
+  const statusBarStyle = theme.isDark ? "light-content" : "dark-content";
 
   return (
     <StyledThemeProvider theme={theme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Container>
-          <StatusBar style="auto" />
+          <StatusBar
+            barStyle={statusBarStyle}
+            backgroundColor={theme.background}
+          />
           <NavigationContainer>
             <Stack.Navigator
-              initialRouteName="Splash"
+              initialRouteName="Main"
               screenOptions={{ headerShown: false }}
             >
               <Stack.Screen name="Splash" component={Splash} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components/native";
 import { SafeAreaView, Dimensions, Platform } from "react-native";
 import Content from "../components/Content";
@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <SafeArea theme={theme}>
       <Container theme={theme}>
-        <Content />
+        <Content theme={theme} />
       </Container>
     </SafeArea>
   );
@@ -19,8 +19,6 @@ const Home = () => {
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
-  margin-top: ${Platform.OS === "ios" ? 0 : screenHeight * 0.04}px;
-  /* color: ${(props) => props.theme.text}; */
   background-color: ${(props) => props.theme.background};
 `;
 

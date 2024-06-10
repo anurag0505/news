@@ -38,7 +38,7 @@ const FooterContainer = styled.View`
     ? screenHeight * 0.12
     : screenHeight * -0.057}px; */
   border-radius: 20px;
-  padding-bottom: ${screenHeight * 0.005}px;
+  padding: ${screenHeight * 0.0}px ${screenHeight * 0.001}px;
 `;
 
 const StyledImageBackground = styled(ImageBackground)`

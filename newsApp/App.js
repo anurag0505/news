@@ -47,6 +47,7 @@ const MainTabNavigator = () => {
             Platform.OS === "ios" ? screenHeight * 0.08 : screenHeight * 0.05,
           padding: 1.5,
           backgroundColor: theme.background,
+          borderTopWidth: 0,
         },
       })}
     >
@@ -93,8 +94,6 @@ const AppWithTheme = () => {
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
-  background-color: ${(props) => props.theme.background};
-  color: ${(props) => props.theme.text};
 `;
 
 AppRegistry.registerComponent(appName, () => App);

@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components/native";
-import { SafeAreaView, Dimensions, Platform } from "react-native";
+import { SafeAreaView, Platform } from "react-native";
 import Content from "../components/Content";
 import { useTheme } from "../utils/ThemeContext";
-
-const { height: screenHeight } = Dimensions.get("window");
 
 const Home = () => {
   const { theme } = useTheme();

@@ -17,7 +17,7 @@ const ImageHero = ({ source }) => {
 
 const Container = styled.View`
   width: ${screenWidth}px;
-  height: ${screenHeight * 0.35}px;
+  height: ${screenHeight * 0.34}px;
 `;
 
 const HeroImage = styled.ImageBackground`

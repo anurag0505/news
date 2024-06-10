@@ -46,11 +46,11 @@ const ImageHeroContainer = styled.View`
 const ContentContainer = styled.View`
   justify-content: flex-start;
   flex-grow: 1;
-  padding: ${screenHeight * 0.01}px ${screenHeight * 0.03}px
-    ${screenHeight * 0.005}px;
+  padding: ${screenHeight * 0.0}px ${screenHeight * 0.025}px;
 `;
 const FooterContainer = styled.View`
   justify-content: center;
+  padding-bottom: ${screenHeight * 0.01}px;
 `;
 
 const TitleText = styled.Text`
@@ -61,13 +61,13 @@ const TitleText = styled.Text`
   align-items: center;
   justify-content: flex-end;
   line-height: ${screenHeight * 0.03}px;
-  font-size: ${screenWidth * 0.045}px;
+  font-size: ${screenHeight * 0.022}px;
   padding-bottom: ${screenHeight * 0.01}px;
-  padding-top: ${screenHeight * 0.015}px;
+  padding-top: ${screenHeight * 0.02}px;
 `;
 
 const Description = styled.Text`
-  font-size: ${screenWidth * 0.041}px;
+  font-size: ${screenHeight * 0.021}px;
   color: ${(props) => props.theme.text};
   line-height: ${screenHeight * 0.032}px;
   font-family: serif;
@@ -78,7 +78,7 @@ const Description = styled.Text`
 const InfoText = styled.View`
   align-items: flex-end;
   flex-direction: row;
-  padding: ${screenHeight * 0.003}px 0px;
+  padding: ${screenHeight * 0.0035}px 0px ${screenHeight * 0.002}px;
 `;
 
 const Text1 = styled.Text`
@@ -86,12 +86,12 @@ const Text1 = styled.Text`
   font-weight: bold;
   align-items: flex-start;
   display: flex;
-  color: ${(props) => props.theme.text};
+  color: gray;
 `;
 
 const Text2 = styled.Text`
   font-size: ${screenWidth * 0.025}px;
   padding-left: ${screenWidth * 0.02}px;
-  color: ${(props) => props.theme.text};
+  color: gray;
   font-weight: bold;
 `;

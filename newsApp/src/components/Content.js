@@ -27,8 +27,8 @@ const Content = () => {
         infinite
         stackAnimationFriction={80}
         stackAnimationTension={100}
-        stackScale={10}
-        stackSeparation={1}
+        stackScale={1}
+        stackSeparation={0}
         animateCardOpacity={true}
         verticalSwipe={true}
         horizontalSwipe={false}

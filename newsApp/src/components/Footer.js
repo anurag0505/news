@@ -19,7 +19,7 @@ const Footer = ({ imageUri }) => {
         <Overlay />
         <StyledBlurView
           experimentalBlurMethod
-          intensity={70}
+          intensity={55}
           tint="dark"
           style={{ borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}
         />
@@ -38,6 +38,7 @@ const FooterContainer = styled.View`
     ? screenHeight * 0.12
     : screenHeight * -0.057}px; */
   border-radius: 20px;
+  padding-bottom: ${screenHeight * 0.005}px;
 `;
 
 const StyledImageBackground = styled(ImageBackground)`
@@ -45,8 +46,7 @@ const StyledImageBackground = styled(ImageBackground)`
   width: 100%;
   justify-content: center;
   align-items: center;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-radius: 15px;
   overflow: hidden;
 `;
 
@@ -56,8 +56,6 @@ const StyledBlurView = styled(BlurView)`
   left: 0;
   right: 0;
   bottom: 0;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
 `;
 
 const Overlay = styled.View`
@@ -67,8 +65,6 @@ const Overlay = styled.View`
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
 `;
 
 const FooterText2 = styled.Text`

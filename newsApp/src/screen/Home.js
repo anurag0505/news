@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components/native";
-import { SafeAreaView, Dimensions, Platform } from "react-native";
+import { SafeAreaView } from "react-native";
 import Content from "../components/Content";
-
-const { height: screenHeight } = Dimensions.get("window");
+import { useTheme } from "../utils/ThemeContext";
 
 const Home = () => {
+  const { theme } = useTheme();
   return (
-    <SafeArea>
-      <Container>
-        <Content />
+    <SafeArea theme={theme}>
+      <Container theme={theme}>
+        <Content theme={theme} />
       </Container>
     </SafeArea>
   );
@@ -17,13 +17,13 @@ const Home = () => {
 
 const SafeArea = styled(SafeAreaView)`
   flex: 1;
-  background-color: #ffffff;
-  margin-top: ${Platform.OS === "ios" ? 0 : screenHeight * 0.03}px;
+  background-color: ${(props) => props.theme.background};
 `;
 
 const Container = styled.View`
   flex: 1;
   flex-direction: column;
+  background-color: ${(props) => props.theme.background};
 `;
 
 export default Home;

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styled from "styled-components/native";
-import { Button } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 const Splash = ({ navigation }) => {
@@ -36,5 +35,4 @@ const Text1 = styled.Text`
   font-family: serif;
 `;
 
-// Create an animatable version of the styled Text1 component
 const AnimatableText = Animatable.createAnimatableComponent(Text1);

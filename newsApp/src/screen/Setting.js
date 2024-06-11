@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components/native";
+import styled from "styled-components/native";
 import { Button } from "react-native";
 import { useTheme } from "../utils/ThemeContext";
 
@@ -23,7 +23,6 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.background};
-  /* color: ${(props) => props.theme.text}; */
 `;
 
 const Text1 = styled.Text`

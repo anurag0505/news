@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-
-import Icon from "react-native-vector-icons/Ionicons";
+import React from "react";
 import Home from "./src/screen/Home";
 import Setting from "./src/screen/Setting";
 import Splash from "./src/screen/Splash";
@@ -16,7 +14,7 @@ import { name as appName } from "./app.json";
 import { ThemeProvider, useTheme } from "./src/utils/ThemeContext";
 import FoundationIcons from "react-native-vector-icons/Foundation";
 
-const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
+const { height: screenHeight } = Dimensions.get("window");
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
@@ -37,7 +35,9 @@ const MainTabNavigator = () => {
           if (focused) {
             color = "blue";
           }
-          return <FoundationIcons name={iconName} size={25} color={color} />;
+          return (
+            <FoundationIcons name={iconName} size={size || 25} color={color} />
+          );
         },
         tabBarActiveTintColor: theme.text,
         tabBarInactiveTintColor:

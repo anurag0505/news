@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components/native";
-import { SafeAreaView, Platform } from "react-native";
+import { SafeAreaView } from "react-native";
 import Content from "../components/Content";
 import { useTheme } from "../utils/ThemeContext";
 

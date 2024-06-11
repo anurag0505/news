@@ -1,5 +1,5 @@
 import React from "react";
-import { Dimensions, ImageBackground, Platform } from "react-native";
+import { Dimensions, ImageBackground } from "react-native";
 import styled from "styled-components/native";
 import { BlurView } from "expo-blur";
 
@@ -34,9 +34,6 @@ export default Footer;
 const FooterContainer = styled.View`
   width: ${screenWidth}px;
   height: ${screenHeight * 0.085}px;
-  /* margin-bottom: ${Platform.OS === "ios"
-    ? screenHeight * 0.12
-    : screenHeight * -0.057}px; */
   border-radius: 20px;
   padding: ${screenHeight * 0.0}px ${screenHeight * 0.001}px;
 `;

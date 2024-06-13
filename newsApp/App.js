@@ -1,6 +1,8 @@
 import React from "react";
 import Home from "./src/screen/Home";
 import Setting from "./src/screen/Setting";
+import NoInternet from "./src/components/NoInternet";
+
 import Splash from "./src/screen/Splash";
 import styled, {
   ThemeProvider as StyledThemeProvider,
@@ -53,6 +55,7 @@ const MainTabNavigator = () => {
     >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Settings" component={Setting} />
+      <Tab.Screen name="NoInternet" component={NoInternet} />
     </Tab.Navigator>
   );
 };
@@ -83,6 +86,7 @@ const AppWithTheme = () => {
             >
               <Stack.Screen name="Splash" component={Splash} />
               <Stack.Screen name="Main" component={MainTabNavigator} />
+              <Stack.Screen name="NoInternet" component={NoInternet} />
             </Stack.Navigator>
           </NavigationContainer>
         </Container>

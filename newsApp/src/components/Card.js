@@ -34,7 +34,7 @@ export default Card;
 
 const Container = styled.View`
   display: flex;
-  flex: ${Platform.OS === "ios" ? "0.86" : "0.95"};
+  flex: 1;
   justify-content: space-between;
   background-color: ${(props) => props.theme.background};
 `;
@@ -45,12 +45,12 @@ const ImageHeroContainer = styled.View`
 
 const ContentContainer = styled.View`
   justify-content: flex-start;
-  flex-grow: 1;
+  flex-grow: 2;
   padding: ${screenHeight * 0.0}px ${screenHeight * 0.025}px;
 `;
 const FooterContainer = styled.View`
   justify-content: center;
-  padding-bottom: ${screenHeight * 0.01}px;
+  padding-bottom: ${screenHeight * 0.054}px;
 `;
 
 const TitleText = styled.Text`

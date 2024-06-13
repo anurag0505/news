@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Platform } from "react-native";
 import Content from "../components/Content";
 import { useTheme } from "../utils/ThemeContext";
 
@@ -21,9 +21,9 @@ const SafeArea = styled(SafeAreaView)`
 `;
 
 const Container = styled.View`
-  flex: 1;
   flex-direction: column;
   background-color: ${(props) => props.theme.background};
+  flex: ${Platform.OS === "ios" ? "0.86" : "0.95"};
 `;
 
 export default Home;

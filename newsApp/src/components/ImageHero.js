@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
+import Fallback from "../assets/images/replace22.jpg";
 
 const ImageHero = ({ source }) => {
+  const [imgSrc, setImgSrc] = useState(source);
+
+  const handleError = () => {
+    setImgSrc(Fallback);
+  };
+
   return (
     <Container>
       <HeroImage
         imageStyle={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }}
-        source={source}
+        source={imgSrc}
         resizeMode="cover"
+        onError={handleError}
       />
     </Container>
   );
@@ -24,7 +32,6 @@ const HeroImage = styled.ImageBackground`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-size: cover;
   width: 100%;
   height: 100%;
 `;

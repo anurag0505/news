@@ -3,11 +3,10 @@ import {
   Dimensions,
   Modal,
   TouchableOpacity,
-  View,
-  Text,
   TouchableWithoutFeedback,
   Animated,
   BackHandler,
+  Platform,
 } from "react-native";
 import styled from "styled-components/native";
 import moment from "moment";
@@ -127,7 +126,13 @@ export const Card = ({ news }) => {
               )}
               renderFooter={(currentIndex) => (
                 <FooterContainerModal>
-                  <Text1 style={{ color: "white", fontSize: 13 }}>
+                  <Text1
+                    style={{
+                      color: "white",
+                      fontSize: 15,
+                      fontWeight: 400,
+                    }}
+                  >
                     {news.title}
                   </Text1>
                 </FooterContainerModal>
@@ -165,9 +170,10 @@ const StyledWebView = styled(WebView)`
 
 const Container = styled.View`
   display: flex;
-  flex: 1;
+  flex: ${Platform.OS === "ios" ? "0.86" : "1"};
   justify-content: space-between;
   background-color: ${(props) => props.theme.background};
+  border-radius: ${screenHeight * 0.02}px;
 `;
 
 const ImageHeroContainer = styled.View`
@@ -230,16 +236,15 @@ const Text2 = styled.Text`
 
 const IconContainer = styled.View`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: ${screenWidth * 0.05}px;
+  left: ${screenWidth * 0.025}px;
 `;
 
 const FooterContainerModal = styled.View`
-  bottom: 0;
+  bottom: ${screenWidth * 0.08}px;
   width: ${screenWidth}px;
   padding: ${screenWidth * 0.03}px;
 
   align-items: center;
   justify-content: center;
-  /* background-color: rgba(0, 0, 0, 0.5); */
 `;

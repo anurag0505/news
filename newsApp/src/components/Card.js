@@ -27,11 +27,20 @@ export const Card = ({ news }) => {
       url: news.image,
     },
   ];
+  const getEmbedUrl = (url) => {
+    const videoId = url.split("v=")[1].split("&")[0];
+    return `https://www.youtube.com/embed/${videoId}`;
+  };
 
   return (
     <Container theme={theme}>
       {news.video ? (
-        <StyledWebView javaScriptEnabled={true} source={{ uri: news.video }} />
+        <VideoContainer>
+          <StyledWebView
+            javaScriptEnabled={true}
+            source={{ uri: getEmbedUrl(news.video) }}
+          />
+        </VideoContainer>
       ) : (
         <TouchableOpacity onPress={() => setImageViewVisible(true)}>
           <ImageHeroContainer>
@@ -89,9 +98,14 @@ export const Card = ({ news }) => {
 
 export default Card;
 
+const VideoContainer = styled.View`
+  width: ${screenWidth}px;
+  height: ${screenHeight * 0.34}px;
+`;
+
 const StyledWebView = styled(WebView)`
-  flex: 1;
-  justify-content: flex-start;
+  width: ${screenWidth}px;
+  height: ${screenHeight * 0.34}px;
 `;
 
 const Container = styled.View`

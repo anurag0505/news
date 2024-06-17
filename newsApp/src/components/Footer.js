@@ -19,7 +19,7 @@ const Footer = ({ imageUri }) => {
         <Overlay />
         <StyledBlurView
           experimentalBlurMethod
-          intensity={55}
+          intensity={52}
           tint="dark"
           style={{ borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}
         />

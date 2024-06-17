@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./src/screen/Home";
 import Setting from "./src/screen/Setting";
 import NoInternet from "./src/components/NoInternet";
+import CaughtUp from "./src/components/CaughtUp";
 
 import Splash from "./src/screen/Splash";
 import styled, {
@@ -55,7 +56,7 @@ const MainTabNavigator = () => {
     >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Settings" component={Setting} />
-      <Tab.Screen name="NoInternet" component={NoInternet} />
+      <Tab.Screen name="CaughtUp" component={CaughtUp} />
     </Tab.Navigator>
   );
 };

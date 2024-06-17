@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Dimensions,
   Modal,
@@ -6,6 +6,8 @@ import {
   View,
   Text,
   TouchableWithoutFeedback,
+  Animated,
+  BackHandler,
 } from "react-native";
 import styled from "styled-components/native";
 import moment from "moment";
@@ -21,16 +23,54 @@ const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 export const Card = ({ news }) => {
   const { theme } = useTheme();
   const [isImageViewVisible, setImageViewVisible] = useState(false);
+  const slideAnim = useRef(new Animated.Value(screenHeight)).current;
+
+  const openImageViewer = () => {
+    setImageViewVisible(true);
+    Animated.timing(slideAnim, {
+      toValue: 0,
+      duration: 400,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const closeImageViewer = () => {
+    Animated.timing(slideAnim, {
+      toValue: screenHeight,
+      duration: 400,
+      useNativeDriver: true,
+    }).start(() => {
+      setImageViewVisible(false);
+    });
+  };
 
   const images = [
     {
       url: news.image,
     },
   ];
+
   const getEmbedUrl = (url) => {
     const videoId = url.split("v=")[1].split("&")[0];
     return `https://www.youtube.com/embed/${videoId}`;
   };
+
+  useEffect(() => {
+    const backAction = () => {
+      if (isImageViewVisible) {
+        closeImageViewer();
+        return true;
+      }
+      return false;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, [isImageViewVisible]);
 
   return (
     <Container theme={theme}>
@@ -42,44 +82,59 @@ export const Card = ({ news }) => {
           />
         </VideoContainer>
       ) : (
-        <TouchableOpacity onPress={() => setImageViewVisible(true)}>
+        <TouchableOpacity onPress={openImageViewer}>
           <ImageHeroContainer>
             <ImageHero source={{ uri: news.image }} />
           </ImageHeroContainer>
         </TouchableOpacity>
       )}
 
-      <Modal visible={isImageViewVisible} transparent={true} theme={theme}>
-        <ImageViewer
-          imageUrls={images}
-          onSwipeDown={() => setImageViewVisible(false)}
-          onClick={() => setImageViewVisible(false)}
-          renderIndicator={() => null}
-          enableSwipeDown={true}
-          enableImageIndicator={false}
-          doubleClickInterval={200}
-          renderHeader={() => (
-            <TouchableWithoutFeedback
-              onPress={() => setImageViewVisible(false)}
-            >
-              <IconContainer>
-                <Icon
-                  style={{ padding: 20 }}
-                  name="close"
-                  size={30}
-                  color="#FFF"
-                />
-              </IconContainer>
-            </TouchableWithoutFeedback>
-          )}
-          renderFooter={(currentIndex) => (
-            <FooterContainerModal>
-              <Text1 style={{ color: "white", fontSize: 13 }}>
-                {news.title}
-              </Text1>
-            </FooterContainerModal>
-          )}
-        />
+      <Modal
+        visible={isImageViewVisible}
+        transparent={true}
+        animationType="none"
+        onRequestClose={closeImageViewer}
+      >
+        <TouchableWithoutFeedback onPress={closeImageViewer}>
+          <Animated.View
+            style={{
+              transform: [{ translateY: slideAnim }],
+              flex: 1,
+              backgroundColor: "rgba(0, 0, 0, 0.9)",
+              justifyContent: "center",
+            }}
+          >
+            <ImageViewer
+              imageUrls={images}
+              onSwipeDown={closeImageViewer}
+              onClick={closeImageViewer}
+              renderIndicator={() => null}
+              enableSwipeDown={true}
+              enableImageIndicator={false}
+              onBackButtonPress={false}
+              doubleClickInterval={200}
+              renderHeader={() => (
+                <TouchableWithoutFeedback onPress={closeImageViewer}>
+                  <IconContainer>
+                    <Icon
+                      style={{ padding: 20 }}
+                      name="close"
+                      size={30}
+                      color="#FFF"
+                    />
+                  </IconContainer>
+                </TouchableWithoutFeedback>
+              )}
+              renderFooter={(currentIndex) => (
+                <FooterContainerModal>
+                  <Text1 style={{ color: "white", fontSize: 13 }}>
+                    {news.title}
+                  </Text1>
+                </FooterContainerModal>
+              )}
+            />
+          </Animated.View>
+        </TouchableWithoutFeedback>
       </Modal>
       <ContentContainer>
         <TitleText theme={theme}>{news.title}</TitleText>

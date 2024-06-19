@@ -3,7 +3,7 @@ import Home from "./src/screen/Home";
 import Setting from "./src/screen/Setting";
 import NoInternet from "./src/components/NoInternet";
 import CaughtUp from "./src/components/CaughtUp";
-
+import WebViewScreen from "./src/screen/WebViewScreen";
 import Splash from "./src/screen/Splash";
 import styled, {
   ThemeProvider as StyledThemeProvider,
@@ -88,6 +88,7 @@ const AppWithTheme = () => {
               <Stack.Screen name="Splash" component={Splash} />
               <Stack.Screen name="Main" component={MainTabNavigator} />
               <Stack.Screen name="NoInternet" component={NoInternet} />
+              <Stack.Screen name="WebView" component={WebViewScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </Container>

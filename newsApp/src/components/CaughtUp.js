@@ -32,7 +32,7 @@ const HappyImage = styled.Image`
   justify-content: flex-start;
   align-items: center;
   height: ${screenHeight * 0.2}px;
-  width: ${screenWidth * 0.8}px;
+  width: ${screenWidth * 0.6}px;
 `;
 
 const Title = styled.Text`

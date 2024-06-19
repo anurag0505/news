@@ -159,11 +159,13 @@ export const Card = ({ news }) => {
 export default Card;
 
 const VideoContainer = styled.View`
+  border-radius: ${screenHeight * 0.02}px;
   width: ${screenWidth}px;
   height: ${screenHeight * 0.34}px;
 `;
 
 const StyledWebView = styled(WebView)`
+  border-radius: ${screenHeight * 0.02}px;
   width: ${screenWidth}px;
   height: ${screenHeight * 0.34}px;
 `;
@@ -236,8 +238,8 @@ const Text2 = styled.Text`
 
 const IconContainer = styled.View`
   position: absolute;
-  top: ${screenWidth * 0.05}px;
-  left: ${screenWidth * 0.025}px;
+  top: ${Platform.OS === "ios" ? "0.05" : "0"};
+  left: ${Platform.OS === "ios" ? "0.025" : "0"};
 `;
 
 const FooterContainerModal = styled.View`

@@ -14,7 +14,10 @@ const ImageHero = ({ source }) => {
   return (
     <Container>
       <HeroImage
-        imageStyle={{ borderTopLeftRadius: 20, borderTopRightRadius: 20 }}
+        imageStyle={{
+          borderTopLeftRadius: screenHeight * 0.02,
+          borderTopRightRadius: screenHeight * 0.02,
+        }}
         source={imgSrc}
         resizeMode="cover"
         onError={handleError}

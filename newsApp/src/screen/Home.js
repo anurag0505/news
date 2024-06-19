@@ -4,12 +4,12 @@ import { SafeAreaView, Platform } from "react-native";
 import Content from "../components/Content";
 import { useTheme } from "../utils/ThemeContext";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const { theme } = useTheme();
   return (
     <SafeArea theme={theme}>
       <Container theme={theme}>
-        <Content theme={theme} />
+        <Content navigation={navigation} theme={theme} />
       </Container>
     </SafeArea>
   );
@@ -23,7 +23,7 @@ const SafeArea = styled(SafeAreaView)`
 const Container = styled.View`
   flex-direction: column;
   background-color: ${(props) => props.theme.background};
-  flex: ${Platform.OS === "ios" ? "0.86" : "0.95"};
+  flex: 1;
 `;
 
 export default Home;

@@ -5,7 +5,7 @@ import { BlurView } from "expo-blur";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
-const Footer = ({ imageUri }) => {
+const Footer = ({ imageUri, navigation }) => {
   return (
     <FooterContainer>
       <StyledImageBackground

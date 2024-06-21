@@ -3,19 +3,19 @@ import styled from "styled-components/native";
 import { Button } from "react-native";
 import { useTheme } from "../utils/ThemeContext";
 
-const Setting = ({ navigation }) => {
+const Search = ({ navigation }) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
     <Container theme={theme}>
-      <Text1 theme={theme}>Setting Page</Text1>
+      <Text1 theme={theme}>Search Page</Text1>
       <Button title="Go to Home" onPress={() => navigation.navigate("Home")} />
       <Button title="Toggle Theme" onPress={toggleTheme} />
     </Container>
   );
 };
 
-export default Setting;
+export default Search;
 
 const Container = styled.View`
   flex: 1;

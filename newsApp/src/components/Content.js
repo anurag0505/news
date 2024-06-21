@@ -25,6 +25,9 @@ const Content = ({ navigation }) => {
       navigation.navigate("WebView", { url });
     }
   };
+  const onSwipedLeft = (cardIndex) => {
+    navigation.navigate("Search");
+  };
 
   const handleSwipe = (direction) => {
     if (direction === "down" && currentIndex > 0) {
@@ -49,6 +52,7 @@ const Content = ({ navigation }) => {
         cardIndex={currentIndex}
         onSwipedAll={onSwipedAll}
         onSwipedRight={onSwipedRight}
+        onSwipedLeft={onSwipedLeft}
         onSwipedBottom={() => handleSwipe("down")}
         onSwipedTop={() => handleSwipe("up")}
         backgroundColor={theme.background}
@@ -60,7 +64,7 @@ const Content = ({ navigation }) => {
         stackSeparation={15}
         animateCardOpacity={true}
         verticalSwipe={true}
-        horizontalSwipe={false}
+        horizontalSwipe={true}
         disableRightSwipe={false}
         swipeBackCard={false}
         disableTopSwipe={false}

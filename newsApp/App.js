@@ -1,25 +1,48 @@
 import React from "react";
+import { AppRegistry, StatusBar, Dimensions, Platform } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import styled, {
+  ThemeProvider as StyledThemeProvider,
+} from "styled-components/native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import FoundationIcons from "react-native-vector-icons/Foundation";
+
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+
 import Home from "./src/screen/Home";
-import Setting from "./src/screen/Setting";
+import Search from "./src/screen/Search";
 import NoInternet from "./src/components/NoInternet";
 import CaughtUp from "./src/components/CaughtUp";
 import WebViewScreen from "./src/screen/WebViewScreen";
 import Splash from "./src/screen/Splash";
-import styled, {
-  ThemeProvider as StyledThemeProvider,
-} from "styled-components/native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { AppRegistry, StatusBar, Dimensions, Platform } from "react-native";
 import { name as appName } from "./app.json";
 import { ThemeProvider, useTheme } from "./src/utils/ThemeContext";
-import FoundationIcons from "react-native-vector-icons/Foundation";
 
 const { height: screenHeight } = Dimensions.get("window");
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
+const HomeStack = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Home" component={Home} />
+    <Stack.Screen name="WebView" component={WebViewScreen} />
+    <Stack.Screen name="CaughtUp" component={CaughtUp} />
+  </Stack.Navigator>
+);
+
+const SearchStack = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Search" component={Search} />
+  </Stack.Navigator>
+);
+
+const ProfileStack = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Profile" component={NoInternet} />
+  </Stack.Navigator>
+);
 
 const MainTabNavigator = () => {
   const { theme } = useTheme();
@@ -30,16 +53,24 @@ const MainTabNavigator = () => {
         headerShown: false,
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === "Home") {
+          let IconComponent;
+
+          if (route.name === "HomeTab") {
             iconName = "home";
-          } else if (route.name === "Settings") {
-            iconName = "widget";
+            IconComponent = FoundationIcons;
+          } else if (route.name === "SearchTab") {
+            iconName = "search";
+            IconComponent = IconComponent = MaterialIcons;
+          } else if (route.name === "ProfileTab") {
+            iconName = "torso";
+            IconComponent = FoundationIcons;
           }
           if (focused) {
             color = "blue";
           }
+
           return (
-            <FoundationIcons name={iconName} size={size || 25} color={color} />
+            <IconComponent name={iconName} size={size || 25} color={color} />
           );
         },
         tabBarActiveTintColor: theme.text,
@@ -52,11 +83,24 @@ const MainTabNavigator = () => {
           backgroundColor: theme.background,
           borderTopWidth: 0,
         },
+        tabBarShowLabel: false,
       })}
     >
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Settings" component={Setting} />
-      <Tab.Screen name="CaughtUp" component={CaughtUp} />
+      <Tab.Screen
+        name="SearchTab"
+        component={SearchStack}
+        options={{ title: "Search" }}
+      />
+      <Tab.Screen
+        name="HomeTab"
+        component={HomeStack}
+        options={{ title: "Home" }}
+      />
+      <Tab.Screen
+        name="ProfileTab"
+        component={ProfileStack}
+        options={{ title: "User" }}
+      />
     </Tab.Navigator>
   );
 };
@@ -69,7 +113,6 @@ const App = () => (
 
 const AppWithTheme = () => {
   const { theme } = useTheme();
-  const isDarkMode = theme.isDark;
   const statusBarStyle = theme.isDark ? "light-content" : "dark-content";
 
   return (
@@ -82,13 +125,11 @@ const AppWithTheme = () => {
           />
           <NavigationContainer>
             <Stack.Navigator
-              initialRouteName="Main"
+              initialRouteName="Splash"
               screenOptions={{ headerShown: false }}
             >
               <Stack.Screen name="Splash" component={Splash} />
               <Stack.Screen name="Main" component={MainTabNavigator} />
-              <Stack.Screen name="NoInternet" component={NoInternet} />
-              <Stack.Screen name="WebView" component={WebViewScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </Container>

@@ -2,7 +2,7 @@ import React from "react";
 import { Dimensions, Platform } from "react-native";
 import styled from "styled-components/native";
 
-import Cartoon from "../assets/images/no-internet2.jpg";
+import Cartoon from "../assets/images/cartoon2.png";
 import StyledButton from "../utils/StyledButton";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
@@ -48,8 +48,8 @@ const ContentContainer = styled.View`
 const Image = styled.ImageBackground`
   justify-content: flex-start;
   align-items: center;
-  height: ${screenHeight * 0.15}px;
-  width: ${screenWidth * 0.25}px;
+  height: ${screenHeight * 0.2}px;
+  width: ${screenWidth * 0.35}px;
   overflow: hidden;
 `;
 

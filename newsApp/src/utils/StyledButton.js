@@ -4,7 +4,7 @@ import { Dimensions } from "react-native";
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const ButtonContainer = styled.TouchableOpacity`
-  background-color: #6200ee;
+  background-color: #1877f2;
   width: ${screenWidth - screenWidth * 0.1}px;
   height: ${screenHeight * 0.065}px;
   border-radius: 5px;
@@ -16,6 +16,7 @@ const ButtonText = styled.Text`
   color: white;
   font-size: 18px;
   font-weight: bold;
+  font-family: serif;
 `;
 
 const StyledButton = ({ title, onPress }) => {

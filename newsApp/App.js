@@ -12,7 +12,7 @@ import FoundationIcons from "react-native-vector-icons/Foundation";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import Home from "./src/screen/Home";
-import Search from "./src/screen/Search";
+import SearchScreen from "./src/screen/SearchScreen";
 import NoInternet from "./src/components/NoInternet";
 import CaughtUp from "./src/components/CaughtUp";
 import WebViewScreen from "./src/screen/WebViewScreen";
@@ -34,7 +34,7 @@ const HomeStack = () => (
 
 const SearchStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Search" component={Search} />
+    <Stack.Screen name="SearchScreen" component={SearchScreen} />
   </Stack.Navigator>
 );
 
@@ -66,7 +66,7 @@ const MainTabNavigator = () => {
             IconComponent = FoundationIcons;
           }
           if (focused) {
-            color = "blue";
+            color = "#1877F2";
           }
 
           return (
@@ -125,7 +125,7 @@ const AppWithTheme = () => {
           />
           <NavigationContainer>
             <Stack.Navigator
-              initialRouteName="Splash"
+              initialRouteName="Main"
               screenOptions={{ headerShown: false }}
             >
               <Stack.Screen name="Splash" component={Splash} />

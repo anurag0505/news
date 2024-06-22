@@ -5,6 +5,8 @@ import Swiper from "react-native-deck-swiper";
 import Card from "./Card";
 import newsData from "../assets/newsData.json";
 import { useTheme } from "../utils/ThemeContext";
+import { PanGestureHandler, State } from "react-native-gesture-handler";
+import { useSharedValue, withSpring } from "react-native-reanimated";
 
 const { height: screenHeight } = Dimensions.get("window");
 
@@ -25,6 +27,7 @@ const Content = ({ navigation }) => {
       navigation.navigate("WebView", { url });
     }
   };
+
   const onSwipedLeft = (cardIndex) => {
     navigation.navigate("Search");
   };
@@ -43,45 +46,63 @@ const Content = ({ navigation }) => {
     }
   }, [currentIndex]);
 
+  // Horizontal swipe gesture handling
+  const onHorizontalSwipe = (event) => {
+    const { translationX, state } = event.nativeEvent;
+    if (state === State.END) {
+      if (translationX > 50) {
+        onSwipedRight(currentIndex);
+      } else if (translationX < -50) {
+        onSwipedLeft(currentIndex);
+      }
+    }
+  };
+
   return (
     <Container theme={theme}>
-      <Swiper
-        ref={swiperRef}
-        cards={news}
-        renderCard={(card, index) => <Card key={index} news={card} />}
-        cardIndex={currentIndex}
-        onSwipedAll={onSwipedAll}
-        onSwipedRight={onSwipedRight}
-        onSwipedLeft={onSwipedLeft}
-        onSwipedBottom={() => handleSwipe("down")}
-        onSwipedTop={() => handleSwipe("up")}
-        backgroundColor={theme.background}
-        stackSize={2}
-        showSecondCard={true}
-        stackAnimationFriction={15}
-        stackAnimationTension={40}
-        stackScale={10}
-        stackSeparation={15}
-        animateCardOpacity={true}
-        verticalSwipe={true}
-        horizontalSwipe={true}
-        disableRightSwipe={false}
-        swipeBackCard={false}
-        disableTopSwipe={false}
-        disableBottomSwipe={false}
-        useViewOverflow={Platform.OS === "ios"}
-        verticalThreshold={screenHeight / 10}
-        cardVerticalMargin={0}
-        cardHorizontalMargin={0}
-        inputCardOpacityRangeY={[
-          -screenHeight / 2,
-          -screenHeight / 3,
-          0,
-          screenHeight * 0.9,
-          screenHeight,
-        ]}
-        outputCardOpacityRangeY={[1, 1, 1, 1, 1]}
-      />
+      <PanGestureHandler
+        onGestureEvent={onHorizontalSwipe}
+        onHandlerStateChange={onHorizontalSwipe}
+      >
+        <Swiper
+          ref={swiperRef}
+          cards={news}
+          renderCard={(card, index) => <Card key={index} news={card} />}
+          cardIndex={currentIndex}
+          onSwipedAll={onSwipedAll}
+          onSwipedRight={onSwipedRight}
+          onSwipedLeft={onSwipedLeft}
+          onSwipedBottom={() => handleSwipe("down")}
+          onSwipedTop={() => handleSwipe("up")}
+          backgroundColor={theme.background}
+          stackSize={2}
+          showSecondCard={true}
+          stackAnimationFriction={15}
+          stackAnimationTension={40}
+          stackScale={10}
+          stackSeparation={15}
+          animateCardOpacity={true}
+          verticalSwipe={true}
+          horizontalSwipe={false} // Disable horizontal swipe in Swiper
+          disableRightSwipe={true} // Prevent swiper from handling right swipe
+          disableLeftSwipe={true} // Prevent swiper from handling left swipe
+          swipeBackCard={false}
+          disableTopSwipe={false}
+          disableBottomSwipe={false}
+          useViewOverflow={Platform.OS === "ios"}
+          verticalThreshold={screenHeight / 10}
+          cardVerticalMargin={0}
+          cardHorizontalMargin={0}
+          inputCardOpacityRangeY={[
+            -screenHeight / 2,
+            -screenHeight / 3,
+            0,
+            screenHeight * 0.9,
+            screenHeight,
+          ]}
+          outputCardOpacityRangeY={[1, 1, 1, 1, 1]}
+        />
+      </PanGestureHandler>
     </Container>
   );
 };

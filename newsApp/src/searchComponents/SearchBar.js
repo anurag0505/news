@@ -30,6 +30,7 @@ const Search = styled.TextInput`
   border-color: #f4f4f4;
   border-radius: 5px;
   background-color: #f4f4f4;
+  text-align: center;
 `;
 
 export default SearchBar;

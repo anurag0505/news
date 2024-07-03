@@ -3,7 +3,8 @@ import { WebView } from "react-native-webview";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const WebViewScreen = ({ route }) => {
-  const { url } = route.params;
+  // Ensure route and route.params are defined before accessing
+  const url = "https://example.com"; // Default URL or handle accordingly
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

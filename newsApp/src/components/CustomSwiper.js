@@ -33,7 +33,7 @@ const CustomSwiper = ({ navigation }) => {
         position.setValue({ x: 0, y: -screenHeight });
         Animated.timing(position, {
           toValue: { x: 0, y: 0 },
-          duration: 500,
+          duration: 400,
           easing: Easing.ease, // Use Easing.ease directly
           useNativeDriver: true,
         }).start(() => {

@@ -7,6 +7,7 @@ import WebViewScreen from "../screen/WebViewScreen";
 import Home from "../screen/Home";
 import FoundationIcons from "react-native-vector-icons/Foundation";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from "@react-navigation/native";
 
 const initialLayout = { width: Dimensions.get("window").width };
 
@@ -19,11 +20,20 @@ const MainTabNavigator = () => {
     { key: "webview", title: "WebView", icon: "torso" },
   ]);
 
-  const renderScene = SceneMap({
-    Home: Home,
-    search: SearchScreen,
-    webview: WebViewScreen,
-  });
+  const navigation = useNavigation();
+
+  const renderScene = ({ route }) => {
+    switch (route.key) {
+      case "search":
+        return <SearchScreen navigation={navigation} />;
+      case "Home":
+        return <Home navigation={navigation} />;
+      case "webview":
+        return <WebViewScreen navigation={navigation} />;
+      default:
+        return null;
+    }
+  };
 
   const renderIcon = ({ route, focused }) => {
     const color = focused ? theme.active : theme.inactive;

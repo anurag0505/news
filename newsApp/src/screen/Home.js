@@ -8,7 +8,7 @@ const Home = ({ navigation }) => {
   const { theme } = useTheme();
   return (
     <SafeArea theme={theme}>
-      <Container theme={theme}>
+      <Container theme={theme} navigation={navigation}>
         <Content navigation={navigation} theme={theme} />
       </Container>
     </SafeArea>

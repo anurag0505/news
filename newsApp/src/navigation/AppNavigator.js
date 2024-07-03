@@ -5,10 +5,11 @@ import Splash from "../screen/Splash";
 import MainTabNavigator from "./MainTabNavigator";
 import SearchScreen from "../screen/SearchScreen";
 import WebViewScreen from "../screen/WebViewScreen";
+import CaughtUp from "../components/CaughtUp";
 
 const Stack = createStackNavigator();
 
-const AppNavigator = ({ navigation }) => (
+const AppNavigator = () => (
   <NavigationContainer>
     <Stack.Navigator
       initialRouteName="Splash"
@@ -18,6 +19,7 @@ const AppNavigator = ({ navigation }) => (
       <Stack.Screen name="Main" component={MainTabNavigator} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="WebViewScreen" component={WebViewScreen} />
+      <Stack.Screen name="CaughtUp" component={CaughtUp} />
     </Stack.Navigator>
   </NavigationContainer>
 );

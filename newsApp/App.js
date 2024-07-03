@@ -6,7 +6,7 @@ import styled, {
 } from "styled-components/native";
 import { ThemeProvider, useTheme } from "./src/utils/ThemeContext";
 import { name as appName } from "./app.json";
-import MainTabNavigator from "./src/navigation/MainTabNavigator";
+import AppNavigator from "./src/navigation/AppNavigator";
 
 const App = () => (
   <ThemeProvider>
@@ -22,7 +22,7 @@ const AppWithTheme = () => {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Container>
           <StatusBar barStyle="light-content" backgroundColor="#000000" />
-          <MainTabNavigator />
+          <AppNavigator />
         </Container>
       </GestureHandlerRootView>
     </StyledThemeProvider>

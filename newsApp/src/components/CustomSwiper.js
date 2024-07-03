@@ -17,12 +17,13 @@ const CustomSwiper = ({ navigation }) => {
   const swipeThreshold = 50;
 
   const onSwiped = (direction) => {
-    if (direction === "right") {
+    if (direction === "left") {
+      console.log("Ls");
       const card = newsData[currentIndex];
       if (card.url) {
         navigation.navigate("WebView", { url: card.url });
       }
-    } else if (direction === "left") {
+    } else if (direction === "right") {
       navigation.navigate("SearchScreen");
     } else if (direction === "up") {
       if (currentIndex < newsData.length - 1) {
@@ -33,7 +34,7 @@ const CustomSwiper = ({ navigation }) => {
         position.setValue({ x: 0, y: -screenHeight });
         Animated.timing(position, {
           toValue: { x: 0, y: 0 },
-          duration: 400,
+          duration: 500,
           easing: Easing.ease, // Use Easing.ease directly
           useNativeDriver: true,
         }).start(() => {

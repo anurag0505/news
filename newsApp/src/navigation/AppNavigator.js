@@ -1,11 +1,17 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import Splash from "../screen/Splash";
 import MainTabNavigator from "./MainTabNavigator";
 import SearchScreen from "../screen/SearchScreen";
 import WebViewScreen from "../screen/WebViewScreen";
 import CaughtUp from "../components/CaughtUp";
+import BookMark from "../SettingsComponents/BookMark";
+import SettingsScreen from "../screen/SettingsScreen";
+import Header from "../SettingsComponents/Header";
 
 const Stack = createStackNavigator();
 
@@ -18,8 +24,17 @@ const AppNavigator = () => (
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Main" component={MainTabNavigator} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
-      <Stack.Screen name="WebViewScreen" component={WebViewScreen} />
+      <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+      <Stack.Screen
+        name="WebViewScreen"
+        component={WebViewScreen}
+        options={{
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
       <Stack.Screen name="CaughtUp" component={CaughtUp} />
+      <Stack.Screen name="BookMark" component={BookMark} />
+      <Stack.Screen name="Header" component={Header} />
     </Stack.Navigator>
   </NavigationContainer>
 );

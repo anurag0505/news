@@ -3,8 +3,8 @@ import { Dimensions, View, StyleSheet } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { useTheme } from "../utils/ThemeContext";
 import SearchScreen from "../screen/SearchScreen";
-import WebViewScreen from "../screen/WebViewScreen";
 import Home from "../screen/Home";
+import SettingScreen from "../screen/SettingsScreen";
 import FoundationIcons from "react-native-vector-icons/Foundation";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
@@ -13,35 +13,26 @@ const initialLayout = { width: Dimensions.get("window").width };
 
 const MainTabNavigator = () => {
   const { theme } = useTheme();
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(1); // Default to Home tab
   const [routes] = React.useState([
     { key: "search", title: "Search", icon: "search" },
-    { key: "Home", title: "Home", icon: "home" },
-    { key: "webview", title: "WebView", icon: "torso" },
+    { key: "home", title: "Home", icon: "home" },
+    { key: "settings", title: "settings", icon: "torso" },
   ]);
 
   const navigation = useNavigation();
 
-  const renderScene = ({ route }) => {
-    switch (route.key) {
-      case "search":
-        return <SearchScreen navigation={navigation} />;
-      case "Home":
-        return <Home navigation={navigation} />;
-      case "webview":
-        return <WebViewScreen navigation={navigation} />;
-      default:
-        return null;
-    }
-  };
+  const renderScene = SceneMap({
+    search: () => <SearchScreen navigation={navigation} />,
+    home: () => <Home navigation={navigation} />,
+    settings: () => <SettingScreen navigation={navigation} />,
+  });
 
   const renderIcon = ({ route, focused }) => {
     const color = focused ? theme.active : theme.inactive;
-
     if (route.key === "search") {
       return <MaterialIcons name={route.icon} size={25} color={color} />;
     }
-
     return <FoundationIcons name={route.icon} size={25} color={color} />;
   };
 
@@ -49,11 +40,11 @@ const MainTabNavigator = () => {
     <TabBar
       {...props}
       renderIcon={renderIcon}
-      indicatorStyle={{ height: 0 }} // Remove the indicator
+      indicatorStyle={{ height: 0 }}
       style={{
         backgroundColor: theme.tabBarBackground,
         height: 45,
-      }} // Adjust height
+      }}
       activeColor={theme.active}
       inactiveColor={theme.inactive}
       renderLabel={() => null}
@@ -69,6 +60,8 @@ const MainTabNavigator = () => {
         initialLayout={initialLayout}
         renderTabBar={renderTabBar}
         tabBarPosition="bottom"
+        swipeEnabled={false}
+        animationEnabled={true} // Ensure swipe is enabled
       />
     </View>
   );
@@ -77,14 +70,6 @@ const MainTabNavigator = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  iconContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  tabStyle: {
-    borderLeftWidth: 1,
-    borderColor: "white",
   },
 });
 

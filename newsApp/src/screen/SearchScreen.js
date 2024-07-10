@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Button } from "react-native";
 import { useTheme } from "../utils/ThemeContext";
 import SearchBar from "../searchComponents/SearchBar";
 import HorizontalMenu from "../searchComponents/HorizontalMenu";
@@ -14,15 +13,21 @@ const SearchScreen = ({ navigation }) => {
   };
 
   return (
-    <Container theme={theme}>
-      <SearchBar />
-      <HorizontalMenu onItemPress={handleMenuPress} />
-      <SmallCard />
-    </Container>
+    <ContainerSCroll>
+      <Container theme={theme}>
+        <SearchBar />
+        <HorizontalMenu onItemPress={handleMenuPress} />
+        <SmallCard />
+      </Container>
+    </ContainerSCroll>
   );
 };
 
 export default SearchScreen;
+
+const ContainerSCroll = styled.ScrollView`
+  flex: 1;
+`;
 
 const Container = styled.View`
   flex: 1;

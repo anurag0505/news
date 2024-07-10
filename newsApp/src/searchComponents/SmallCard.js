@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import newsData from "../assets/newsData.json";
 import Category from "./Category";
+import { Platform } from "react-native";
 
 export default function SmallCard() {
   return (
@@ -30,11 +31,19 @@ const CardContainer = styled.ScrollView`
   background-color: #f4f4f4;
   width: 100%;
 `;
+
 const CategoryContainer = styled.View`
   height: 60px; /* Adjust height as necessary */
 `;
 
-const Card = styled.View`
+const Card = styled.View.attrs({
+  // Adding shadow properties for iOS and elevation for Android
+  shadowColor: "#000",
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.25,
+  shadowRadius: 3.84,
+  elevation: 3,
+})`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -42,7 +51,17 @@ const Card = styled.View`
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  ${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: 0px 2px;
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84px;
+    `,
+    android: `
+      elevation: 3;
+    `,
+  })}
 `;
 
 const CardContent = styled.View`
@@ -52,7 +71,6 @@ const CardContent = styled.View`
 
 const CardMeta = styled.Text`
   font-size: 12px;
-  color: #777;
   margin-bottom: 5px;
   color: tomato;
 `;

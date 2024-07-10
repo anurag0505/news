@@ -10,6 +10,7 @@ import Animated, {
   useAnimatedGestureHandler,
 } from "react-native-reanimated";
 import Card from "./Card";
+import { useTheme } from "../utils/ThemeContext";
 
 const { height: screenHeight } = Dimensions.get("window");
 const { theme } = useTheme();

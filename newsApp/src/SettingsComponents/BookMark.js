@@ -13,7 +13,7 @@ const BookMark = () => {
 
   return (
     <Container theme={theme}>
-      <Header title="Bookmarks" navigation={navigation} />
+      <Header title="Bookmarks" />
       {newsData.length === 0 ? (
         <EmptyMessage theme={theme}>
           No bookmark saved. It's empty here.

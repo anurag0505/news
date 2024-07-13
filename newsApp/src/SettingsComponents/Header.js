@@ -13,7 +13,7 @@ const Header = ({ title }) => {
     <HeaderWrapper>
       {Platform.OS === "android" && <AndroidShadowContainer theme={theme} />}
       <HeaderContainer theme={theme}>
-        <BackButton onPress={() => navigation.goBack()}>
+        <BackButton onPress={() => navigation.navigate("settingsScreen")}>
           <Icon name="arrow-back" size={24} color={theme.text} />
         </BackButton>
         <HeaderText theme={theme}>{title}</HeaderText>

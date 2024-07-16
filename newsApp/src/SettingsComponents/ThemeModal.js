@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../utils/ThemeContext"; // Adjust the import path as needed
 
-const ThemeModal = ({ visible, onClose, onSelectTheme }) => {
-  const [selectedTheme, setSelectedTheme] = useState(null);
+const ThemeModal = ({ visible, onClose }) => {
+  const { theme, selectTheme } = useTheme();
+  const [selectedTheme, setSelectedTheme] = useState(theme);
+
+  useEffect(() => {
+    if (visible) {
+      setSelectedTheme(theme);
+    }
+  }, [visible, theme]);
 
   const handleThemeSelect = (theme) => {
     setSelectedTheme(theme);
-    onSelectTheme(theme);
+    selectTheme(theme);
   };
 
   return (

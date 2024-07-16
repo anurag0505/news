@@ -2,6 +2,7 @@ import React from "react";
 import { ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useTheme } from "../utils/ThemeContext";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
@@ -15,15 +16,17 @@ const menuItems = [
 ];
 
 const HorizontalMenu = ({ onItemPress }) => {
+  const { theme } = useTheme();
+
   return (
-    <Container>
+    <Container theme={theme}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {menuItems.map((item, index) => (
           <MenuItem key={index} onPress={() => onItemPress(item.title)}>
             <IconWrapper>
-              <MaterialIcons name={item.icon} size={50} color="#1877F2" />
+              <MaterialIcons name={item.icon} size={50} color={theme.active} />
             </IconWrapper>
-            <Title>{item.title}</Title>
+            <Title theme={theme}>{item.title}</Title>
           </MenuItem>
         ))}
       </ScrollView>
@@ -35,13 +38,14 @@ export default HorizontalMenu;
 
 const Container = styled.View`
   padding: 20px 0;
-  height: ${screenHeight * 0.2}px;
+  height: ${screenHeight * 0.19}px;
+  background-color: ${(props) => props.theme.background};
 `;
 
 const MenuItem = styled(TouchableOpacity)`
   align-items: center;
   justify-content: center;
-  margin: 0 15px;
+  margin: 0 12px;
 `;
 
 const IconWrapper = styled.View`
@@ -54,8 +58,8 @@ const IconWrapper = styled.View`
 
 const Title = styled.Text`
   font-size: 14px;
-  color: #333;
-  font-family: serif;
+  color: ${(props) => props.theme.text};
+  font-family: sans-serif;
   font-weight: 600;
   letter-spacing: -1px;
 `;

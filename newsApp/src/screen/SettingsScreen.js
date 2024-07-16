@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "../utils/ThemeContext";
 import LanguageModal from "../SettingsComponents/LanguageModal";
 import ThemeModal from "../SettingsComponents/ThemeModal";
 import TextSizeModal from "../SettingsComponents/TextSizeModal";
@@ -9,6 +10,8 @@ import NotificationModal from "../SettingsComponents/NotificationsModal";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
+  const { theme } = useTheme();
+
   const [isLanguageModalVisible, setLanguageModalVisible] = useState(false);
   const [isThemeModalVisible, setThemeModalVisible] = useState(false);
   const [isTextSizeModalVisible, setTextSizeModalVisible] = useState(false);
@@ -38,10 +41,8 @@ const SettingsScreen = () => {
   };
 
   return (
-    <SettingsContainer>
-      <Banner>
-        <Heading>Settings</Heading>
-      </Banner>
+    <SettingsContainer theme={theme}>
+      <Heading>Settings</Heading>
       <Category>
         <CategoryTitle>General</CategoryTitle>
         <SettingOption onPress={() => navigation.navigate("BookMark")}>
@@ -100,22 +101,23 @@ export default SettingsScreen;
 
 const SettingsContainer = styled.ScrollView`
   flex: 1;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.background};
 `;
 
-const Banner = styled.View`
-  background-color: #1877f2;
-  padding: 20px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-`;
+// const Banner = styled.View`
+//   background-color: ${(props) => props.theme.active};
+//   padding: 12px;
+//   align-items: center;
+//   justify-content: center;
+//   margin-bottom: 30px;
+// `;
 
 const Heading = styled.Text`
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
+  font-size: 36px;
+  font-weight: 600;
   font-family: serif;
+  color: ${(props) => props.theme.text};
+  padding: 50px 20px;
 `;
 
 const Category = styled.View`
@@ -125,9 +127,10 @@ const Category = styled.View`
 
 const CategoryTitle = styled.Text`
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 300;
   margin-bottom: 10px;
   font-family: serif;
+  color: ${(props) => props.theme.text};
 `;
 
 const SettingOption = styled.TouchableOpacity`

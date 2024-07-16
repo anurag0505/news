@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import { View, Text, TouchableOpacity } from "react-native";
 import newsData from "../assets/newsData.json";
+import { useTheme } from "../utils/ThemeContext";
 
 const categories = [...new Set(newsData.map((news) => news.category))];
 
 export default function Category({ onCategorySelect }) {
+  const { theme } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleCategoryPress = (category) => {
@@ -20,8 +21,9 @@ export default function Category({ onCategorySelect }) {
           key={index}
           onPress={() => handleCategoryPress(category)}
           isSelected={category === selectedCategory}
+          theme={theme}
         >
-          <CategoryText>{category}</CategoryText>
+          <CategoryText theme={theme}>{category}</CategoryText>
         </CategoryButton>
       ))}
     </CategoryContainer>
@@ -31,10 +33,12 @@ export default function Category({ onCategorySelect }) {
 const CategoryContainer = styled.ScrollView`
   flex-direction: row;
   padding: 10px 0;
+  background-color: ${(props) => props.theme.background};
 `;
 
 const CategoryButton = styled.TouchableOpacity`
-  background-color: ${(props) => (props.isSelected ? "#e0e0e0" : "#f4f4f4")};
+  background-color: ${(props) =>
+    props.isSelected ? props.theme.active : props.theme.inactive};
   padding: 10px 15px;
   border-radius: 20px;
   margin-right: 10px;
@@ -43,6 +47,6 @@ const CategoryButton = styled.TouchableOpacity`
 
 const CategoryText = styled.Text`
   font-size: 14px;
-  color: ${(props) => (props.isSelected ? "#333" : "#333")};
+  color: ${(props) => props.theme.text};
   font-weight: 400;
 `;

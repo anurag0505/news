@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components/native";
 import newsData from "../assets/newsData.json";
-import Category from "./Category";
 import { Platform } from "react-native";
+import { useTheme } from "../utils/ThemeContext";
 
 export default function SmallCard() {
+  const { theme } = useTheme();
   return (
     <>
-      <CategoryContainer>
-        <Category />
+      <CategoryContainer theme={theme}>
+        <Text>Top Headlines </Text>
       </CategoryContainer>
-      <CardContainer>
+      <CardContainer theme={theme}>
         {newsData.map((news) => (
           <Card key={news.id}>
             <CardContent>
@@ -28,26 +29,29 @@ export default function SmallCard() {
 const CardContainer = styled.ScrollView`
   flex: 1;
   padding-bottom: 10px;
-  background-color: #f4f4f4;
+  background-color: ${(props) => props.theme.background};
   width: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
 `;
 
 const CategoryContainer = styled.View`
-  height: 60px; /* Adjust height as necessary */
+  padding-bottom: 10px;
+  padding-left: 10px;
+  align-self: flex-start;
 `;
 
 const Card = styled.View.attrs({
-  // Adding shadow properties for iOS and elevation for Android
   shadowColor: "#000",
   shadowOffset: { width: 0, height: 2 },
   shadowOpacity: 0.25,
   shadowRadius: 3.84,
-  elevation: 3,
+  elevation: 5,
 })`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.background};
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -59,7 +63,7 @@ const Card = styled.View.attrs({
       shadow-radius: 3.84px;
     `,
     android: `
-      elevation: 3;
+      elevation: 5;
     `,
   })}
 `;
@@ -78,11 +82,19 @@ const CardMeta = styled.Text`
 const CardTitle = styled.Text`
   font-size: 15px;
   font-weight: 500;
-  font-family: serif;
+  font-family: sans-serif;
+  color: ${(props) => props.theme.text};
 `;
 
 const CardImage = styled.Image`
   width: 100px;
   height: 70px;
   border-radius: 5px;
+`;
+
+const Text = styled.Text`
+  font-size: 25px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: gray;
 `;

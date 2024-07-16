@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { Dimensions, Platform } from "react-native";
 import styled from "styled-components/native";
+import { useTheme } from "../utils/ThemeContext";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const SearchBar = () => {
+  const { theme } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <Container>
+    <Container theme={theme}>
       <Search
+        theme={theme}
         placeholder="Search here for news"
         value={searchQuery}
         onChangeText={(text) => setSearchQuery(text)}
+        placeholderTextColor={theme.inactive}
       />
     </Container>
   );
@@ -25,12 +29,13 @@ const Container = styled.View`
 const Search = styled.TextInput`
   height: ${screenHeight * 0.05}px;
   width: ${screenWidth * 0.9}px;
-  border-width: 1px;
+  border-width: 0.35px;
   padding: 10px;
-  border-color: #f4f4f4;
+  border-color: lightgray;
   border-radius: 5px;
-  background-color: #f4f4f4;
+  background-color: ${(props) => props.theme.SearchBar};
   text-align: center;
+  color: ${(props) => props.theme.text};
 `;
 
 export default SearchBar;

@@ -15,9 +15,9 @@ const SearchScreen = ({ navigation }) => {
   return (
     <ContainerSCroll>
       <Container theme={theme}>
-        <SearchBar />
-        <HorizontalMenu onItemPress={handleMenuPress} />
-        <SmallCard />
+        <SearchBar theme={theme} />
+        <HorizontalMenu onItemPress={handleMenuPress} theme={theme} />
+        <SmallCard theme={theme} />
       </Container>
     </ContainerSCroll>
   );

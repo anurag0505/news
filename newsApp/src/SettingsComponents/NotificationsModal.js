@@ -7,9 +7,11 @@ import {
   Switch,
   StyleSheet,
 } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const NotificationsModal = ({ visible, onClose, onToggleNotifications }) => {
   const [isEnabled, setIsEnabled] = useState(false);
+  const { t } = useTranslation();
 
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
@@ -25,9 +27,11 @@ const NotificationsModal = ({ visible, onClose, onToggleNotifications }) => {
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Notifications</Text>
+          <Text style={styles.modalTitle}>{t("notifications")}</Text>
           <View style={styles.switchContainer}>
-            <Text style={styles.switchLabel}>{isEnabled ? "On" : "Off"}</Text>
+            <Text style={styles.switchLabel}>
+              {isEnabled ? t("on") : t("off")}
+            </Text>
             <Switch
               trackColor={{ false: "#767577", true: "#1877F2" }}
               thumbColor={isEnabled ? "#fff" : "#f4f3f4"}
@@ -37,7 +41,7 @@ const NotificationsModal = ({ visible, onClose, onToggleNotifications }) => {
             />
           </View>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Text style={styles.closeButtonText}>{t("close")}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   closeButtonText: {
-    fontSize: 16,
+    fontSize: 18,
     color: "#1877F2",
   },
 });

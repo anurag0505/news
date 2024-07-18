@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-import { Dimensions, Platform } from "react-native";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 import { useTheme } from "../utils/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const SearchBar = () => {
   const { theme } = useTheme();
   const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useTranslation();
 
   return (
     <Container theme={theme}>
       <Search
         theme={theme}
-        placeholder="Search here for news"
+        placeholder={t("searchHereForNews")}
         value={searchQuery}
         onChangeText={(text) => setSearchQuery(text)}
         placeholderTextColor={theme.inactive}
@@ -33,7 +35,7 @@ const Search = styled.TextInput`
   padding: 10px;
   border-color: lightgray;
   border-radius: 5px;
-  background-color: ${(props) => props.theme.SearchBar};
+  background-color: ${(props) => props.theme.searchBar};
   text-align: center;
   color: ${(props) => props.theme.text};
 `;

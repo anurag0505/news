@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { useTheme } from "../utils/ThemeContext";
 import Header from "./Header";
+import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
 // Temporarily set newsData to an empty array for testing
@@ -9,15 +10,14 @@ const newsData = [];
 
 const BookMark = () => {
   const { theme } = useTheme();
+  const { t } = useTranslation();
   const navigation = useNavigation();
 
   return (
     <Container theme={theme}>
-      <Header title="Bookmarks" />
+      <Header title={t("bookmarks")} />
       {newsData.length === 0 ? (
-        <EmptyMessage theme={theme}>
-          No bookmark saved. It's empty here.
-        </EmptyMessage>
+        <EmptyMessage theme={theme}>{t("noBookmarks")}</EmptyMessage>
       ) : (
         <CardContainer>
           {newsData.map((news) => (

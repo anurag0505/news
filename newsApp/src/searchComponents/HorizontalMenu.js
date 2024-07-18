@@ -3,30 +3,32 @@ import { ScrollView, TouchableOpacity, Dimensions } from "react-native";
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "../utils/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const menuItems = [
-  { title: "All News", icon: "article" },
-  { title: "Top Stories", icon: "star" },
-  { title: "Breaking News", icon: "local-fire-department" },
-  { title: "Unread", icon: "remove-red-eye" },
-  { title: "Bookmark", icon: "bookmark" },
-  { title: "Feeds", icon: "feed" },
+  { title: "allNews", icon: "article" },
+  { title: "topStories", icon: "star" },
+  { title: "breakingNews", icon: "local-fire-department" },
+  { title: "unread", icon: "remove-red-eye" },
+  { title: "bookmark", icon: "bookmark" },
+  { title: "feeds", icon: "feed" },
 ];
 
 const HorizontalMenu = ({ onItemPress }) => {
   const { theme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Container theme={theme}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {menuItems.map((item, index) => (
-          <MenuItem key={index} onPress={() => onItemPress(item.title)}>
+          <MenuItem key={index} onPress={() => onItemPress(t(item.title))}>
             <IconWrapper>
               <MaterialIcons name={item.icon} size={50} color={theme.active} />
             </IconWrapper>
-            <Title theme={theme}>{item.title}</Title>
+            <Title theme={theme}>{t(item.title)}</Title>
           </MenuItem>
         ))}
       </ScrollView>

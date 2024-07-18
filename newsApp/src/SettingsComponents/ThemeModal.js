@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "../utils/ThemeContext"; // Adjust the import path as needed
+import { useTheme } from "../utils/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 const ThemeModal = ({ visible, onClose }) => {
   const { theme, selectTheme } = useTheme();
+  const { t } = useTranslation();
   const [selectedTheme, setSelectedTheme] = useState(theme);
 
   useEffect(() => {
@@ -27,14 +29,14 @@ const ThemeModal = ({ visible, onClose }) => {
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Select Theme</Text>
+          <Text style={styles.modalTitle}>{t("selectTheme")}</Text>
           <View style={styles.optionsContainer}>
             <TouchableOpacity
               style={styles.themeOption}
               onPress={() => handleThemeSelect("automatic")}
             >
               <Ionicons name="contrast" size={20} color="#000" />
-              <Text style={styles.themeText}>Automatic</Text>
+              <Text style={styles.themeText}>{t("automatic")}</Text>
               <View style={styles.radioContainer}>
                 <View style={styles.radio}>
                   {selectedTheme === "automatic" && (
@@ -49,7 +51,7 @@ const ThemeModal = ({ visible, onClose }) => {
               onPress={() => handleThemeSelect("light")}
             >
               <Ionicons name="sunny" size={20} color="#000" />
-              <Text style={styles.themeText}>Light</Text>
+              <Text style={styles.themeText}>{t("light")}</Text>
               <View style={styles.radioContainer}>
                 <View style={styles.radio}>
                   {selectedTheme === "light" && (
@@ -64,7 +66,7 @@ const ThemeModal = ({ visible, onClose }) => {
               onPress={() => handleThemeSelect("dark")}
             >
               <Ionicons name="moon" size={20} color="#000" />
-              <Text style={styles.themeText}>Dark</Text>
+              <Text style={styles.themeText}>{t("dark")}</Text>
               <View style={styles.radioContainer}>
                 <View style={styles.radio}>
                   {selectedTheme === "dark" && (
@@ -75,7 +77,7 @@ const ThemeModal = ({ visible, onClose }) => {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Text style={styles.closeButtonText}>{t("close")}</Text>
           </TouchableOpacity>
         </View>
       </View>

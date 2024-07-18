@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const LanguageModal = ({ visible, onClose, onSelectLanguage }) => {
+  const { t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(null);
-  const languages = ["English", "Spanish", "French", "German"]; // Add your supported languages here
+  const languages = ["en", "hi"]; // Supported languages
 
   const handleLanguageSelect = (language) => {
     setSelectedLanguage(language);
@@ -19,7 +21,7 @@ const LanguageModal = ({ visible, onClose, onSelectLanguage }) => {
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Select Language</Text>
+          <Text style={styles.modalTitle}>{t("selectLanguage")}</Text>
           {languages.map((language) => (
             <TouchableOpacity
               key={language}
@@ -32,12 +34,12 @@ const LanguageModal = ({ visible, onClose, onSelectLanguage }) => {
                   selectedLanguage === language && styles.selectedText,
                 ]}
               >
-                {language}
+                {t(language)}
               </Text>
             </TouchableOpacity>
           ))}
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Text style={styles.closeButtonText}>{t("close")}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   closeButtonText: {
-    fontSize: 16,
+    fontSize: 18,
     color: "#1877F2",
   },
 });

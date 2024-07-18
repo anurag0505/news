@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useTranslation } from "react-i18next";
 
 const TextSizeModal = ({ visible, onClose, onSelectTextSize }) => {
   const [selectedSize, setSelectedSize] = useState(null);
+  const { t } = useTranslation();
 
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
     onSelectTextSize(size);
   };
 
-  const textSizes = ["Large", "Default"]; // Define the text size options
+  const textSizes = [t("large"), t("default")]; // Define the text size options
 
   return (
     <Modal
@@ -20,7 +22,7 @@ const TextSizeModal = ({ visible, onClose, onSelectTextSize }) => {
     >
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Select Text Size</Text>
+          <Text style={styles.modalTitle}>{t("selectTextSize")}</Text>
           {textSizes.map((size) => (
             <TouchableOpacity
               key={size}
@@ -41,7 +43,7 @@ const TextSizeModal = ({ visible, onClose, onSelectTextSize }) => {
             </TouchableOpacity>
           ))}
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Text style={styles.closeButtonText}>{t("close")}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   closeButtonText: {
-    fontSize: 16,
+    fontSize: 18,
     color: "#1877F2",
   },
 });

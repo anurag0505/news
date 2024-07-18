@@ -2,12 +2,30 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import newsData from "../assets/newsData.json";
 import { useTheme } from "../utils/ThemeContext";
+import { useTranslation } from "react-i18next";
 
-const categories = [...new Set(newsData.map((news) => news.category))];
+const predefinedCategories = [
+  "science",
+  "sports",
+  "politics",
+  "technology",
+  "health",
+  "finance",
+  "entertainment",
+];
 
-export default function Category({ onCategorySelect }) {
+const Category = ({ onCategorySelect }) => {
   const { theme } = useTheme();
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const { t } = useTranslation();
+
+  // Combine predefined categories with categories from newsData
+  const categories = [
+    ...new Set([
+      ...predefinedCategories,
+      ...newsData.map((news) => news.category),
+    ]),
+  ];
 
   const handleCategoryPress = (category) => {
     setSelectedCategory(category);
@@ -23,12 +41,14 @@ export default function Category({ onCategorySelect }) {
           isSelected={category === selectedCategory}
           theme={theme}
         >
-          <CategoryText theme={theme}>{category}</CategoryText>
+          <CategoryText theme={theme}>{t(category)}</CategoryText>
         </CategoryButton>
       ))}
     </CategoryContainer>
   );
-}
+};
+
+export default Category;
 
 const CategoryContainer = styled.ScrollView`
   flex-direction: row;

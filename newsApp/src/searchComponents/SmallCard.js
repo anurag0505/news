@@ -3,19 +3,22 @@ import styled from "styled-components/native";
 import newsData from "../assets/newsData.json";
 import { Platform } from "react-native";
 import { useTheme } from "../utils/ThemeContext";
+import { useTranslation } from "react-i18next";
 
 export default function SmallCard() {
   const { theme } = useTheme();
+  const { t } = useTranslation();
+
   return (
     <>
       <CategoryContainer theme={theme}>
-        <Text>Top Headlines </Text>
+        <Text>{t("topHeadlines")}</Text>
       </CategoryContainer>
       <CardContainer theme={theme}>
         {newsData.map((news) => (
           <Card key={news.id}>
             <CardContent>
-              <CardMeta>{news.category}</CardMeta>
+              <CardMeta>{t(news.category.toLowerCase())}</CardMeta>
               <CardTitle>{news.title}</CardTitle>
             </CardContent>
             <CardImage source={{ uri: news.image }} />

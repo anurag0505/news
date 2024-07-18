@@ -6,11 +6,13 @@ import { useTheme } from "../utils/ThemeContext";
 import LanguageModal from "../SettingsComponents/LanguageModal";
 import ThemeModal from "../SettingsComponents/ThemeModal";
 import TextSizeModal from "../SettingsComponents/TextSizeModal";
-import NotificationModal from "../SettingsComponents/NotificationsModal";
+import NotificationsModal from "../SettingsComponents/NotificationsModal";
+import { useTranslation } from "react-i18next";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
   const { theme } = useTheme();
+  const { t, i18n } = useTranslation();
 
   const [isLanguageModalVisible, setLanguageModalVisible] = useState(false);
   const [isThemeModalVisible, setThemeModalVisible] = useState(false);
@@ -21,6 +23,7 @@ const SettingsScreen = () => {
 
   const handleLanguageSelect = (language) => {
     console.log("Selected language:", language);
+    i18n.changeLanguage(language);
     setLanguageModalVisible(false);
   };
 
@@ -36,47 +39,50 @@ const SettingsScreen = () => {
     // Add logic to set the text size here
   };
 
-  const handleToggleNotification = () => {
-    setNotificationEnabled((prevState) => !prevState);
+  const handleToggleNotification = (isEnabled) => {
+    console.log("Notification enabled:", isEnabled);
+    setNotificationEnabled(isEnabled);
   };
 
   return (
     <SettingsContainer theme={theme}>
-      <Heading>Settings</Heading>
+      <Heading>{t("settings")}</Heading>
       <Category>
-        <CategoryTitle>General</CategoryTitle>
+        <CategoryTitle>{t("general")}</CategoryTitle>
         <SettingOption onPress={() => navigation.navigate("BookMark")}>
           <Ionicons name="bookmark" size={24} color="#1877F2" />
-          <OptionText>Bookmark</OptionText>
+          <OptionText>{t("bookmark")}</OptionText>
         </SettingOption>
         <SettingOption onPress={() => setLanguageModalVisible(true)}>
           <Ionicons name="language" size={24} color="#1877F2" />
-          <OptionText>Language</OptionText>
+          <OptionText>{t("language")}</OptionText>
         </SettingOption>
       </Category>
       <Category>
-        <CategoryTitle>Appearance</CategoryTitle>
+        <CategoryTitle>{t("appearance")}</CategoryTitle>
         <SettingOption onPress={() => setThemeModalVisible(true)}>
           <Ionicons name="color-palette" size={24} color="#1877F2" />
-          <OptionText>Theme</OptionText>
+          <OptionText>{t("theme")}</OptionText>
         </SettingOption>
         <SettingOption onPress={() => setTextSizeModalVisible(true)}>
           <Ionicons name="text" size={24} color="#1877F2" />
-          <OptionText>Text Size</OptionText>
+          <OptionText>{t("textSize")}</OptionText>
         </SettingOption>
       </Category>
       <Category>
-        <CategoryTitle>Notifications</CategoryTitle>
+        <CategoryTitle>{t("notifications")}</CategoryTitle>
         <SettingOption onPress={() => setNotificationModalVisible(true)}>
           <Ionicons name="notifications" size={24} color="#1877F2" />
-          <OptionText>Notifications</OptionText>
+          <OptionText>{t("notifications")}</OptionText>
         </SettingOption>
       </Category>
-      <LanguageModal
-        visible={isLanguageModalVisible}
-        onClose={() => setLanguageModalVisible(false)}
-        onSelectLanguage={handleLanguageSelect}
-      />
+      {isLanguageModalVisible && (
+        <LanguageModal
+          visible={isLanguageModalVisible}
+          onClose={() => setLanguageModalVisible(false)}
+          onSelectLanguage={handleLanguageSelect}
+        />
+      )}
       <ThemeModal
         visible={isThemeModalVisible}
         onClose={() => setThemeModalVisible(false)}
@@ -87,10 +93,10 @@ const SettingsScreen = () => {
         onClose={() => setTextSizeModalVisible(false)}
         onSelectTextSize={handleTextSizeSelect}
       />
-      <NotificationModal
+      <NotificationsModal
         visible={isNotificationModalVisible}
         onClose={() => setNotificationModalVisible(false)}
-        onToggleNotification={handleToggleNotification}
+        onToggleNotifications={handleToggleNotification}
         isNotificationEnabled={isNotificationEnabled}
       />
     </SettingsContainer>
@@ -103,14 +109,6 @@ const SettingsContainer = styled.ScrollView`
   flex: 1;
   background-color: ${(props) => props.theme.background};
 `;
-
-// const Banner = styled.View`
-//   background-color: ${(props) => props.theme.active};
-//   padding: 12px;
-//   align-items: center;
-//   justify-content: center;
-//   margin-bottom: 30px;
-// `;
 
 const Heading = styled.Text`
   font-size: 36px;

@@ -3,6 +3,7 @@ import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "../utils/ThemeContext";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ThemeModal = ({ visible, onClose }) => {
   const { theme, selectTheme } = useTheme();
@@ -10,14 +11,22 @@ const ThemeModal = ({ visible, onClose }) => {
   const [selectedTheme, setSelectedTheme] = useState(theme);
 
   useEffect(() => {
-    if (visible) {
-      setSelectedTheme(theme);
-    }
-  }, [visible, theme]);
+    const loadTheme = async () => {
+      const storedTheme = await AsyncStorage.getItem("selectedTheme");
+      if (storedTheme) {
+        setSelectedTheme(storedTheme);
+      }
+    };
 
-  const handleThemeSelect = (theme) => {
+    if (visible) {
+      loadTheme();
+    }
+  }, [visible]);
+
+  const handleThemeSelect = async (theme) => {
     setSelectedTheme(theme);
     selectTheme(theme);
+    await AsyncStorage.setItem("selectedTheme", theme);
   };
 
   return (

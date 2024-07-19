@@ -2,10 +2,13 @@ import React from "react";
 import { Dimensions, ImageBackground } from "react-native";
 import styled from "styled-components/native";
 import { BlurView } from "expo-blur";
+import { useTranslation } from "react-i18next";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const Footer = ({ imageUri, navigation }) => {
+  const { t } = useTranslation();
+
   return (
     <FooterContainer>
       <StyledImageBackground
@@ -23,7 +26,7 @@ const Footer = ({ imageUri, navigation }) => {
           tint="dark"
           style={{ borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}
         />
-        <FooterText2>Tap to Know More</FooterText2>
+        <FooterText2>{t("tapToKnowMore")}</FooterText2>
       </StyledImageBackground>
     </FooterContainer>
   );

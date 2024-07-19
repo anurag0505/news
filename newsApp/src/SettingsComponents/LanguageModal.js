@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
+import { changeLanguage } from "../i18n";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LanguageModal = ({ visible, onClose, onSelectLanguage }) => {
   const { t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(null);
-  const languages = ["en", "hi"]; // Supported languages
+  const languages = ["en", "hi"];
 
-  const handleLanguageSelect = (language) => {
+  useEffect(() => {
+    const loadLanguage = async () => {
+      const storedLanguage = await AsyncStorage.getItem("selectedLanguage");
+      if (storedLanguage) {
+        setSelectedLanguage(storedLanguage);
+      }
+    };
+
+    if (visible) {
+      loadLanguage();
+    }
+  }, [visible]);
+
+  const handleLanguageSelect = async (language) => {
     setSelectedLanguage(language);
+    changeLanguage(language);
     onSelectLanguage(language);
+    await AsyncStorage.setItem("selectedLanguage", language);
   };
 
   return (

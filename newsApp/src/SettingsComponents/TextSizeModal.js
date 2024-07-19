@@ -1,17 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TextSizeModal = ({ visible, onClose, onSelectTextSize }) => {
   const [selectedSize, setSelectedSize] = useState(null);
   const { t } = useTranslation();
+  const textSizes = [t("large"), t("default")];
 
-  const handleSizeSelect = (size) => {
+  useEffect(() => {
+    const loadTextSize = async () => {
+      const storedSize = await AsyncStorage.getItem("selectedTextSize");
+      if (storedSize) {
+        setSelectedSize(storedSize);
+      }
+    };
+
+    if (visible) {
+      loadTextSize();
+    }
+  }, [visible]);
+
+  const handleSizeSelect = async (size) => {
     setSelectedSize(size);
     onSelectTextSize(size);
+    await AsyncStorage.setItem("selectedTextSize", size);
   };
-
-  const textSizes = [t("large"), t("default")]; // Define the text size options
 
   return (
     <Modal
@@ -26,10 +40,7 @@ const TextSizeModal = ({ visible, onClose, onSelectTextSize }) => {
           {textSizes.map((size) => (
             <TouchableOpacity
               key={size}
-              style={[
-                styles.textSizeOption,
-                selectedSize === size && styles.selectedOption,
-              ]}
+              style={styles.textSizeOption}
               onPress={() => handleSizeSelect(size)}
             >
               <Text
@@ -38,7 +49,7 @@ const TextSizeModal = ({ visible, onClose, onSelectTextSize }) => {
                   selectedSize === size && styles.selectedText,
                 ]}
               >
-                {size}
+                {t(size)}
               </Text>
             </TouchableOpacity>
           ))}
@@ -73,9 +84,6 @@ const styles = StyleSheet.create({
   },
   textSizeText: {
     fontSize: 16,
-  },
-  selectedOption: {
-    backgroundColor: "#fff",
   },
   selectedText: {
     color: "#1877F2",

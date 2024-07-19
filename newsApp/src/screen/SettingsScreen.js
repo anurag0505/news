@@ -8,6 +8,7 @@ import ThemeModal from "../SettingsComponents/ThemeModal";
 import TextSizeModal from "../SettingsComponents/TextSizeModal";
 import NotificationsModal from "../SettingsComponents/NotificationsModal";
 import { useTranslation } from "react-i18next";
+import i18n from "../i18n";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();

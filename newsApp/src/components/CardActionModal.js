@@ -31,7 +31,7 @@ const CardActionModal = ({ visible, onClose, news }) => {
               <IconContainer>
                 <Icon
                   name={isBookmarked ? "bookmark" : "bookmark-outline"}
-                  size={30}
+                  size={25}
                   color={isBookmarked ? theme.active : theme.text}
                 />
                 <IconText theme={theme}>Bookmark</IconText>
@@ -43,7 +43,7 @@ const CardActionModal = ({ visible, onClose, news }) => {
               }}
             >
               <IconContainer>
-                <Icon name="share-social" size={30} color={theme.text} />
+                <Icon name="share-social" size={25} color={theme.text} />
                 <IconText theme={theme}>Share</IconText>
               </IconContainer>
             </TouchableOpacity>
@@ -61,9 +61,10 @@ const ModalContainer = styled.View`
   background-color: ${(props) => props.theme.cardBackground};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 20px;
+  padding: 16px;
   flex-direction: row;
   justify-content: space-around;
+  margin-bottom: 48px;
 `;
 
 const IconContainer = styled.View`

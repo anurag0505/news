@@ -9,11 +9,14 @@ import { name as appName } from "./app.json";
 import AppNavigator from "./src/navigation/AppNavigator";
 import i18n from "./src/i18n";
 import { I18nextProvider } from "react-i18next";
+import { BookmarksProvider } from "./src/SettingsComponents/BookmarksContext";
 import "intl-pluralrules";
 
 const App = () => (
   <ThemeProvider>
-    <AppWithProviders />
+    <BookmarksProvider>
+      <AppWithProviders />
+    </BookmarksProvider>
   </ThemeProvider>
 );
 

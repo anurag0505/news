@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Dimensions, View, StyleSheet, Animated, Easing } from "react-native";
+import {
+  Dimensions,
+  View,
+  StyleSheet,
+  Animated,
+  Easing,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import newsData from "../assets/newsData.json";
 import Card from "./Card";
@@ -7,7 +14,7 @@ import { useTheme } from "../utils/ThemeContext";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
-const CustomSwiper = ({ navigation }) => {
+const CustomSwiper = ({ navigation, onCardTap }) => {
   const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
   const position = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
@@ -18,7 +25,6 @@ const CustomSwiper = ({ navigation }) => {
 
   const onSwiped = (direction) => {
     if (direction === "left") {
-      console.log("Ls");
       const card = newsData[currentIndex];
       if (card.url) {
         navigation.navigate("WebView", { url: card.url });
@@ -203,7 +209,11 @@ const CustomSwiper = ({ navigation }) => {
                   onHandlerStateChange={handleStateChange}
                 >
                   <Animated.View style={styles.cardContent}>
-                    <Card news={card} />
+                    <TouchableWithoutFeedback onPress={onCardTap}>
+                      <View style={styles.cardContent}>
+                        <Card news={card} />
+                      </View>
+                    </TouchableWithoutFeedback>
                   </Animated.View>
                 </PanGestureHandler>
               ) : (

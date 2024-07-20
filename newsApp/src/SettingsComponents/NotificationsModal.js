@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   View,
@@ -6,16 +6,40 @@ import {
   TouchableOpacity,
   Switch,
   StyleSheet,
+  Alert,
 } from "react-native";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const NotificationsModal = ({ visible, onClose, onToggleNotifications }) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const { t } = useTranslation();
 
-  const toggleSwitch = () => {
-    setIsEnabled((previousState) => !previousState);
-    onToggleNotifications(!isEnabled);
+  useEffect(() => {
+    const loadNotificationState = async () => {
+      const storedState = await AsyncStorage.getItem("notificationsEnabled");
+      if (storedState !== null) {
+        setIsEnabled(JSON.parse(storedState));
+      }
+    };
+
+    if (visible) {
+      loadNotificationState();
+    }
+  }, [visible]);
+
+  const toggleSwitch = async () => {
+    const newState = !isEnabled;
+    setIsEnabled(newState);
+    onToggleNotifications(newState);
+    await AsyncStorage.setItem(
+      "notificationsEnabled",
+      JSON.stringify(newState)
+    );
+    Alert.alert(
+      t("notifications"),
+      newState ? t("notificationTurnedOn") : t("notificationTurnedOff")
+    );
   };
 
   return (

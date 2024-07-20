@@ -6,7 +6,7 @@ import SearchScreen from "../screen/SearchScreen";
 import Home from "../screen/Home";
 import SettingScreen from "../screen/SettingsScreen";
 import FoundationIcons from "react-native-vector-icons/Foundation";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
 const initialLayout = { width: Dimensions.get("window").width };
@@ -15,7 +15,7 @@ const MainTabNavigator = () => {
   const { theme } = useTheme();
   const [index, setIndex] = React.useState(1); // Default to Home tab
   const [routes] = React.useState([
-    { key: "search", title: "Search", icon: "search" },
+    { key: "search", title: "Search", icon: "search-outline" },
     { key: "home", title: "Home", icon: "home" },
     { key: "settings", title: "settings", icon: "torso" },
   ]);
@@ -31,7 +31,7 @@ const MainTabNavigator = () => {
   const renderIcon = ({ route, focused }) => {
     const color = focused ? theme.active : theme.inactive;
     if (route.key === "search") {
-      return <MaterialIcons name={route.icon} size={25} color={color} />;
+      return <Ionicons name={route.icon} size={25} color={color} />;
     }
     return <FoundationIcons name={route.icon} size={25} color={color} />;
   };

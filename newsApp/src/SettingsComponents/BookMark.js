@@ -1,26 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { useTheme } from "../utils/ThemeContext";
 import Header from "./Header";
+import { useTheme } from "../utils/ThemeContext";
+import { BookmarksContext } from "../SettingsComponents/BookmarksContext";
 import { useTranslation } from "react-i18next";
-import { useNavigation } from "@react-navigation/native";
-
-// Temporarily set newsData to an empty array for testing
-const newsData = [];
 
 const BookMark = () => {
   const { theme } = useTheme();
+  const { bookmarks } = useContext(BookmarksContext);
   const { t } = useTranslation();
-  const navigation = useNavigation();
 
   return (
     <Container theme={theme}>
       <Header title={t("bookmarks")} />
-      {newsData.length === 0 ? (
+      {bookmarks.length === 0 ? (
         <EmptyMessage theme={theme}>{t("noBookmarks")}</EmptyMessage>
       ) : (
         <CardContainer>
-          {newsData.map((news) => (
+          {bookmarks.map((news) => (
             <Card key={news.id} theme={theme}>
               <CardContent>
                 <CardTitle theme={theme}>{news.title}</CardTitle>
@@ -33,8 +30,6 @@ const BookMark = () => {
     </Container>
   );
 };
-
-export default BookMark;
 
 const Container = styled.View`
   flex: 1;
@@ -83,3 +78,5 @@ const EmptyMessage = styled.Text`
   font-size: 16px;
   color: ${(props) => props.theme.text};
 `;
+
+export default BookMark;

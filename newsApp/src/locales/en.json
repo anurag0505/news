@@ -35,5 +35,7 @@
   "health": "Health",
   "finance": "Finance",
   "entertainment": "Entertainment",
-  "tapToKnowMore": "Tap to Know More"
+  "tapToKnowMore": "Tap to Know More",
+  "notificationTurnedOn": "Notification turned on",
+  "notificationTurnedOff": "Notification turned off"
 }

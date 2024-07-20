@@ -35,5 +35,7 @@
   "health": "स्वास्थ्य",
   "finance": "वित्त",
   "entertainment": "मनोरंजन",
-   "tapToKnowMore": "अधिक जानने के लिए टैप करें"
+  "tapToKnowMore": "अधिक जानने के लिए टैप करें",
+  "notificationTurnedOn": "सूचना चालू की गई",
+  "notificationTurnedOff": "सूचना बंद की गई"
 }

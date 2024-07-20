@@ -6,7 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const TextSizeModal = ({ visible, onClose, onSelectTextSize }) => {
   const [selectedSize, setSelectedSize] = useState(null);
   const { t } = useTranslation();
-  const textSizes = [t("large"), t("default")];
+  const textSizes = [t("default"), t("large")];
 
   useEffect(() => {
     const loadTextSize = async () => {

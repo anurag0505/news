@@ -22,7 +22,11 @@ const BookMark = () => {
               <CardContent>
                 <CardTitle theme={theme}>{news.title}</CardTitle>
               </CardContent>
-              <CardImage source={{ uri: news.image }} />
+              <CardImage
+                source={{
+                  uri: news.image || "https://via.placeholder.com/90x60.png",
+                }}
+              />
             </Card>
           ))}
         </CardContainer>

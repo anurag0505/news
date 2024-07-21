@@ -23,6 +23,7 @@ const Content = ({ navigation }) => {
 
   const openModal = (news) => {
     setSelectedNews(news);
+    console.log("contdenst ........", news);
     setModalVisible(true);
     Animated.timing(slideAnim, {
       toValue: 0,

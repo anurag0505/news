@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Modal, TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -9,9 +9,16 @@ const CardActionModal = ({ visible, onClose, news }) => {
   const { theme } = useTheme();
   const { bookmarks, addBookmark, removeBookmark } =
     useContext(BookmarksContext);
-  const [isBookmarked, setIsBookmarked] = useState(
-    bookmarks.some((item) => item.id === news.id)
-  );
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
+    if (news && news.id) {
+      setIsBookmarked(
+        bookmarks.some((item) => item.id === news.id) // Compare IDs directly
+      );
+      console.log("news id:", news.id);
+    }
+  }, [bookmarks, news]);
 
   const handleBookmarkPress = () => {
     if (isBookmarked) {
@@ -61,7 +68,7 @@ const ModalContainer = styled.View`
   background-color: ${(props) => props.theme.cardBackground};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding: 16px;
+  padding: 20px;
   flex-direction: row;
   justify-content: space-around;
   margin-bottom: 48px;

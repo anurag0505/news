@@ -23,6 +23,12 @@ const CustomSwiper = ({ navigation, onCardTap }) => {
 
   const swipeThreshold = 50;
 
+  const handleCardTap = (news) => {
+    if (onCardTap) {
+      onCardTap(news);
+    }
+  };
+
   const onSwiped = (direction) => {
     if (direction === "left") {
       const card = newsData[currentIndex];
@@ -41,7 +47,7 @@ const CustomSwiper = ({ navigation, onCardTap }) => {
         Animated.timing(position, {
           toValue: { x: 0, y: 0 },
           duration: 500,
-          easing: Easing.ease, // Use Easing.ease directly
+          easing: Easing.ease,
           useNativeDriver: true,
         }).start(() => {
           setCurrentIndex((prevIndex) => prevIndex - 1);
@@ -102,7 +108,7 @@ const CustomSwiper = ({ navigation, onCardTap }) => {
           Animated.timing(position, {
             toValue: { x: 0, y: 0 },
             duration: 400,
-            easing: Easing.ease, // Use Easing.ease directly
+            easing: Easing.ease,
             useNativeDriver: true,
           }).start(() => {
             setCurrentIndex((prevIndex) => prevIndex - 1);
@@ -200,7 +206,7 @@ const CustomSwiper = ({ navigation, onCardTap }) => {
                   ],
                   opacity: isCurrentIndex ? opacity : 1,
                 },
-                isPreviousIndex && { top: -screenHeight }, // Place previous card above the screen
+                isPreviousIndex && { top: -screenHeight },
               ]}
             >
               {isCurrentIndex ? (
@@ -209,7 +215,9 @@ const CustomSwiper = ({ navigation, onCardTap }) => {
                   onHandlerStateChange={handleStateChange}
                 >
                   <Animated.View style={styles.cardContent}>
-                    <TouchableWithoutFeedback onPress={onCardTap}>
+                    <TouchableWithoutFeedback
+                      onPress={() => handleCardTap(card)}
+                    >
                       <View style={styles.cardContent}>
                         <Card news={card} />
                       </View>

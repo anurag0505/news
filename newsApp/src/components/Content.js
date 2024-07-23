@@ -12,6 +12,9 @@ import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { BookmarksContext } from "../SettingsComponents/BookmarksContext";
 import CardActionModal from "./CardActionModal"; // Import the modal here
+import { useRoute } from "@react-navigation/native";
+import newsData from "../assets/newsData.json";
+import SimpleComponent from "../SettingsComponents/SimpleComponent";
 
 const { height: screenHeight } = Dimensions.get("window");
 
@@ -21,9 +24,13 @@ const Content = ({ navigation }) => {
   const [selectedNews, setSelectedNews] = useState(null);
   const slideAnim = useRef(new Animated.Value(screenHeight)).current;
 
+  // const route = useRoute();
+  // const { index } = route.params;
+
+  // const cardDisplayer = newsData[index];
+
   const openModal = (news) => {
     setSelectedNews(news);
-    console.log("contdenst ........", news);
     setModalVisible(true);
     Animated.timing(slideAnim, {
       toValue: 0,

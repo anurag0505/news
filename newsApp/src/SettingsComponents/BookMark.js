@@ -1,33 +1,47 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
+import { TouchableOpacity } from "react-native";
 import Header from "./Header";
 import { useTheme } from "../utils/ThemeContext";
 import { BookmarksContext } from "../SettingsComponents/BookmarksContext";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 
 const BookMark = () => {
   const { theme } = useTheme();
   const { bookmarks } = useContext(BookmarksContext);
   const { t } = useTranslation();
+  const navigation = useNavigation();
+
+  const handlePress = (index) => {
+    navigation.navigate("Content", { index });
+  };
 
   return (
     <Container theme={theme}>
       <Header title={t("bookmarks")} />
+
       {bookmarks.length === 0 ? (
         <EmptyMessage theme={theme}>{t("noBookmarks")}</EmptyMessage>
       ) : (
         <CardContainer>
           {bookmarks.map((news) => (
-            <Card key={news.id} theme={theme}>
-              <CardContent>
-                <CardTitle theme={theme}>{news.title}</CardTitle>
-              </CardContent>
-              <CardImage
-                source={{
-                  uri: news.image || "https://via.placeholder.com/90x60.png",
-                }}
-              />
-            </Card>
+            <TouchableOpacity
+              key={news.id}
+              theme={theme}
+              onPress={() => handlePress(index)}
+            >
+              <Card>
+                <CardContent>
+                  <CardTitle theme={theme}>{news.title}</CardTitle>
+                </CardContent>
+                <CardImage
+                  source={{
+                    uri: news.image || "https://via.placeholder.com/90x60.png",
+                  }}
+                />
+              </Card>
+            </TouchableOpacity>
           ))}
         </CardContainer>
       )}
@@ -50,7 +64,7 @@ const Card = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: ${(props) => props.theme.cardBackground};
+  background-color: ${(props) => props.theme.background};
   margin-bottom: 10px;
   padding: 10px;
   border-bottom-width: 1px;

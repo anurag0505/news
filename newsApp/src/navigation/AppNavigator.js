@@ -12,6 +12,8 @@ import CaughtUp from "../components/CaughtUp";
 import BookMark from "../SettingsComponents/BookMark";
 import SettingsScreen from "../screen/SettingsScreen";
 import Header from "../SettingsComponents/Header";
+import Content from "../components/Content";
+import SimpleComponent from "../SettingsComponents/SimpleComponent";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +37,8 @@ const AppNavigator = () => (
       <Stack.Screen name="CaughtUp" component={CaughtUp} />
       <Stack.Screen name="BookMark" component={BookMark} />
       <Stack.Screen name="Header" component={Header} />
+      <Stack.Screen name="Content" component={Content} />
+      <Stack.Screen name="SimpleComponent" component={SimpleComponent} />
     </Stack.Navigator>
   </NavigationContainer>
 );

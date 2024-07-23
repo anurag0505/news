@@ -1,21 +1,28 @@
 import React from "react";
-import { TouchableOpacity, Platform } from "react-native";
+import { TouchableOpacity, Platform, Button } from "react-native";
 import styled from "styled-components/native";
 import { useTheme } from "../utils/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/EvilIcons";
 
 const Header = ({ title }) => {
   const { theme } = useTheme();
   const navigation = useNavigation();
 
+  const handlePress = () => {
+    navigation.goBack();
+  };
+
   return (
     <HeaderWrapper>
       {Platform.OS === "android" && <AndroidShadowContainer theme={theme} />}
       <HeaderContainer theme={theme}>
-        <BackButton onPress={() => navigation.navigate("settingsScreen")}>
-          <Icon name="arrow-back" size={24} color={theme.text} />
-        </BackButton>
+        <Icon
+          name="arrow-left"
+          size={30}
+          onPress={handlePress}
+          style={{ color: theme.text }}
+        />
         <HeaderText theme={theme}>{title}</HeaderText>
       </HeaderContainer>
     </HeaderWrapper>
@@ -55,21 +62,16 @@ const AndroidShadowContainer = styled.View.attrs((props) => ({
   left: 0;
   right: 0;
   bottom: 0;
+  color: ${(props) => props.theme.text};
 `;
 
 const HeaderText = styled.Text`
   font-size: 20px;
   color: ${(props) => props.theme.text};
-  font-weight: 500;
+  font-weight: 400;
   flex: 1;
   text-align: left;
-  padding-left: 40px;
-`;
-
-const BackButton = styled(TouchableOpacity)`
-  position: absolute;
-  left: 15px;
-  top: 15px;
+  padding-left: 15px;
 `;
 
 const HeaderWrapper = styled.View`

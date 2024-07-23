@@ -24,7 +24,6 @@ export const BookmarksProvider = ({ children }) => {
   const saveBookmarks = async (newBookmarks) => {
     try {
       await AsyncStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
-      console.log("Bookmarks saved:", newBookmarks);
     } catch (error) {
       console.error("Failed to save bookmarks to storage:", error);
     }

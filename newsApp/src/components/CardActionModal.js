@@ -1,5 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Modal, TouchableOpacity, View } from "react-native";
+import {
+  Modal,
+  TouchableOpacity,
+  View,
+  TouchableWithoutFeedback,
+} from "react-native";
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useTheme } from "../utils/ThemeContext";
@@ -16,7 +21,6 @@ const CardActionModal = ({ visible, onClose, news }) => {
       setIsBookmarked(
         bookmarks.some((item) => item.id === news.id) // Compare IDs directly
       );
-      console.log("news id:", news.id);
     }
   }, [bookmarks, news]);
 
@@ -31,30 +35,40 @@ const CardActionModal = ({ visible, onClose, news }) => {
 
   return (
     <Modal transparent={true} visible={visible} animationType="slide">
-      <TouchableOpacity style={{ flex: 1 }} onPress={onClose}>
+      <TouchableOpacity
+        style={{ flex: 1 }}
+        activeOpacity={1}
+        onPressOut={onClose}
+      >
         <View style={{ flex: 1, justifyContent: "flex-end" }}>
-          <ModalContainer theme={theme}>
-            <TouchableOpacity onPress={handleBookmarkPress}>
-              <IconContainer>
-                <Icon
-                  name={isBookmarked ? "bookmark" : "bookmark-outline"}
-                  size={25}
-                  color={isBookmarked ? theme.active : theme.text}
-                />
-                <IconText theme={theme}>Bookmark</IconText>
-              </IconContainer>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                /* Handle share action */
-              }}
-            >
-              <IconContainer>
-                <Icon name="share-social" size={25} color={theme.text} />
-                <IconText theme={theme}>Share</IconText>
-              </IconContainer>
-            </TouchableOpacity>
-          </ModalContainer>
+          <TouchableWithoutFeedback>
+            <ModalContainer theme={theme}>
+              <TouchableOpacity onPress={handleBookmarkPress}>
+                <IconContainer>
+                  <Icon
+                    name={isBookmarked ? "bookmark" : "bookmark-outline"}
+                    size={25}
+                    color={isBookmarked ? theme.active : theme.text}
+                  />
+                  <IconText theme={theme}>Bookmark</IconText>
+                </IconContainer>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  /* Handle share action */
+                }}
+              >
+                <IconContainer>
+                  <Icon
+                    name="share-social-outline"
+                    size={25}
+                    color={theme.text}
+                  />
+                  <IconText theme={theme}>Share</IconText>
+                </IconContainer>
+              </TouchableOpacity>
+            </ModalContainer>
+          </TouchableWithoutFeedback>
         </View>
       </TouchableOpacity>
     </Modal>

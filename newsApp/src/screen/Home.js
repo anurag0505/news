@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components/native";
-import { SafeAreaView, Platform } from "react-native";
+import { SafeAreaView } from "react-native";
 import Content from "../components/Content";
 import { useTheme } from "../utils/ThemeContext";
+import { useRoute, useNavigation } from "@react-navigation/native";
+import newsData from "../assets/newsData.json";
 
-const Home = ({ navigation }) => {
+const Home = () => {
   const { theme } = useTheme();
+  const route = useRoute();
+  const navigation = useNavigation();
+  const { id } = route.params || {};
+  const initialIndex = id
+    ? newsData.findIndex((news) => news.id === id)
+    : undefined;
+
+  useEffect(() => {
+    if (initialIndex !== undefined) {
+      console.log("Navigated to Home with index:", initialIndex);
+    }
+  }, [initialIndex]);
+
   return (
     <SafeArea theme={theme}>
-      <Container theme={theme} navigation={navigation}>
-        <Content navigation={navigation} theme={theme} />
+      <Container theme={theme}>
+        <Content
+          navigation={navigation}
+          theme={theme}
+          selectedIndex={initialIndex}
+        />
       </Container>
     </SafeArea>
   );

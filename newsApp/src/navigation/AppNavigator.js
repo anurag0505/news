@@ -14,6 +14,7 @@ import SettingsScreen from "../screen/SettingsScreen";
 import Header from "../SettingsComponents/Header";
 import Content from "../components/Content";
 import SimpleComponent from "../SettingsComponents/SimpleComponent";
+import Home from "../screen/Home";
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const AppNavigator = () => (
     >
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Main" component={MainTabNavigator} />
+      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
       <Stack.Screen

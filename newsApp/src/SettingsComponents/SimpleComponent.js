@@ -12,7 +12,7 @@ const SimpleComponent = () => {
 
   return (
     <View>
-      <Button title="Go Back" onPress={handlePress} />
+      <Button title="Go Back" onPress={navigation.navigate("Home")} />
     </View>
   );
 };

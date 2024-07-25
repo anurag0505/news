@@ -12,13 +12,10 @@ import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { BookmarksContext } from "../SettingsComponents/BookmarksContext";
 import CardActionModal from "./CardActionModal"; // Import the modal here
-import { useRoute } from "@react-navigation/native";
-import newsData from "../assets/newsData.json";
-import SimpleComponent from "../SettingsComponents/SimpleComponent";
 
 const { height: screenHeight } = Dimensions.get("window");
 
-const Content = ({ navigation }) => {
+const Content = ({ navigation, selectedIndex }) => {
   const { theme } = useTheme();
   const [isModalVisible, setModalVisible] = useState(false);
   const [selectedNews, setSelectedNews] = useState(null);
@@ -52,7 +49,11 @@ const Content = ({ navigation }) => {
 
   return (
     <Container theme={theme}>
-      <CustomSwiper navigation={navigation} onCardTap={openModal} />
+      <CustomSwiper
+        navigation={navigation}
+        onCardTap={openModal}
+        initialIndex={selectedIndex}
+      />
       {isModalVisible && selectedNews && (
         <CardActionModal
           visible={isModalVisible}

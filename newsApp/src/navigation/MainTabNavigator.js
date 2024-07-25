@@ -8,6 +8,7 @@ import SettingScreen from "../screen/SettingsScreen";
 import FoundationIcons from "react-native-vector-icons/Foundation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import HomeStack from "../navigation/HomeStack";
 
 const initialLayout = { width: Dimensions.get("window").width };
 
@@ -23,9 +24,9 @@ const MainTabNavigator = () => {
   const navigation = useNavigation();
 
   const renderScene = SceneMap({
-    search: () => <SearchScreen navigation={navigation} />,
-    home: () => <Home navigation={navigation} />,
-    settings: () => <SettingScreen navigation={navigation} />,
+    search: SearchScreen,
+    home: HomeStack,
+    settings: SettingScreen,
   });
 
   const renderIcon = ({ route, focused }) => {
@@ -60,8 +61,8 @@ const MainTabNavigator = () => {
         initialLayout={initialLayout}
         renderTabBar={renderTabBar}
         tabBarPosition="bottom"
-        swipeEnabled={false}
-        animationEnabled={true} // Ensure swipe is enabled
+        swipeEnabled={true}
+        animationEnabled={true}
       />
     </View>
   );

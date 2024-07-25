@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components/native";
-import { TouchableOpacity } from "react-native";
+import { SafeAreaView, TouchableOpacity } from "react-native";
 import Header from "./Header";
 import { useTheme } from "../utils/ThemeContext";
 import { BookmarksContext } from "../SettingsComponents/BookmarksContext";
@@ -13,41 +13,48 @@ const BookMark = () => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const handlePress = (index) => {
-    navigation.navigate("Content", { index });
+  const handlePress = (id) => {
+    navigation.navigate("Home", { id });
   };
 
   return (
-    <Container theme={theme}>
-      <Header title={t("bookmarks")} />
-
-      {bookmarks.length === 0 ? (
-        <EmptyMessage theme={theme}>{t("noBookmarks")}</EmptyMessage>
-      ) : (
-        <CardContainer>
-          {bookmarks.map((news) => (
-            <TouchableOpacity
-              key={news.id}
-              theme={theme}
-              onPress={() => handlePress(index)}
-            >
-              <Card>
-                <CardContent>
-                  <CardTitle theme={theme}>{news.title}</CardTitle>
-                </CardContent>
-                <CardImage
-                  source={{
-                    uri: news.image || "https://via.placeholder.com/90x60.png",
-                  }}
-                />
-              </Card>
-            </TouchableOpacity>
-          ))}
-        </CardContainer>
-      )}
-    </Container>
+    <SafeArea>
+      <Container theme={theme}>
+        <Header title={t("bookmarks")} />
+        {bookmarks.length === 0 ? (
+          <EmptyMessage theme={theme}>{t("noBookmarks")}</EmptyMessage>
+        ) : (
+          <CardContainer>
+            {bookmarks.map((news) => (
+              <TouchableOpacity
+                key={news.id}
+                theme={theme}
+                onPress={() => handlePress(news.id)}
+              >
+                <Card>
+                  <CardContent>
+                    <CardTitle theme={theme}>{news.title}</CardTitle>
+                  </CardContent>
+                  <CardImage
+                    source={{
+                      uri:
+                        news.image || "https://via.placeholder.com/90x60.png",
+                    }}
+                  />
+                </Card>
+              </TouchableOpacity>
+            ))}
+          </CardContainer>
+        )}
+      </Container>
+    </SafeArea>
   );
 };
+
+const SafeArea = styled(SafeAreaView)`
+  flex: 1;
+  background-color: ${(props) => props.theme.background};
+`;
 
 const Container = styled.View`
   flex: 1;

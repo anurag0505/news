@@ -23,7 +23,6 @@ const SettingsScreen = () => {
   const [isNotificationEnabled, setNotificationEnabled] = useState(false);
 
   const handleLanguageSelect = (language) => {
-    console.log("Selected language:", language);
     i18n.changeLanguage(language);
     setLanguageModalVisible(false);
   };

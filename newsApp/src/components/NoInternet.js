@@ -8,9 +8,7 @@ import StyledButton from "../utils/StyledButton";
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const NoInternet = () => {
-  const handleTryagain = () => {
-    console.log("something");
-  };
+  const handleTryagain = () => {};
 
   return (
     <Container>

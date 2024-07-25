@@ -1,13 +1,19 @@
 import React from "react";
 import styled from "styled-components/native";
 import newsData from "../assets/newsData.json";
-import { Platform } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 import { useTheme } from "../utils/ThemeContext";
 import { useTranslation } from "react-i18next";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SmallCard() {
   const { theme } = useTheme();
   const { t } = useTranslation();
+  const navigation = useNavigation();
+
+  const handlePress = (id) => {
+    navigation.navigate("Home", { id });
+  };
 
   return (
     <>
@@ -16,13 +22,15 @@ export default function SmallCard() {
       </CategoryContainer>
       <CardContainer theme={theme}>
         {newsData.map((news) => (
-          <Card key={news.id}>
-            <CardContent>
-              <CardMeta>{t(news.category.toLowerCase())}</CardMeta>
-              <CardTitle>{news.title}</CardTitle>
-            </CardContent>
-            <CardImage source={{ uri: news.image }} />
-          </Card>
+          <TouchableOpacity key={news.id} onPress={() => handlePress(news.id)}>
+            <Card>
+              <CardContent>
+                <CardMeta>{t(news.category.toLowerCase())}</CardMeta>
+                <CardTitle>{news.title}</CardTitle>
+              </CardContent>
+              <CardImage source={{ uri: news.image }} />
+            </Card>
+          </TouchableOpacity>
         ))}
       </CardContainer>
     </>

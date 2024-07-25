@@ -14,7 +14,7 @@ import { useTheme } from "../utils/ThemeContext";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
-const CustomSwiper = ({ navigation, onCardTap }) => {
+const CustomSwiper = ({ navigation, onCardTap, initialIndex = 0 }) => {
   const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(0);
   const position = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
@@ -172,6 +172,10 @@ const CustomSwiper = ({ navigation, onCardTap }) => {
     opacity.setValue(1);
     setSwipeDirection(null);
   }, [currentIndex]);
+
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
 
   return (
     <View style={styles.container}>

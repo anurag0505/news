@@ -15,6 +15,7 @@ import Header from "../SettingsComponents/Header";
 import Content from "../components/Content";
 import SimpleComponent from "../SettingsComponents/SimpleComponent";
 import Home from "../screen/Home";
+import NoInternet from "../components/NoInternet";
 
 const Stack = createStackNavigator();
 
@@ -40,7 +41,7 @@ const AppNavigator = () => (
       <Stack.Screen name="BookMark" component={BookMark} />
       <Stack.Screen name="Header" component={Header} />
       <Stack.Screen name="Content" component={Content} />
-      <Stack.Screen name="SimpleComponent" component={SimpleComponent} />
+      <Stack.Screen name="NoInternet" component={NoInternet} />
     </Stack.Navigator>
   </NavigationContainer>
 );

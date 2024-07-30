@@ -1,21 +1,26 @@
 import React from "react";
-import { Dimensions, Platform } from "react-native";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 import { useTheme } from "../utils/ThemeContext";
-import Happy from "../assets/images/happy3.png";
 import { useTextSize } from "../utils/TextSizeContext";
+import { useTranslation } from "react-i18next";
+import Happy from "../assets/images/happy3.png";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const CaughtUp = () => {
   const { theme } = useTheme();
   const { textSize } = useTextSize();
+  const { t } = useTranslation();
+
   return (
     <Container theme={theme}>
       <HappyImage source={Happy} resizeMode="contain" />
-      <Title textSize={textSize}>Congratulations</Title>
-      <SubTitle textSize={textSize}>
-        You are all caught up for the day.
+      <Title textSize={textSize} theme={theme}>
+        {t("congratulations")}
+      </Title>
+      <SubTitle textSize={textSize} theme={theme}>
+        {t("caughtUpMessage")}
       </SubTitle>
     </Container>
   );
@@ -42,18 +47,16 @@ const HappyImage = styled.Image`
 const Title = styled.Text`
   font-size: ${(props) =>
     props.textSize === "large" ? screenWidth * 0.07 : screenWidth * 0.06}px;
-  color: ${(props) => props.theme.Text};
+  color: ${(props) => props.theme.text};
   justify-content: center;
   align-items: center;
   padding-bottom: ${screenWidth * 0.015}px;
-  color: ${(props) => props.theme.text};
 `;
 
 const SubTitle = styled.Text`
   font-size: ${(props) =>
     props.textSize === "large" ? screenWidth * 0.045 : screenWidth * 0.04}px;
-  color: ${(props) => props.theme.Text};
+  color: ${(props) => props.theme.text};
   justify-content: center;
   align-items: center;
-  color: ${(props) => props.theme.text};
 `;

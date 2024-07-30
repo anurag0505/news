@@ -1,26 +1,31 @@
 import React from "react";
-import { Dimensions, Platform } from "react-native";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
-
 import Cartoon from "../assets/images/cartoon2.png";
 import StyledButton from "../utils/StyledButton";
+import { useTranslation } from "react-i18next";
+import { useTextSize } from "../utils/TextSizeContext";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const NoInternet = () => {
+  const { t } = useTranslation();
+  const { textSize } = useTextSize();
+
   const handleTryagain = () => {};
 
   return (
     <Container>
       <ContentContainer>
         <Image source={Cartoon} />
-        <InternetTitle>No Internet Connection </InternetTitle>
-        <InternetDiscription>
-          There seems to be a problem with the network. Please check your
-          internet connection and try again.
-        </InternetDiscription>
+        <InternetTitle textSize={textSize}>
+          {t("noInternetTitle")}
+        </InternetTitle>
+        <InternetDescription textSize={textSize}>
+          {t("noInternetDescription")}
+        </InternetDescription>
       </ContentContainer>
-      <StyledButton title="Retry" onPress={handleTryagain} />
+      <StyledButton title={t("retry")} onPress={handleTryagain} />
     </Container>
   );
 };
@@ -35,11 +40,11 @@ const Container = styled.View`
   align-items: center;
   background-color: ${(props) => props.theme.background};
 `;
+
 const ContentContainer = styled.View`
   justify-content: space-around;
   align-items: center;
   flex-grow: 0.15;
-
   padding: ${screenHeight * 0.025}px ${screenWidth * 0.035}px;
 `;
 
@@ -52,14 +57,17 @@ const Image = styled.ImageBackground`
 `;
 
 const InternetTitle = styled.Text`
-  font-size: ${screenWidth * 0.06}px;
+  font-size: ${(props) =>
+    props.textSize === "large" ? screenWidth * 0.055 : screenWidth * 0.05}px;
   align-items: center;
   font-family: serif;
   color: ${(props) => props.theme.text};
   font-weight: bold;
 `;
-const InternetDiscription = styled.Text`
-  font-size: ${screenWidth * 0.045}px;
+
+const InternetDescription = styled.Text`
+  font-size: ${(props) =>
+    props.textSize === "large" ? screenWidth * 0.042 : screenWidth * 0.038}px;
   font-family: serif;
   font-weight: 500;
   color: ${(props) => props.theme.text};

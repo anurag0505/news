@@ -37,5 +37,10 @@
   "entertainment": "मनोरंजन",
   "tapToKnowMore": "अधिक जानने के लिए टैप करें",
   "notificationTurnedOn": "सूचना चालू की गई",
-  "notificationTurnedOff": "सूचना बंद की गई"
+  "notificationTurnedOff": "सूचना बंद की गई",
+  "congratulations": "कॉन्ग्रैचलैशन",
+  "caughtUpMessage": "आज आपने सरी न्यूज़ पढ़ ली है।",
+  "noInternetTitle": "इंटरनेट कनेक्शन नहीं",
+  "noInternetDescription": "नेटवर्क में कोई समस्या प्रतीत होती है। कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।",
+  "retry": "पुनः प्रयास करें"
 }

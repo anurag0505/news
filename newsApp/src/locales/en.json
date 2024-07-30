@@ -37,5 +37,10 @@
   "entertainment": "Entertainment",
   "tapToKnowMore": "Tap to Know More",
   "notificationTurnedOn": "Notification turned on",
-  "notificationTurnedOff": "Notification turned off"
+  "notificationTurnedOff": "Notification turned off",
+  "congratulations": "Congratulations",
+  "caughtUpMessage": "You are all caught up for the day.",
+   "noInternetTitle": "No Internet Connection",
+  "noInternetDescription": "There seems to be a problem with the network. Please check your internet connection and try again.",
+  "retry": "Retry"
 }

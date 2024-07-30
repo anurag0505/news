@@ -31,7 +31,7 @@ const Container = styled.View`
 const Search = styled.TextInput`
   height: ${screenHeight * 0.05}px;
   width: ${screenWidth * 0.9}px;
-  border-width: 0.35px;
+  border-width: ${(props) => (props.theme.isDark ? 0.3 : 1)}px;
   padding: 10px;
   border-color: lightgray;
   border-radius: 5px;

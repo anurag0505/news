@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
+import { useTextSize } from "../utils/TextSizeContext";
 import { Dimensions } from "react-native";
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 import Fallback from "../assets/images/replace22.jpg";
 
 const ImageHero = ({ source }) => {
   const [imgSrc, setImgSrc] = useState(source);
+  const { textSize } = useTextSize();
+  const heroHeight =
+    textSize === "large" ? screenHeight * 0.3 : screenHeight * 0.34;
 
   const handleError = () => {
     setImgSrc(Fallback);
   };
 
   return (
-    <Container>
+    <Container heroHeight={heroHeight}>
       <HeroImage
         imageStyle={{
           borderTopLeftRadius: screenHeight * 0.02,
@@ -28,7 +32,7 @@ const ImageHero = ({ source }) => {
 
 const Container = styled.View`
   width: ${screenWidth}px;
-  height: ${screenHeight * 0.34}px;
+  height: ${(props) => props.heroHeight}px;
 `;
 
 const HeroImage = styled.ImageBackground`

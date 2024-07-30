@@ -1,30 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Modal, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTextSize } from "../utils/TextSizeContext";
 
-const TextSizeModal = ({ visible, onClose, onSelectTextSize }) => {
+const TextSizeModal = ({ visible, onClose }) => {
   const [selectedSize, setSelectedSize] = useState(null);
+  const { textSize, updateTextSize } = useTextSize();
   const { t } = useTranslation();
-  const textSizes = [t("default"), t("large")];
+  const textSizes = ["default", "large"];
 
   useEffect(() => {
-    const loadTextSize = async () => {
-      const storedSize = await AsyncStorage.getItem("selectedTextSize");
-      if (storedSize) {
-        setSelectedSize(storedSize);
-      }
-    };
-
     if (visible) {
-      loadTextSize();
+      setSelectedSize(textSize);
     }
-  }, [visible]);
+  }, [visible, textSize]);
 
-  const handleSizeSelect = async (size) => {
+  const handleSizeSelect = (size) => {
     setSelectedSize(size);
-    onSelectTextSize(size);
-    await AsyncStorage.setItem("selectedTextSize", size);
+    updateTextSize(size);
   };
 
   return (

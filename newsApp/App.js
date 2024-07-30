@@ -10,13 +10,16 @@ import AppNavigator from "./src/navigation/AppNavigator";
 import i18n from "./src/i18n";
 import { I18nextProvider } from "react-i18next";
 import { BookmarksProvider } from "./src/SettingsComponents/BookmarksContext";
+import { TextSizeProvider } from "./src/utils/TextSizeContext";
 import "intl-pluralrules";
 
 const App = () => (
   <ThemeProvider>
-    <BookmarksProvider>
-      <AppWithProviders />
-    </BookmarksProvider>
+    <TextSizeProvider>
+      <BookmarksProvider>
+        <AppWithProviders />
+      </BookmarksProvider>
+    </TextSizeProvider>
   </ThemeProvider>
 );
 

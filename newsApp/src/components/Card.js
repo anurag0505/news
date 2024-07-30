@@ -13,6 +13,7 @@ import moment from "moment";
 import ImageHero from "./ImageHero";
 import Footer from "./Footer";
 import { useTheme } from "../utils/ThemeContext";
+import { useTextSize } from "../utils/TextSizeContext";
 import ImageViewer from "react-native-image-zoom-viewer";
 import Icon from "react-native-vector-icons/Ionicons";
 import { WebView } from "react-native-webview";
@@ -21,6 +22,7 @@ const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 export const Card = ({ news }) => {
   const { theme } = useTheme();
+  const { textSize } = useTextSize();
   const [isImageViewVisible, setImageViewVisible] = useState(false);
   const slideAnim = useRef(new Animated.Value(screenHeight)).current;
 
@@ -142,11 +144,19 @@ export const Card = ({ news }) => {
         </TouchableWithoutFeedback>
       </Modal>
       <ContentContainer>
-        <TitleText theme={theme}>{news.title}</TitleText>
-        <Description theme={theme}>{news.description}</Description>
+        <TitleText textSize={textSize} theme={theme}>
+          {news.title}
+        </TitleText>
+        <Description textSize={textSize} theme={theme}>
+          {news.description}
+        </Description>
         <InfoText>
-          <Text1 theme={theme}>{news.category}</Text1>
-          <Text2 theme={theme}>{moment(new Date(news.date)).fromNow()}</Text2>
+          <Text1 textSize={textSize} theme={theme}>
+            {news.category}
+          </Text1>
+          <Text2 textSize={textSize} theme={theme}>
+            {moment(new Date(news.date)).fromNow()}
+          </Text2>
         </InfoText>
       </ContentContainer>
       <FooterContainer>
@@ -201,13 +211,15 @@ const TitleText = styled.Text`
   align-items: center;
   justify-content: flex-end;
   line-height: ${screenHeight * 0.03}px;
-  font-size: ${screenHeight * 0.022}px;
+  font-size: ${(props) =>
+    props.textSize === "large" ? screenHeight * 0.023 : screenHeight * 0.022}px;
   padding-bottom: ${screenHeight * 0.01}px;
   padding-top: ${screenHeight * 0.02}px;
 `;
 
 const Description = styled.Text`
-  font-size: ${screenHeight * 0.021}px;
+  font-size: ${(props) =>
+    props.textSize === "large" ? screenHeight * 0.023 : screenHeight * 0.021}px;
   color: ${(props) => props.theme.text};
   line-height: ${screenHeight * 0.032}px;
   font-family: serif;

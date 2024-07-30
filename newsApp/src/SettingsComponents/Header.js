@@ -4,10 +4,12 @@ import styled from "styled-components/native";
 import { useTheme } from "../utils/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/EvilIcons";
+import { useTextSize } from "../utils/TextSizeContext";
 
 const Header = ({ title }) => {
   const { theme } = useTheme();
   const navigation = useNavigation();
+  const { textSize } = useTextSize();
 
   const handlePress = () => {
     navigation.goBack();
@@ -23,7 +25,9 @@ const Header = ({ title }) => {
           onPress={handlePress}
           style={{ color: theme.text }}
         />
-        <HeaderText theme={theme}>{title}</HeaderText>
+        <HeaderText textSize={textSize} theme={theme}>
+          {title}
+        </HeaderText>
       </HeaderContainer>
     </HeaderWrapper>
   );
@@ -66,7 +70,7 @@ const AndroidShadowContainer = styled.View.attrs((props) => ({
 `;
 
 const HeaderText = styled.Text`
-  font-size: 20px;
+  font-size: ${(props) => (props.textSize === "large" ? 21 : 20)}px;
   color: ${(props) => props.theme.text};
   font-weight: 400;
   flex: 1;

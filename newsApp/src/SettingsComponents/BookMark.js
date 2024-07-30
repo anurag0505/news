@@ -6,9 +6,11 @@ import { useTheme } from "../utils/ThemeContext";
 import { BookmarksContext } from "../SettingsComponents/BookmarksContext";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
+import { useTextSize } from "../utils/TextSizeContext";
 
 const BookMark = () => {
   const { theme } = useTheme();
+  const { textSize } = useTextSize();
   const { bookmarks } = useContext(BookmarksContext);
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -33,7 +35,9 @@ const BookMark = () => {
               >
                 <Card>
                   <CardContent>
-                    <CardTitle theme={theme}>{news.title}</CardTitle>
+                    <CardTitle textSize={textSize} theme={theme}>
+                      {news.title}
+                    </CardTitle>
                   </CardContent>
                   <CardImage
                     source={{
@@ -84,7 +88,7 @@ const CardContent = styled.View`
 `;
 
 const CardTitle = styled.Text`
-  font-size: 12px;
+  font-size: ${(props) => (props.textSize === "large" ? 14 : 12)}px;
   font-weight: 500;
   font-family: serif;
   color: ${(props) => props.theme.text};

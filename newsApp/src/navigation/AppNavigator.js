@@ -16,6 +16,7 @@ import Content from "../components/Content";
 import SimpleComponent from "../SettingsComponents/SimpleComponent";
 import Home from "../screen/Home";
 import NoInternet from "../components/NoInternet";
+import SearchResults from "../searchComponents/searchResults";
 
 const Stack = createStackNavigator();
 
@@ -42,6 +43,7 @@ const AppNavigator = () => (
       <Stack.Screen name="Header" component={Header} />
       <Stack.Screen name="Content" component={Content} />
       <Stack.Screen name="NoInternet" component={NoInternet} />
+      <Stack.Screen name="SearchResults" component={SearchResults} />
     </Stack.Navigator>
   </NavigationContainer>
 );

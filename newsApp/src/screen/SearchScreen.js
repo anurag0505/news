@@ -6,26 +6,24 @@ import HorizontalMenu from "../searchComponents/HorizontalMenu";
 import SmallCard from "../searchComponents/SmallCard";
 
 const SearchScreen = ({ navigation }) => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   const handleMenuPress = (title) => {
     console.log("Navigating to:", title);
   };
 
   return (
-    <ContainerSCroll>
+    <ContainerScroll>
       <Container theme={theme}>
-        <SearchBar theme={theme} />
-        <HorizontalMenu onItemPress={handleMenuPress} theme={theme} />
-        <SmallCard theme={theme} />
+        <SearchBar />
+        <HorizontalMenu onItemPress={handleMenuPress} />
+        <SmallCard />
       </Container>
-    </ContainerSCroll>
+    </ContainerScroll>
   );
 };
 
-export default SearchScreen;
-
-const ContainerSCroll = styled.ScrollView`
+const ContainerScroll = styled.ScrollView`
   flex: 1;
 `;
 
@@ -36,3 +34,5 @@ const Container = styled.View`
   align-items: center;
   background-color: ${(props) => props.theme.background};
 `;
+
+export default SearchScreen;

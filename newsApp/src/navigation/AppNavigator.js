@@ -42,8 +42,8 @@ const AppNavigator = () => (
       <Stack.Screen name="BookMark" component={BookMark} />
       <Stack.Screen name="Header" component={Header} />
       <Stack.Screen name="Content" component={Content} />
-      <Stack.Screen name="NoInternet" component={NoInternet} />
       <Stack.Screen name="SearchResults" component={SearchResults} />
+      <Stack.Screen name="NoInternet" component={NoInternet} />
     </Stack.Navigator>
   </NavigationContainer>
 );

@@ -17,12 +17,13 @@ const SearchResults = ({ route }) => {
   const [searchQuery, setSearchQuery] = useState(route?.params?.query || "");
   const [searchResults, setSearchResults] = useState([]);
   const inputRef = useRef(null);
+  const [isLayoutComplete, setIsLayoutComplete] = useState(false);
 
   useEffect(() => {
-    if (inputRef.current) {
+    if (inputRef.current && isLayoutComplete) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [isLayoutComplete]);
 
   useEffect(() => {
     if (searchQuery) {
@@ -89,6 +90,7 @@ const SearchResults = ({ route }) => {
             onSubmitEditing={handleSubmit}
             placeholderTextColor={theme.inactive}
             selectionColor={theme.text}
+            onLayout={() => setIsLayoutComplete(true)}
           />
           {searchQuery ? (
             <ClearButton onPress={handleClear}>
@@ -158,7 +160,6 @@ const Heading = styled.Text`
   color: ${(props) => props.theme.active};
   margin: 10px;
   padding-top: 5px;
-
   font-family: sans-serif;
 `;
 

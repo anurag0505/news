@@ -42,5 +42,7 @@
   "caughtUpMessage": "You are all caught up for the day.",
    "noInternetTitle": "No Internet Connection",
   "noInternetDescription": "There seems to be a problem with the network. Please check your internet connection and try again.",
-  "retry": "Retry"
+  "retry": "Retry",
+  "searchResults": "Search Results",
+  "noResultsFound": "No results found, check the keyword and try again"
 }

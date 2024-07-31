@@ -98,13 +98,22 @@ const SearchResults = ({ route }) => {
         </SearchInputContainer>
       </Header>
 
-      <ResultsContainer>
-        <FlatList
-          data={searchResults}
-          renderItem={renderResult}
-          keyExtractor={(item) => item.id.toString()}
-        />
-      </ResultsContainer>
+      {searchQuery.length > 0 && (
+        <>
+          <Heading theme={theme}>{t("searchResults")}</Heading>
+          {searchResults.length === 0 ? (
+            <NoResults theme={theme}>{t("noResultsFound")}</NoResults>
+          ) : (
+            <ResultsContainer>
+              <FlatList
+                data={searchResults}
+                renderItem={renderResult}
+                keyExtractor={(item) => item.id.toString()}
+              />
+            </ResultsContainer>
+          )}
+        </>
+      )}
     </Container>
   );
 };
@@ -143,9 +152,25 @@ const ClearButton = styled(TouchableOpacity)`
   margin-left: 10px;
 `;
 
+const Heading = styled.Text`
+  font-size: 18px;
+  font-weight: 400;
+  color: ${(props) => props.theme.active};
+  margin: 10px;
+  padding-top: 5px;
+
+  font-family: sans-serif;
+`;
+
+const NoResults = styled.Text`
+  font-size: 16px;
+  color: ${(props) => props.theme.text};
+  text-align: center;
+  margin: 30px;
+`;
+
 const ResultsContainer = styled.View`
   flex: 1;
-  padding-top: 15px;
 `;
 
 const Card = styled.View`

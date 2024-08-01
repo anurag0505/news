@@ -163,8 +163,8 @@ const ClearButton = styled(TouchableOpacity)`
 `;
 
 const Heading = styled.Text`
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 17px;
+  font-weight: 600;
   color: ${(props) => props.theme.active};
   margin: 10px;
   padding-top: 5px;

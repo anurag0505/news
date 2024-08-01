@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Dimensions, TouchableOpacity, TextInput } from "react-native";
 import styled from "styled-components/native";
 import { useTheme } from "../utils/ThemeContext";
@@ -19,14 +19,11 @@ const SearchBar = ({ searchQuery, setSearchQuery, onSubmit }) => {
   };
 
   const handleFocus = () => {
-    navigation.navigate("SearchResults");
-  };
-
-  useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, []);
+    navigation.navigate("SearchResults");
+  };
 
   return (
     <Container theme={theme}>

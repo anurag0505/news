@@ -17,9 +17,6 @@ export default function SmallCard() {
 
   return (
     <>
-      <CategoryContainer theme={theme}>
-        <Text>{t("topHeadlines")}</Text>
-      </CategoryContainer>
       <CardContainer theme={theme}>
         {newsData.map((news) => (
           <TouchableOpacity key={news.id} onPress={() => handlePress(news.id)}>

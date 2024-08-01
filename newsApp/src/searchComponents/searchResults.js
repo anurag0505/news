@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/EvilIcons";
 import { Dimensions } from "react-native";
-import newsData from "../assets/newsData.json"; // Import your news data
+import newsData from "../assets/newsData.json";
 
 const { height: screenHeight } = Dimensions.get("window");
 
@@ -56,8 +56,16 @@ const SearchResults = ({ route }) => {
     setSearchResults([]);
   };
 
+  const handlePress = (id) => {
+    navigation.navigate("Home", { id });
+  };
+
   const renderResult = ({ item }) => (
-    <TouchableOpacity>
+    <TouchableOpacity
+      key={item.id}
+      theme={theme}
+      onPress={() => handlePress(item.id)}
+    >
       <Card theme={theme}>
         <CardContent>
           <CardTitle theme={theme}>{item.title}</CardTitle>

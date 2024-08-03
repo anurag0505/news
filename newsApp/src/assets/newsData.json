@@ -15,13 +15,12 @@
     "category": "Sports",
     "date": "2024-05-25T07:00:00Z",
     "image": "https://images.unsplash.com/photo-1716872491897-078d9b89be49?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-
   },
   {
     "id": "3",
     "url":"https://www.livemint.com/politics/news/pradhan-sevak-for-3rd-time-pm-modi-highlights-very-rare-event-in-maiden-visit-to-varanasi-after-ls-polls-10-pts-11718712955979.html#google_vignette",
     "title": "Political News: New Policies Announced Will Come in for by 2024 3",
-    "description": "The government has unveiled new policies aimed at boosting the economy and creating jobs. These measures are anticipated to positively impact the market and enhance the overall economic landscape. Citizens are hopeful about the future benefits.",
+    "description": "The government has unveiled new policies aimed at boosting the economy and creating jobs. These measures are anticipated to positively impact the market and enhance the overall economic landscape. Citizens are hopeful about the future benefits.In an exciting match last night, the local team won the championship, bringing immense joy to fans and the city. This is their third consecutive league win.",
     "category": "Politics",
     "date": "2024-05-26T09:15:00Z",
     "image": "https://images.unsplash.com/photo-1716872848584-fe49eda7ccb6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -35,13 +34,12 @@
     "date": "2024-05-27T03:45:00Z",
     "image": "https://plus.unsplash.com/premium_photo-1668383209164-16c17a9b1407?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "video": "https://www.youtube.com/watch?v=LveXy5VBGUc"
-
   },
   {
     "id": "5",
     "url":"https://www.livemint.com/politics/news/pradhan-sevak-for-3rd-time-pm-modi-highlights-very-rare-event-in-maiden-visit-to-varanasi-after-ls-polls-10-pts-11718712955979.html#google_vignette",
     "title": "Health: Tips for a Balanced Diet That Lets You Live Longer Experts predict that 2024's 5",
-    "description": "Nutritionists have shared essential tips for maintaining a balanced diet, emphasizing the importance of diverse nutrients in daily meals. These recommendations can help you achieve better health and longevity. Incorporating these tips can improve your life. can help you achieve better health and longevity. achieve better health and longevity. achieve better health and longevity. achieve better health and longevity",
+    "description": "Nutritionists have shared essential tips for maintaining a balanced diet, emphasizing the importance of diverse nutrients in daily meals. These recommendations can help you achieve better health and longevity. Incorporating these tips can improve your life.In an exciting match last night, the local team won the championship, bringing immense joy to fans and the city. This is their third consecutive league win, highlighting their skill and dominance.",
     "category": "Health",
     "date": "2024-05-28T05:30:00Z",
     "image": "https://images.unsplash.com/photo-1636564499112-6113e73c504a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -63,5 +61,135 @@
     "category": "Entertainment",
     "date": "2024-05-30T13:15:00Z",
     "image": "https://images.unsplash.com/photo-1716270062457-adda195eeff2?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "8",
+    "title": "Science News: New Space Exploration Plans Unveiled 8",
+    "description": "A major space agency has unveiled ambitious new plans for space exploration, including missions to distant planets and moons. These plans aim to expand our understanding of the universe and potentially discover new forms of life.",
+    "category": "Science",
+    "date": "2024-05-31T10:50:00Z",
+    "url": "https://www.example.com/science-news",
+    "image": "https://images.unsplash.com/photo-1542202723-4722f2ff9b2d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "9",
+    "title": "Science Update: Climate Change Impact on Ocean Currents 9",
+    "description": "Recent studies have shown that climate change is significantly impacting ocean currents, with potential long-term effects on weather patterns and marine ecosystems. Researchers are calling for urgent action to mitigate these impacts.",
+    "category": "Science",
+    "date": "2024-06-01T08:30:00Z",
+    "url": "https://www.example.com/science-update",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "10",
+    "title": "Sports Highlight: Marathon Winner Sets New Record 10",
+    "description": "The winner of the annual marathon has set a new record, finishing the race in under two hours. This incredible achievement has stunned the sports community and set a new standard for long-distance running.",
+    "category": "Sports",
+    "date": "2024-06-02T06:00:00Z",
+    "image": "https://images.unsplash.com/photo-1533506400010-90e1f3ac4d1c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "11",
+    "title": "Sports News: International Soccer Tournament Update 11",
+    "description": "The latest updates from the international soccer tournament include surprising victories and unexpected losses. Fans are eagerly following the matches as teams compete for the championship.",
+    "category": "Sports",
+    "date": "2024-06-03T09:30:00Z",
+    "image": "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "12",
+    "title": "Politics Today: Election Results and Implications 12",
+    "description": "The recent election results have brought significant changes to the political landscape. Analysts are discussing the implications of these results and what they mean for the future of the country.",
+    "category": "Politics",
+    "date": "2024-06-04T11:00:00Z",
+    "image": "https://images.unsplash.com/photo-1587691599531-1c3b7ac10729?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "13",
+    "title": "Political Analysis: New Policies and Their Impact 13",
+    "description": "Experts are analyzing the new policies announced by the government and their potential impact on various sectors. These policies are expected to bring significant changes and challenges.",
+    "category": "Politics",
+    "date": "2024-06-05T14:45:00Z",
+    "image": "https://images.unsplash.com/photo-1519666213631-f83dfb43b228?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "14",
+    "title": "Tech News: Breakthrough in Quantum Computing 14",
+    "description": "A major breakthrough in quantum computing has been announced, promising to revolutionize the field of technology. This development is expected to have far-reaching implications for various industries.",
+    "category": "Technology",
+    "date": "2024-06-06T02:30:00Z",
+    "image": "https://images.unsplash.com/photo-1535930749574-1399327ce78f?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "15",
+    "title": "Tech Trends: AI in Everyday Life 15",
+    "description": "The integration of AI into everyday life is becoming more prevalent, with new applications and innovations being introduced regularly. This trend is expected to continue, bringing both opportunities and challenges.",
+    "category": "Technology",
+    "date": "2024-06-07T07:45:00Z",
+    "image": "https://images.unsplash.com/photo-1499806211434-6100e57d7275?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "16",
+    "title": "Health Alert: New Exercise Guidelines Released 16",
+    "description": "New exercise guidelines have been released, emphasizing the importance of physical activity for overall health. These guidelines provide recommendations for different age groups and fitness levels.",
+    "category": "Health",
+    "date": "2024-06-08T04:00:00Z",
+    "image": "https://images.unsplash.com/photo-1599058917214-51d2c960f7e6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "17",
+    "title": "Health Tips: Benefits of Meditation 17",
+    "description": "Meditation offers numerous health benefits, including reduced stress and improved mental clarity. Experts recommend incorporating meditation into daily routines to enhance overall well-being.",
+    "category": "Health",
+    "date": "2024-06-09T05:30:00Z",
+    "image": "https://images.unsplash.com/photo-1605664041704-c3d6ef7f0605?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "18",
+    "title": "Finance Update: Cryptocurrency Market Trends 18",
+    "description": "The cryptocurrency market is experiencing significant trends, with new developments and fluctuations. Investors are closely monitoring these changes to make informed decisions.",
+    "category": "Finance",
+    "date": "2024-06-10T07:55:00Z",
+    "image": "https://images.unsplash.com/photo-1504643039591-529692a1de8c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "19",
+    "title": "Finance News: Economic Growth Projections 19",
+    "description": "Economic experts have released new growth projections, indicating a positive outlook for the coming years. These projections are based on current trends and market analysis.",
+    "category": "Finance",
+    "date": "2024-06-11T08:30:00Z",
+    "image": "https://images.unsplash.com/photo-1517232115160-ff93364542dd?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "20",
+    "title": "Entertainment Buzz: Celebrity Wedding of the Year 20",
+    "description": "The celebrity wedding of the year has taken place, with star-studded guests and lavish celebrations. Fans and media are abuzz with details and photos from the event.",
+    "category": "Entertainment",
+    "date": "2024-06-12T09:30:00Z",
+    "image": "https://images.unsplash.com/photo-1503694978374-8a2fa686963a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "21",
+    "title": "Entertainment News: Upcoming Film Releases 21",
+    "description": "The entertainment industry is gearing up for several major film releases in the coming months. Fans are eagerly anticipating these movies, which promise to deliver excitement and entertainment.",
+    "category": "Entertainment",
+    "date": "2024-06-13T10:45:00Z",
+    "image": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+    {
+    "id": "22",
+    "title": "Health Tips: Benefits of Meditation 22",
+    "description": "Meditation offers numerous health benefits, including reduced stress and improved mental clarity. Experts recommend incorporating meditation into daily routines to enhance overall well-being.",
+    "category": "Health",
+    "date": "2024-06-09T05:30:00Z",
+    "image": "https://images.unsplash.com/photo-1605664041704-c3d6ef7f0605?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  },
+  {
+    "id": "23",
+    "title": "Finance Update: Cryptocurrency Market Trends 23",
+    "description": "The cryptocurrency market is experiencing significant trends, with new developments and fluctuations. Investors are closely monitoring these changes to make informed decisions.",
+    "category": "Finance",
+    "date": "2024-06-10T07:55:00Z",
+    "image": "https://images.unsplash.com/photo-1504643039591-529692a1de8c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
 ]

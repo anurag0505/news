@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 import { useTheme } from "../utils/ThemeContext";
 import SearchBar from "../searchComponents/SearchBar";
 import HorizontalMenu from "../searchComponents/HorizontalMenu";
 import SmallCard from "../searchComponents/SmallCard";
 
+const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
+
 const SearchScreen = ({ navigation }) => {
   const { theme } = useTheme();
+  const [activeCategory, setActiveCategory] = useState("");
 
   const handleMenuPress = (title) => {
+    setActiveCategory(title);
     console.log("Navigating to:", title);
   };
 
@@ -17,7 +22,7 @@ const SearchScreen = ({ navigation }) => {
       <Container theme={theme}>
         <SearchBar />
         <HorizontalMenu onItemPress={handleMenuPress} />
-        <SmallCard />
+        <SmallCard activeCategory={activeCategory} />
       </Container>
     </ContainerScroll>
   );

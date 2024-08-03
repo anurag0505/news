@@ -6,7 +6,7 @@ import { useTheme } from "../utils/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { useNavigation } from "@react-navigation/native";
 
-export default function SmallCard() {
+const SmallCard = ({ activeCategory }) => {
   const { theme } = useTheme();
   const { t } = useTranslation();
   const navigation = useNavigation();
@@ -15,24 +15,30 @@ export default function SmallCard() {
     navigation.navigate("Home", { id });
   };
 
+  const filteredNews = activeCategory
+    ? newsData.filter(
+        (news) => news.category.toLowerCase() === activeCategory.toLowerCase()
+      )
+    : newsData;
+
   return (
-    <>
-      <CardContainer theme={theme}>
-        {newsData.map((news) => (
-          <TouchableOpacity key={news.id} onPress={() => handlePress(news.id)}>
-            <Card>
-              <CardContent>
-                <CardMeta>{t(news.category.toLowerCase())}</CardMeta>
-                <CardTitle>{news.title}</CardTitle>
-              </CardContent>
-              <CardImage source={{ uri: news.image }} />
-            </Card>
-          </TouchableOpacity>
-        ))}
-      </CardContainer>
-    </>
+    <CardContainer theme={theme}>
+      {filteredNews.map((news) => (
+        <TouchableOpacity key={news.id} onPress={() => handlePress(news.id)}>
+          <Card>
+            <CardContent>
+              <CardMeta>{t(news.category.toLowerCase())}</CardMeta>
+              <CardTitle>{news.title}</CardTitle>
+            </CardContent>
+            <CardImage source={{ uri: news.image }} />
+          </Card>
+        </TouchableOpacity>
+      ))}
+    </CardContainer>
   );
-}
+};
+
+export default SmallCard;
 
 const CardContainer = styled.ScrollView`
   flex: 1;
@@ -41,12 +47,6 @@ const CardContainer = styled.ScrollView`
   width: 100%;
   margin-left: 5px;
   margin-right: 5px;
-`;
-
-const CategoryContainer = styled.View`
-  padding-bottom: 10px;
-  padding-left: 10px;
-  align-self: flex-start;
 `;
 
 const Card = styled.View.attrs({

@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import SettingsScreen from "../screen/SettingScreen";
+import SettingsScreen from "../screen/SettingsScreen";
 import BookMark from "../SettingsComponents/BookMark";
 import Header from "../SettingsComponents/Header";
 

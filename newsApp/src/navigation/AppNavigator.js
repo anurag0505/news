@@ -13,7 +13,6 @@ import BookMark from "../SettingsComponents/BookMark";
 import SettingsScreen from "../screen/SettingsScreen";
 import Header from "../SettingsComponents/Header";
 import Content from "../components/Content";
-import SimpleComponent from "../SettingsComponents/SimpleComponent";
 import Home from "../screen/Home";
 import NoInternet from "../components/NoInternet";
 import SearchResults from "../searchComponents/searchResults";

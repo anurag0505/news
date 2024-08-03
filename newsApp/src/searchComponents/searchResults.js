@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FlatList, TouchableOpacity, TextInput } from "react-native";
+import {
+  FlatList,
+  TouchableOpacity,
+  TextInput,
+  SafeAreaView,
+} from "react-native";
 import styled from "styled-components/native";
 import { useTheme } from "../utils/ThemeContext";
 import { useTranslation } from "react-i18next";
@@ -80,57 +85,64 @@ const SearchResults = ({ route }) => {
   );
 
   return (
-    <Container theme={theme}>
-      <Header>
-        <Icon
-          onPress={handleGoBack}
-          name="arrow-left"
-          size={30}
-          style={{ color: theme.text }}
-        />
-        <SearchInputContainer>
-          <SearchInput
-            ref={inputRef}
-            theme={theme}
-            placeholder={t("searchHereForNews")}
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-            onSubmitEditing={handleSubmit}
-            placeholderTextColor={theme.inactive}
-            selectionColor={theme.text}
-            onLayout={() => setIsLayoutComplete(true)}
+    <SafeArea>
+      <Container theme={theme}>
+        <Header>
+          <Icon
+            onPress={handleGoBack}
+            name="arrow-left"
+            size={30}
+            style={{ color: theme.text }}
           />
-          {searchQuery ? (
-            <ClearButton onPress={handleClear}>
-              <Icon name="trash" size={30} style={{ color: theme.text }} />
-            </ClearButton>
-          ) : null}
-        </SearchInputContainer>
-      </Header>
+          <SearchInputContainer>
+            <SearchInput
+              ref={inputRef}
+              theme={theme}
+              placeholder={t("searchHereForNews")}
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              onSubmitEditing={handleSubmit}
+              placeholderTextColor={theme.inactive}
+              selectionColor={theme.text}
+              onLayout={() => setIsLayoutComplete(true)}
+            />
+            {searchQuery ? (
+              <ClearButton onPress={handleClear}>
+                <Icon name="trash" size={30} style={{ color: theme.text }} />
+              </ClearButton>
+            ) : null}
+          </SearchInputContainer>
+        </Header>
 
-      {searchQuery.length > 0 && (
-        <>
-          <Heading theme={theme}>{t("searchResults")}</Heading>
-          {searchResults.length === 0 ? (
-            <NoResults theme={theme}>{t("noResultsFound")}</NoResults>
-          ) : (
-            <ResultsContainer>
-              <FlatList
-                data={searchResults}
-                renderItem={renderResult}
-                keyExtractor={(item) => item.id.toString()}
-              />
-            </ResultsContainer>
-          )}
-        </>
-      )}
-    </Container>
+        {searchQuery.length > 0 && (
+          <>
+            <Heading theme={theme}>{t("searchResults")}</Heading>
+            {searchResults.length === 0 ? (
+              <NoResults theme={theme}>{t("noResultsFound")}</NoResults>
+            ) : (
+              <ResultsContainer>
+                <FlatList
+                  data={searchResults}
+                  renderItem={renderResult}
+                  keyExtractor={(item) => item.id.toString()}
+                />
+              </ResultsContainer>
+            )}
+          </>
+        )}
+      </Container>
+    </SafeArea>
   );
 };
 
 const Container = styled.View`
   flex: 1;
   padding: 10px;
+  background-color: ${(props) => props.theme.background};
+`;
+
+const SafeArea = styled(SafeAreaView)`
+  flex: 1;
   background-color: ${(props) => props.theme.background};
 `;
 
@@ -148,7 +160,7 @@ const SearchInputContainer = styled.View`
 `;
 
 const SearchInput = styled.TextInput`
-  height: ${screenHeight * 0.05}px;
+  height: ${screenHeight * 0.06}px;
   flex: 1;
   border-width: ${(props) => (props.theme.isDark ? 0.3 : 1)}px;
   padding: 10px;

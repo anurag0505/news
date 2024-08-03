@@ -2,12 +2,11 @@ import React from "react";
 import { Dimensions, View, StyleSheet } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import { useTheme } from "../utils/ThemeContext";
-import SearchScreen from "../screen/SearchScreen";
 import Home from "../screen/Home";
 import SettingScreen from "../screen/SettingsScreen";
 import FoundationIcons from "react-native-vector-icons/Foundation";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
+import SearchStack from "../navigation/SearchStack";
 import HomeStack from "../navigation/HomeStack";
 
 const initialLayout = { width: Dimensions.get("window").width };
@@ -21,11 +20,9 @@ const MainTabNavigator = () => {
     { key: "settings", title: "settings", icon: "torso" },
   ]);
 
-  const navigation = useNavigation();
-
   const renderScene = SceneMap({
-    search: SearchScreen,
-    home: HomeStack,
+    search: SearchStack,
+    home: Home,
     settings: SettingScreen,
   });
 
@@ -61,7 +58,7 @@ const MainTabNavigator = () => {
         initialLayout={initialLayout}
         renderTabBar={renderTabBar}
         tabBarPosition="bottom"
-        swipeEnabled={true}
+        swipeEnabled={false}
         animationEnabled={true}
       />
     </View>

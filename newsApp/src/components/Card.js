@@ -19,6 +19,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { WebView } from "react-native-webview";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
+const TAB_BAR_HEIGHT = 49;
 
 export const Card = ({ news }) => {
   const { theme } = useTheme();
@@ -182,10 +183,10 @@ const StyledWebView = styled(WebView)`
 
 const Container = styled.View`
   display: flex;
-  flex: ${Platform.OS === "ios" ? "0.86" : "1"};
   justify-content: space-between;
   background-color: ${(props) => props.theme.background};
   border-radius: ${screenHeight * 0.02}px;
+  height: ${screenHeight - TAB_BAR_HEIGHT}px;
 `;
 
 const ImageHeroContainer = styled.View`
@@ -200,7 +201,6 @@ const ContentContainer = styled.View`
 
 const FooterContainer = styled.View`
   justify-content: center;
-  padding-bottom: ${screenHeight * 0.054}px;
 `;
 
 const TitleText = styled.Text`
@@ -258,7 +258,6 @@ const FooterContainerModal = styled.View`
   bottom: ${screenWidth * 0.08}px;
   width: ${screenWidth}px;
   padding: ${screenWidth * 0.03}px;
-
   align-items: center;
   justify-content: center;
 `;

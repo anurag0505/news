@@ -53,14 +53,18 @@ const HorizontalMenu = ({ onItemPress }) => {
         renderItem={renderItem}
         width={screenWidth * 0.4}
         height={screenHeight * 0.22}
-        onSnapToItem={(index) => setActiveIndex(index)}
+        onSnapToItem={(index) => {
+          setActiveIndex(index);
+          onItemPress(menuItems[index].title); // Ensure onItemPress is called with the correct title
+        }}
         mode="parallax"
         modeConfig={{
           parallaxScrollingScale: 1.0,
           parallaxScrollingOffset: 40,
         }}
         style={{ overflow: "visible" }}
-        scrollAnimationDuration={500}
+        scrollAnimationDuration={300}
+        easing={(t) => t * (2 - t)} // Easing function for smoother animation
       />
     </Container>
   );
@@ -69,8 +73,9 @@ const HorizontalMenu = ({ onItemPress }) => {
 export default HorizontalMenu;
 
 const Container = styled.View`
-  padding: 10px 0;
-  height: ${screenHeight * 0.22}px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  height: ${screenHeight * 0.25}px;
   background-color: ${(props) => props.theme.background};
 `;
 
@@ -78,7 +83,7 @@ const MenuItem = styled(TouchableOpacity)`
   align-items: center;
   justify-content: center;
   margin: 0 6px;
-  transform: ${(props) => (props.isActive ? "scale(1.0)" : "scale(0.9)")};
+  transform: ${(props) => (props.isActive ? "scale(1.1)" : "scale(1.0)")};
   transition: transform 0.2s ease-in-out;
 `;
 

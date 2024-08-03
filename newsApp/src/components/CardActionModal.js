@@ -85,7 +85,7 @@ const ModalContainer = styled.View`
   padding: 20px;
   flex-direction: row;
   justify-content: space-around;
-  margin-bottom: 48px;
+  margin-bottom: 45px;
 `;
 
 const IconContainer = styled.View`

@@ -15,6 +15,7 @@ const lightTheme = {
   tabBarBackground: "#000000",
   shadowColor: "#000000",
   cardBackground: "#ffffff",
+  grey: "#D3D3D3",
 };
 
 const darkTheme = {
@@ -22,7 +23,7 @@ const darkTheme = {
   background: "black",
   text: "#ffffff",
   cardBackground: "black",
-  SearchBar: "#D3D3D3",
+  SearchBar: "black",
   active: "#1877F2",
   inactive: "#888888",
   tabBarBackground: "#000000",

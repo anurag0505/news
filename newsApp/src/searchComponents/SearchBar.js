@@ -75,9 +75,10 @@ const SearchContainer = styled.View`
 const Search = styled.TextInput`
   height: ${screenHeight * 0.06}px;
   width: ${screenWidth * 0.85}px;
-  border-width: ${(props) => (props.theme.isDark ? 0.3 : 1)}px;
+  border-width: ${(props) => (props.theme.isDark ? 0.4 : 1)}px;
   padding: 10px;
-  border-color: ${(props) => props.theme.SearchBar};
+  border-color: ${(props) =>
+    props.theme.isDark ? props.theme.inactive : props.theme.SearchBar};
   border-radius: 5px;
   background-color: ${(props) => props.theme.SearchBar};
   color: ${(props) => props.theme.text};

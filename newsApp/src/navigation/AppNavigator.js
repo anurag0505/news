@@ -13,7 +13,6 @@ import BookMark from "../SettingsComponents/BookMark";
 import SettingsScreen from "../screen/SettingsScreen";
 import Header from "../SettingsComponents/Header";
 import Content from "../components/Content";
-import Home from "../screen/Home";
 import NoInternet from "../components/NoInternet";
 import SearchResults from "../searchComponents/searchResults";
 
@@ -27,7 +26,6 @@ const AppNavigator = () => (
     >
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="Main" component={MainTabNavigator} />
-      <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
       <Stack.Screen

@@ -6,14 +6,12 @@ import { useTheme } from "../utils/ThemeContext";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import newsData from "../assets/newsData.json";
 
-const Home = () => {
+const HomeScreen = () => {
   const { theme } = useTheme();
   const route = useRoute();
   const navigation = useNavigation();
   const { id } = route.params || {};
-  const initialIndex = id
-    ? newsData.findIndex((news) => news.id === id)
-    : undefined;
+  const initialIndex = id ? newsData.findIndex((news) => news.id === id) : 0;
 
   useEffect(() => {
     if (initialIndex !== undefined) {
@@ -45,4 +43,4 @@ const Container = styled.View`
   flex: 1;
 `;
 
-export default Home;
+export default HomeScreen;

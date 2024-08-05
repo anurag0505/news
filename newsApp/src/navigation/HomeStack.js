@@ -3,7 +3,7 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import Home from "../screen/Home";
+import HomeScreen from "../screen/HomeScreen";
 import WebViewScreen from "../screen/WebViewScreen";
 import CaughtUp from "../components/CaughtUp";
 
@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 const HomeStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Home" component={Home} />
+    <Stack.Screen name="HomeScreen" component={HomeScreen} />
     <Stack.Screen
       name="WebView"
       component={WebViewScreen}

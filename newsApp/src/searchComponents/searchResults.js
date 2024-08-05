@@ -62,7 +62,7 @@ const SearchResults = ({ route }) => {
   };
 
   const handlePress = (id) => {
-    navigation.navigate("Home", { id });
+    navigation.navigate("HomeScreen", { id });
   };
 
   const renderResult = ({ item }) => (

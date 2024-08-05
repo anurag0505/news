@@ -21,11 +21,6 @@ const Content = ({ navigation, selectedIndex }) => {
   const [selectedNews, setSelectedNews] = useState(null);
   const slideAnim = useRef(new Animated.Value(screenHeight)).current;
 
-  // const route = useRoute();
-  // const { index } = route.params;
-
-  // const cardDisplayer = newsData[index];
-
   const openModal = (news) => {
     setSelectedNews(news);
     setModalVisible(true);

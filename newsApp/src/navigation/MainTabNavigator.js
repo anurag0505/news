@@ -1,11 +1,14 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { useTheme } from "../utils/ThemeContext";
+import { Dimensions } from "react-native";
 import FoundationIcons from "react-native-vector-icons/Foundation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import SearchStack from "../navigation/SearchStack";
 import HomeStack from "../navigation/HomeStack";
 import SettingScreen from "../screen/SettingsScreen";
+
+const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -33,7 +36,7 @@ const MainTabNavigator = () => {
         tabBarIndicatorStyle: { height: 0 },
         tabBarStyle: {
           backgroundColor: theme.tabBarBackground,
-          height: 45,
+          height: screenHeight * 0.058,
         },
         tabBarActiveTintColor: theme.active,
         tabBarInactiveTintColor: theme.inactive,

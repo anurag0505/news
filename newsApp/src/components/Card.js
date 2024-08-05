@@ -19,7 +19,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { WebView } from "react-native-webview";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
-const TAB_BAR_HEIGHT = 49;
+const TAB_BAR_HEIGHT = screenHeight * 0.058;
 
 export const Card = ({ news }) => {
   const { theme } = useTheme();

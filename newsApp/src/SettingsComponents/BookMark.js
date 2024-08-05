@@ -16,10 +16,7 @@ const BookMark = () => {
   const navigation = useNavigation();
 
   const handlePress = (id) => {
-    navigation.navigate("HomeScreen", {
-      screen: "HomeScreen", // Ensure this matches the screen name inside HomeStack
-      params: { id },
-    });
+    navigation.navigate("HomeScreen", { id });
   };
 
   return (

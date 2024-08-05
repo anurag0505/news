@@ -12,7 +12,7 @@ const SmallCard = ({ activeCategory }) => {
   const navigation = useNavigation();
 
   const handlePress = (id) => {
-    navigation.navigate("Home", { id });
+    navigation.navigate("HomeScreen", { id });
   };
 
   const filteredNews = activeCategory

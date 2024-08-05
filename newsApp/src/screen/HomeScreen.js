@@ -11,11 +11,18 @@ const HomeScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const { id } = route.params || {};
+
+  useEffect(() => {
+    console.log("Route params:", route.params);
+  }, [route.params]);
+
   const initialIndex = id ? newsData.findIndex((news) => news.id === id) : 0;
 
   useEffect(() => {
-    if (initialIndex !== undefined) {
+    if (initialIndex !== undefined && initialIndex !== -1) {
       console.log("Navigated to Home with index:", initialIndex);
+    } else {
+      console.log("ID not found in newsData. Defaulting to index 0.");
     }
   }, [initialIndex]);
 
@@ -25,7 +32,7 @@ const HomeScreen = () => {
         <Content
           navigation={navigation}
           theme={theme}
-          selectedIndex={initialIndex}
+          selectedIndex={initialIndex !== -1 ? initialIndex : 0}
         />
       </Container>
     </SafeArea>

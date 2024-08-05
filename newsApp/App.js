@@ -1,5 +1,6 @@
 import React from "react";
 import { AppRegistry, StatusBar } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import styled, {
   ThemeProvider as StyledThemeProvider,
@@ -17,7 +18,9 @@ const App = () => (
   <ThemeProvider>
     <TextSizeProvider>
       <BookmarksProvider>
-        <AppWithProviders />
+        <SafeAreaProvider>
+          <AppWithProviders />
+        </SafeAreaProvider>
       </BookmarksProvider>
     </TextSizeProvider>
   </ThemeProvider>
@@ -30,10 +33,12 @@ const AppWithProviders = () => {
     <I18nextProvider i18n={i18n}>
       <StyledThemeProvider theme={theme}>
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <Container>
-            <StatusBar barStyle="light-content" backgroundColor="#000000" />
-            <AppNavigator />
-          </Container>
+          <SafeAreaView style={{ flex: 1 }}>
+            <Container>
+              <StatusBar barStyle="light-content" backgroundColor="#000000" />
+              <AppNavigator />
+            </Container>
+          </SafeAreaView>
         </GestureHandlerRootView>
       </StyledThemeProvider>
     </I18nextProvider>

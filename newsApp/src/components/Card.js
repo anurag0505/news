@@ -7,7 +7,6 @@ import {
   Animated,
   BackHandler,
   Platform,
-  SafeAreaView,
 } from "react-native";
 import styled from "styled-components/native";
 import moment from "moment";
@@ -76,97 +75,95 @@ export const Card = ({ news }) => {
   }, [isImageViewVisible]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
-      <Container theme={theme}>
-        {news.video ? (
-          <VideoContainer>
-            <StyledWebView
-              javaScriptEnabled={true}
-              source={{ uri: getEmbedUrl(news.video) }}
-            />
-          </VideoContainer>
-        ) : (
-          <TouchableOpacity onPress={openImageViewer}>
-            <ImageHeroContainer>
-              <ImageHero source={{ uri: news.image }} />
-            </ImageHeroContainer>
-          </TouchableOpacity>
-        )}
+    <Container theme={theme}>
+      {news.video ? (
+        <VideoContainer>
+          <StyledWebView
+            javaScriptEnabled={true}
+            source={{ uri: getEmbedUrl(news.video) }}
+          />
+        </VideoContainer>
+      ) : (
+        <TouchableOpacity onPress={openImageViewer}>
+          <ImageHeroContainer>
+            <ImageHero source={{ uri: news.image }} />
+          </ImageHeroContainer>
+        </TouchableOpacity>
+      )}
 
-        <Modal
-          visible={isImageViewVisible}
-          transparent={true}
-          animationType="none"
-          onRequestClose={closeImageViewer}
-        >
-          <TouchableWithoutFeedback onPress={closeImageViewer}>
-            <Animated.View
-              style={{
-                transform: [{ translateY: slideAnim }],
-                flex: 1,
-                backgroundColor: "rgba(0, 0, 0, 0.9)",
-                justifyContent: "center",
-              }}
-            >
-              <ImageViewer
-                imageUrls={images}
-                onSwipeDown={closeImageViewer}
-                onClick={closeImageViewer}
-                renderIndicator={() => null}
-                enableSwipeDown={true}
-                enableImageIndicator={false}
-                onBackButtonPress={false}
-                doubleClickInterval={200}
-                renderHeader={() => (
-                  <TouchableWithoutFeedback onPress={closeImageViewer}>
-                    <IconContainer>
-                      <Icon
-                        style={{ padding: 20 }}
-                        name="close"
-                        size={30}
-                        color="#FFF"
-                      />
-                    </IconContainer>
-                  </TouchableWithoutFeedback>
-                )}
-                renderFooter={(currentIndex) => (
-                  <FooterContainerModal>
-                    <Text1
-                      style={{
-                        color: "white",
-                        fontSize: 15,
-                        fontWeight: 400,
-                      }}
-                    >
-                      {news.title}
-                    </Text1>
-                  </FooterContainerModal>
-                )}
-              />
-            </Animated.View>
-          </TouchableWithoutFeedback>
-        </Modal>
-        <ContentContainer>
-          <TitleText textSize={textSize} theme={theme}>
-            {news.title}
-          </TitleText>
-          <Description textSize={textSize} theme={theme}>
-            {news.description}
-          </Description>
-          <InfoText>
-            <Text1 textSize={textSize} theme={theme}>
-              {news.category}
-            </Text1>
-            <Text2 textSize={textSize} theme={theme}>
-              {moment(new Date(news.date)).fromNow()}
-            </Text2>
-          </InfoText>
-        </ContentContainer>
-        <FooterContainer>
-          <Footer imageUri={news.image} />
-        </FooterContainer>
-      </Container>
-    </SafeAreaView>
+      <Modal
+        visible={isImageViewVisible}
+        transparent={true}
+        animationType="none"
+        onRequestClose={closeImageViewer}
+      >
+        <TouchableWithoutFeedback onPress={closeImageViewer}>
+          <Animated.View
+            style={{
+              transform: [{ translateY: slideAnim }],
+              flex: 1,
+              backgroundColor: "rgba(0, 0, 0, 0.9)",
+              justifyContent: "center",
+            }}
+          >
+            <ImageViewer
+              imageUrls={images}
+              onSwipeDown={closeImageViewer}
+              onClick={closeImageViewer}
+              renderIndicator={() => null}
+              enableSwipeDown={true}
+              enableImageIndicator={false}
+              onBackButtonPress={false}
+              doubleClickInterval={200}
+              renderHeader={() => (
+                <TouchableWithoutFeedback onPress={closeImageViewer}>
+                  <IconContainer>
+                    <Icon
+                      style={{ padding: 20 }}
+                      name="close"
+                      size={30}
+                      color="#FFF"
+                    />
+                  </IconContainer>
+                </TouchableWithoutFeedback>
+              )}
+              renderFooter={(currentIndex) => (
+                <FooterContainerModal>
+                  <Text1
+                    style={{
+                      color: "white",
+                      fontSize: 15,
+                      fontWeight: 400,
+                    }}
+                  >
+                    {news.title}
+                  </Text1>
+                </FooterContainerModal>
+              )}
+            />
+          </Animated.View>
+        </TouchableWithoutFeedback>
+      </Modal>
+      <ContentContainer>
+        <TitleText textSize={textSize} theme={theme}>
+          {news.title}
+        </TitleText>
+        <Description textSize={textSize} theme={theme}>
+          {news.description}
+        </Description>
+        <InfoText>
+          <Text1 textSize={textSize} theme={theme}>
+            {news.category}
+          </Text1>
+          <Text2 textSize={textSize} theme={theme}>
+            {moment(new Date(news.date)).fromNow()}
+          </Text2>
+        </InfoText>
+      </ContentContainer>
+      <FooterContainer>
+        <Footer imageUri={news.image} />
+      </FooterContainer>
+    </Container>
   );
 };
 
@@ -190,6 +187,7 @@ const Container = styled.View`
   background-color: ${(props) => props.theme.background};
   border-radius: ${screenHeight * 0.02}px;
   height: ${screenHeight - TAB_BAR_HEIGHT}px;
+  overflow: hidden;
 `;
 
 const ImageHeroContainer = styled.View`

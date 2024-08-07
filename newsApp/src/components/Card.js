@@ -161,7 +161,7 @@ export const Card = ({ news }) => {
         </InfoText>
       </ContentContainer>
       <FooterContainer>
-        <Footer imageUri={news.image} />
+        <Footer imageUri={news.image} url={news.url} />
       </FooterContainer>
     </Container>
   );

@@ -1,35 +1,43 @@
 import React from "react";
-import { Dimensions, ImageBackground } from "react-native";
+import { Dimensions, ImageBackground, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { BlurView } from "expo-blur";
 import { useTranslation } from "react-i18next";
 import { useTextSize } from "../utils/TextSizeContext";
+import { useNavigation } from "@react-navigation/native";
 
 const { height: screenHeight, width: screenWidth } = Dimensions.get("window");
 
-const Footer = ({ imageUri, navigation }) => {
+const Footer = ({ imageUri, url }) => {
   const { t } = useTranslation();
   const { textSize } = useTextSize();
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate("WebView", { url });
+  };
 
   return (
     <FooterContainer>
-      <StyledImageBackground
-        source={{ uri: imageUri }}
-        imageStyle={{
-          borderBottomLeftRadius: 15,
-          borderBottomRightRadius: 15,
-        }}
-        resizeMode="cover"
-      >
-        <Overlay />
-        <StyledBlurView
-          experimentalBlurMethod
-          intensity={52}
-          tint="dark"
-          style={{ borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}
-        />
-        <FooterText2 textSize={textSize}>{t("tapToKnowMore")}</FooterText2>
-      </StyledImageBackground>
+      <TouchableOpacity onPress={handlePress}>
+        <StyledImageBackground
+          source={{ uri: imageUri }}
+          imageStyle={{
+            borderBottomLeftRadius: 15,
+            borderBottomRightRadius: 15,
+          }}
+          resizeMode="cover"
+        >
+          <Overlay />
+          <StyledBlurView
+            experimentalBlurMethod
+            intensity={52}
+            tint="dark"
+            style={{ borderBottomLeftRadius: 15, borderBottomRightRadius: 15 }}
+          />
+          <FooterText2 textSize={textSize}>{t("tapToKnowMore")}</FooterText2>
+        </StyledImageBackground>
+      </TouchableOpacity>
     </FooterContainer>
   );
 };

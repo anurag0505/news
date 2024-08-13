@@ -45,6 +45,7 @@ const Content = ({ navigation, selectedIndex }) => {
   return (
     <Container theme={theme}>
       <CustomSwiper
+        theme={theme}
         navigation={navigation}
         onCardTap={openModal}
         initialIndex={selectedIndex}

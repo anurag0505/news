@@ -18,6 +18,7 @@ const CustomSwiper = ({ navigation, onCardTap, initialIndex = 0 }) => {
   const { theme } = useTheme();
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const position = useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+  const scale = useRef(new Animated.Value(1)).current;
   const opacity = useRef(new Animated.Value(1)).current;
 
   const handleCardTap = (news) => {
@@ -30,14 +31,8 @@ const CustomSwiper = ({ navigation, onCardTap, initialIndex = 0 }) => {
     let newX = 0;
     let newY = 0;
 
-    if (direction === "SWIPE_LEFT") {
-      const card = newsData[currentIndex];
-      if (card.url) {
-        navigation.navigate("WebView", { url: card.url });
-      }
-      newX = -screenWidth;
-    } else if (direction === "SWIPE_RIGHT") {
-      navigation.navigate("SearchScreen");
+    if (direction === "SWIPE_RIGHT") {
+      navigation.navigate("Search");
       newX = screenWidth;
     } else if (direction === "SWIPE_UP") {
       if (currentIndex < newsData.length - 1) {
@@ -58,6 +53,12 @@ const CustomSwiper = ({ navigation, onCardTap, initialIndex = 0 }) => {
         easing: Easing.out(Easing.ease),
         useNativeDriver: true,
       }),
+      Animated.timing(scale, {
+        toValue: 0.9,
+        duration: 300,
+        easing: Easing.out(Easing.ease),
+        useNativeDriver: true,
+      }),
       Animated.timing(opacity, {
         toValue: 0,
         duration: 300,
@@ -65,6 +66,7 @@ const CustomSwiper = ({ navigation, onCardTap, initialIndex = 0 }) => {
       }),
     ]).start(() => {
       position.setValue({ x: 0, y: 0 });
+      scale.setValue(1);
       opacity.setValue(1);
     });
 
@@ -75,6 +77,7 @@ const CustomSwiper = ({ navigation, onCardTap, initialIndex = 0 }) => {
 
   useEffect(() => {
     position.setValue({ x: 0, y: 0 });
+    scale.setValue(1);
     opacity.setValue(1);
   }, [currentIndex]);
 
@@ -84,15 +87,14 @@ const CustomSwiper = ({ navigation, onCardTap, initialIndex = 0 }) => {
 
   return (
     <GestureRecognizer
-      onSwipeLeft={() => onSwiped("SWIPE_LEFT")}
       onSwipeRight={() => onSwiped("SWIPE_RIGHT")}
       onSwipeUp={() => onSwiped("SWIPE_UP")}
       onSwipeDown={() => onSwiped("SWIPE_DOWN")}
       config={{
-        velocityThreshold: 0.3,
-        directionalOffsetThreshold: 80,
+        velocityThreshold: 0.2,
+        directionalOffsetThreshold: 30,
       }}
-      style={styles.container}
+      style={[styles.container, { backgroundColor: theme.background }]}
     >
       {newsData
         .slice(Math.max(currentIndex - 1, 0), currentIndex + 2)
@@ -110,8 +112,10 @@ const CustomSwiper = ({ navigation, onCardTap, initialIndex = 0 }) => {
                   transform: [
                     { translateX: isCurrentIndex ? position.x : 0 },
                     { translateY: isCurrentIndex ? position.y : 0 },
+                    { scale: isCurrentIndex ? scale : 0.9 },
                   ],
                   opacity: isCurrentIndex ? opacity : 1,
+                  backgroundColor: theme.cardBackground, // Apply theme background color here
                 },
               ]}
             >
@@ -136,11 +140,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   card: {
-    width: screenWidth,
-    height: screenHeight,
+    width: screenWidth * 0.9,
+    height: screenHeight * 0.9,
     position: "absolute",
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.15,
+    shadowRadius: 10,
   },
   cardContent: {
     width: "100%",

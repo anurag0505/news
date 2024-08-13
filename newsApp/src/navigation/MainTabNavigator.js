@@ -20,6 +20,7 @@ const MainTabNavigator = () => {
       initialRouteName="Home"
       tabBarPosition="bottom"
       screenOptions={({ route }) => ({
+        swipeEnabled: true,
         tabBarIcon: ({ focused }) => {
           const color = focused ? theme.active : theme.inactive;
           if (route.name === "Search") {

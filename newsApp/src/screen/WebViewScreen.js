@@ -1,6 +1,15 @@
 import React, { useState } from "react";
 import { WebView } from "react-native-webview";
-import { SafeAreaView, ActivityIndicator, View } from "react-native";
+import {
+  SafeAreaView,
+  ActivityIndicator,
+  View,
+  Dimensions,
+} from "react-native";
+import { PanGestureHandler } from "react-native-gesture-handler";
+import Header from "../SettingsComponents/Header";
+
+const { width: screenWidth } = Dimensions.get("window");
 
 const WebViewScreen = ({ route }) => {
   const { url } = route.params;
@@ -16,21 +25,27 @@ const WebViewScreen = ({ route }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      {loading && (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <ActivityIndicator size="large" color="#0000ff" />
-        </View>
-      )}
-      <WebView
-        source={{ uri: url }}
-        style={{ flex: 1 }}
-        onLoad={handleLoad}
-        onError={handleError}
-      />
-    </SafeAreaView>
+    <PanGestureHandler
+      onGestureEvent={() => {}}
+      activeOffsetX={[-screenWidth, screenWidth]} // Disable left and right swipe
+    >
+      <SafeAreaView style={{ flex: 1 }}>
+        <Header title="web view" />
+        {loading && (
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <ActivityIndicator size="large" color="#0000ff" />
+          </View>
+        )}
+        <WebView
+          source={{ uri: url }}
+          style={{ flex: 1 }}
+          onLoad={handleLoad}
+          onError={handleError}
+        />
+      </SafeAreaView>
+    </PanGestureHandler>
   );
 };
 
